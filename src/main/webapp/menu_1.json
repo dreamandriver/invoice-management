@@ -1,0 +1,16 @@
+{
+   "menus" : [{"icon" : "icon-sys","menuid" : "1","menuname" : "单位管理","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "医院","url" : "/yycgproject/useryyquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "供货商","url" : "/yycgproject/usergysquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "模块操作管理","url" : "/yycgproject/modulemanager.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "用戶管理","url" : "/yycgproject/sysuserquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "药品信息","url" : "/yycgproject/ypxx/ypxxquery.action"
+                 }]
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "统计分析","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "交易明细查询","url" : "/yycgproject/cgd/businessquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "按药品统计","url" : "/yycgproject/cgd/businessqueryypxx.action"
+                 }]
+               }
+             ]
+}

@@ -1,0 +1,35 @@
+{
+   "menus" : [{"icon" : "icon-sys","menuid" : "1","menuname" : "系统管理","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "用戶管理","url" : "/yycg/sys/user/list.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "权限管理","url" : "/yycg/sys/permission/list.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "角色管理","url" : "/yycg/sys/role/list.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "流程定义","url" : "/yycg/sys/flow/processdeflist.action"
+                 }]
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "药品目录","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "药品信息导入","url" : "/yycg/ypml/ypxx/importypxx.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "药品信息查询","url" : "/yycg/ypml/ypxx/list.action"
+                 }]
+               }
+               ,
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "采购单","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "创建采购单","url" : "/yycg/cgd/create.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "采购单维护","url" : "/yycg/cgd/list.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "采购单审核","url" : "/yycg/cgd/checklist.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "采购单受理","url" : "/yycg/cgd/disposelist.action"
+                 }]
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "采购单工作流","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "创建采购单","url" : "/yycg/cgd/create.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "拾取任务","url" : "/yycg/cgd/flow/grouptasklist.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "待办任务","url" : "/yycg/cgd/flow/tasklist.action"
+                 }]
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "统计分析","url" : "","menus" : [
+                  {"icon" : "icon-log","menuid" : "1_1","menuname" : "交易明细查询","url" : "/yycg/analyze/businesslist.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "按药品统计","url" : "/yycg/analyze/sumgroupypxx_list.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "按区域统计","url" : "/yycg/analyze/sumgrouparea.action"
+                 }]
+               }
+             ]
+}

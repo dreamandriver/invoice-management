@@ -1,0 +1,42 @@
+{
+   "menus" : [{"icon" : "icon-sys","menuid" : "1","menuname" : "单位管理","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "医院","url" : "/yycgproject/useryyquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "供货商","url" : "/yycgproject/usergysquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "模块操作管理","url" : "/yycgproject/modulemanager.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "用戶管理","url" : "/yycgproject/sysuserquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "药品信息","url" : "/yycgproject/ypxx/ypxxquery.action"
+                 }]
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "药品目录","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "供货商供货目录","url" : "/yycgproject/ypml/gysypmlquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "供货商供货控制","url" : "/yycgproject/ypml/gysypmlControlquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "医院药品目录维护","url" : "/yycgproject/ypml/yyypmlquery.action"
+                 }]
+               }
+               ,
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "采购单","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "创建采购单","url" : "/yycgproject/cgd/yycgdadd.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "采购单维护","url" : "/yycgproject/cgd/yycgdlist.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "采购单审核","url" : "/yycgproject/cgd/yycgdSHlist.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "采购单受理","url" : "/yycgproject/cgd/yycgddispose.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "入库","url" : "/yycgproject/cgd/yycgdrkquery.action"
+                 }]
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "统计分析","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "交易明细查询","url" : "/yycgproject/cgd/businessquery.action"
+                 },{"icon" : "icon-log","menuid" : "1_1","menuname" : "按药品统计","url" : "/yycgproject/cgd/businessqueryypxx.action"
+                 }]
+               },
+               {"icon" : "icon-sys","menuid" : "2","menuname" : "系统管理","url" : "","menus" : [
+                {"icon" : "icon-log","menuid" : "2_1","menuname" : "监督单位维护","url" : "/yycgproject/user/userjdquery.action"
+                },
+                {"icon" : "icon-log","menuid" : "2_2","menuname" : "医院维护","url" : "/yycgproject/user/useryyquery.action"
+                },
+                {"icon" : "icon-log","menuid" : "2_3","menuname" : "供应商维护","url" : "/yycgproject/user/usergysquery.action"
+                },
+                {"icon" : "icon-log","menuid" : "2_4","menuname" : "开户","url" : "/yycgproject/user/sysuserquery.action"
+                }
+                ]
+              }
+             ]
+}
