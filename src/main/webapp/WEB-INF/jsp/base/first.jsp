@@ -74,8 +74,13 @@
 				}, {
 					"icon" : "icon-log",
 					"menuid" : "1_1",
-					"menuname" : "发票管理",
-					"url" : "/management/invoice"
+					"menuname" : "普通发票管理",
+					"url" : "/management/commoninvoice"
+				} ,{
+					"icon" : "icon-log",
+					"menuid" : "1_1",
+					"menuname" : "专业发票管理",
+					"url" : "/management/specialinvoice"
 				} ,{
 					"icon" : "icon-log",
 					"menuid" : "1_1",

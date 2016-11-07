@@ -12,9 +12,9 @@
 <%@ include file="/WEB-INF/jsp/base/common_js.jsp"%>
 
 <script type="text/javascript">
-var addContract = function (){
-	var sendUrl = "${baseurl}/management/contract/add";
-	createmodalwindow("药品信息导入", 800, 300, sendUrl);
+var addInvoice = function (){
+	var sendUrl = "${baseurl}/management/invoice/add";
+	createmodalwindow("添加发票", 800, 300, sendUrl);
 	/* var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
 			_ajaxPostRequest(ajaxOption, '', ypxximport_callback); */
@@ -22,7 +22,7 @@ var addContract = function (){
 
 
 var ypxxexport = function(){
-	jquerySubByFId('contractQueryForm', ypxxexport_callback, null, "json");
+	jquerySubByFId('commoninvoicequeryForm', ypxxexport_callback, null, "json");
 };
 
 function ypxxexport_callback(data) {
@@ -34,7 +34,7 @@ var ypxxdelList = function(){
 	_confirm('您确定要执行删除操作吗?',null,
 	  function(){
 		var ids = [];
-		var rows = $('#contractlist').datagrid('getSelections');
+		var rows = $('#ypxxlist').datagrid('getSelections');
 		for(var i=0;i<rows.length;i++){
 			ids.push(rows[i].id);
 		}
@@ -61,7 +61,7 @@ var ypxxdel = function(id){
 function ypxxdel_callback(data) {
 	var result = getCallbackData(data);
 	_alert(result);
-	contractQuery();
+	commoninvoicequery();
 }
 var ypxxedit = function (id){
 	//alert(id);
@@ -75,11 +75,11 @@ var ypxxedit = function (id){
 };
 
 /* function ypxxedit_callback(redata){
-	$('#contractQuery_div').css("display","none");
+	$('#commoninvoicequery_div').css("display","none");
 	$("#ypxxedit_div").css("display","block");
 	$("#ypxxedit_div").html(redata);
 } */
-function contractinfo(id){
+function invoiceinfo(id){
 var sendUrl = "${baseurl}/ypml/ypxx/view.action?id="+id;
 	
 	createmodalwindow("药品信息查看", 900, 500, sendUrl);
@@ -108,10 +108,10 @@ function rsyncypxx_callback(data) {
 
 
 var toolbar = [ {
-	id : 'btnAddContract',
-	text : '添加合同',
+	id : 'btnAddInvoice',
+	text : '添加发票',
 	iconCls : 'icon-add',
-	handler : addContract
+	handler :  addInvoice
 	},
 	{
 		id : 'export',
@@ -133,23 +133,27 @@ var columns = [ [{
 },{
 	field : 'comsumer',
 	title : '客户姓名',
+	width : 130
+},{
+	field : 'invoiceno',
+	title : '发票号',
 	width : 80
 },{
-	field : 'createdate',
-	title : '创建日期',
-	width : 80
+	field : 'failedamount',
+	title : '作废',
+	width : 100
 },{
 	field : 'amount',
 	title : '金额',
-	width : 80
+	width : 50
 },{
 	field : 'company',
 	title : '单位名称',
 	width : 180
 },{
-	field : 'comment',
+	field : 'common',
 	title : '备注',
-	width : 200
+	width : 150
 }
 <c:if test="${ismanager=='1'}">
 ,{
@@ -173,17 +177,17 @@ var columns = [ [{
 	title : '详细',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:contractinfo(\''+row.id+'\')>查看</a>';
+		return '<a href=javascript:invoiceinfo(\''+row.id+'\')>查看</a>';
 	}
 }]];
 
 function initGrid(){
-	$('#contractlist').datagrid({
-		title : '合同列表',
+	$('#ypxxlist').datagrid({
+		title : '普通发票列表',
 		nowrap : true,
 		striped : true,
 		//collapsible : true,
-		url : '${baseurl}/management/contract/search',
+		url : '${baseurl}/management/invoice/searchcommon',
 		//sortName : 'code',
 		//sortOrder : 'desc',
 		//remoteSort : false,
@@ -207,18 +211,18 @@ function initGrid(){
 		
 	});
 
-	function contractQuery() {
+	function commoninvoicequery() {
  
-		var formdata = $("#contractQueryForm").serializeJson();
+		var formdata = $("#commoninvoicequeryForm").serializeJson();
 		//alert(formdata);
-		$('#contractlist').datagrid('unselectAll');
-		$('#contractlist').datagrid('load', formdata);
+		$('#ypxxlist').datagrid('unselectAll');
+		$('#ypxxlist').datagrid('load', formdata);
 	}
 </script>
 </HEAD>
 <BODY>
-<div id="contractQuery_div">
-    <form id="contractQueryForm" name="contractQueryForm" action="${baseurl}/ypml/ypxx/exportypxx.action" method="post">
+<div id="commoninvoicequery_div">
+    <form id="commoninvoicequeryForm" name="commoninvoicequeryForm" action="${baseurl}/ypml/ypxx/exportypxx.action" method="post">
 			<TABLE  class="table_search">
 				<TBODY>
 					<TR>
@@ -227,17 +231,20 @@ function initGrid(){
 						<td><INPUT type="text"  name="ypxxCustom.mc" /></TD>
 						<TD class="left">客户名称：</TD>
 						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
-						 <td class="left">日期：</td>
+						<TD class="left">发票号：</TD>
+						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
+						<td class="left">日期：</td>
 				  		<td>
 				      		<INPUT id="ypxxCustom.zbjglower" name="ypxxCustom.zbjglower" style="width:70px"/>
 							至
 							<INPUT id="ypxxCustom.zbjgupper" name="ypxxCustom.zbjgupper" style="width:70px"/>
 							
-				 		 </td>
-				 		 <td  >
-							<a id="btn" href="#" onclick="contractQuery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
+				 		</td>
+				 		<td >
+							<a id="btn" href="#" onclick="commoninvoicequery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
 						</td>
 					</TR>
+					
 				</TBODY>
 			</TABLE>
 	    </form>
@@ -245,7 +252,7 @@ function initGrid(){
 		<TBODY>
 			<TR>
 				<TD>
-					<table id="contractlist"></table>
+					<table id="ypxxlist"></table>
 				</TD>
 			</TR>
 		</TBODY>

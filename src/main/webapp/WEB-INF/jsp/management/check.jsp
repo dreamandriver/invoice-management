@@ -128,35 +128,51 @@ var columns = [ [{
 	checkbox:true
 },{
 	field : 'bm',
-	title : '流水号',
+	title : '合同号',
 	width : 80
 },{
 	field : 'mc',
-	title : '通用名',
+	title : '客户名称',
 	width : 130
 },{
 	field : 'jx',
-	title : '剂型',
+	title : '支票号',
 	width : 80
 },{
 	field : 'gg',
-	title : '规格',
+	title : '收入金额',
 	width : 100
 },{
 	field : 'zhxs',
-	title : '转换系数',
+	title : '收入日期',
 	width : 50
 },{
 	field : 'scqymc',
-	title : '生产企业',
+	title : '扣税金额',
 	width : 180
 },{
 	field : 'spmc',
-	title : '商品名称',
+	title : '扣税税点',
 	width : 150
 },{
 	field : 'zbjg',
-	title : '中标价',
+	title : '支出金额',
+	width : 50
+},{
+	field : 'zbjg',
+	title : '支出日期',
+	width : 50
+},{
+	field : 'zbjg',
+	title : '结算',
+	width : 50
+},{
+	field : 'zbjg',
+	title : '单位名称',
+	width : 50
+},{
+	field : 'zbjg',
+	title : 备注',
 	width : 50
 },{
 	field : 'dictinfoByJyzt.info',
