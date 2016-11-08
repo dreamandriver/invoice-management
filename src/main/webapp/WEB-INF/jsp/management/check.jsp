@@ -12,6 +12,60 @@
 <%@ include file="/WEB-INF/jsp/base/common_js.jsp"%>
 
 <script type="text/javascript">
+
+$(function() {
+	initGrid();
+	var instart = {
+			  elem: '#instart',
+			  format: 'YYYY/MM/DD',
+			  min: '2001-06-16', //设定最小日期为当前日期
+			  max: '2099-06-16', //最大日期
+			  istime: false,
+			  istoday: false,
+			  choose: function(datas){
+				  inend.min = datas; //开始日选好后，重置结束日的最小日期
+				  inend.start = datas //将结束日的初始值设定为开始日
+			  }
+			};
+	var inend = {
+			  elem: '#inend',
+			  format: 'YYYY/MM/DD',
+			  min: '2001-06-16',
+			  max: '2099-06-16',
+			  istime: false,
+			  istoday: false,
+			  choose: function(datas){
+				  instart.max = datas; //结束日选好后，重置开始日的最大日期
+			  }
+			};
+			laydate(instart);
+			laydate(inend);
+	var outstart = {
+			  elem: '#outstart',
+			  format: 'YYYY/MM/DD',
+			  min: '2001-06-16', //设定最小日期为当前日期
+			  max: '2099-06-16', //最大日期
+			  istime: false,
+			  istoday: false,
+			  choose: function(datas){
+				  outend.min = datas; //开始日选好后，重置结束日的最小日期
+				  outend.start = datas //将结束日的初始值设定为开始日
+			  }
+			};
+	var outend = {
+			  elem: '#outend',
+			  format: 'YYYY/MM/DD',
+			  min: '2001-06-16',
+			  max: '2099-06-16',
+			  istime: false,
+			  istoday: false,
+			  choose: function(datas){
+				  outstart.max = datas; //结束日选好后，重置开始日的最大日期
+			  }
+			};
+			laydate(outstart);
+			laydate(outend);	
+});
 var addCheck = function (){
 	var sendUrl = "${baseurl}/management/check/add";
 	createmodalwindow("添加支票", 800, 300, sendUrl);
@@ -40,15 +94,12 @@ var ypxxdelList = function(){
 		}
 		if(ids.length>0){
 			$("#ypxxdelid").val(ids.join(','));
-			//alert($("#ypxxdelid").val());
 			jquerySubByFId('ypxxdelForm', ypxxdel_callback, null, "json");
 		}else{
 			alert_warn("请选择要删除的项目");
 		}
-		
 	  }
 	)
-	
 };
 var ypxxdel = function(id){
 	_confirm('您确定要执行删除操作吗?',null,
@@ -172,7 +223,7 @@ var columns = [ [{
 	width : 50
 },{
 	field : 'zbjg',
-	title : 备注',
+	title : '备注',
 	width : 50
 },{
 	field : 'dictinfoByJyzt.info',
@@ -233,10 +284,6 @@ function initGrid(){
 		});
 
 	}
-	$(function() {
-		initGrid();
-		
-	});
 
 	function ypxxquery() {
  
@@ -254,67 +301,30 @@ function initGrid(){
 				<TBODY>
 					<TR>
 						
-						<TD class="left">通用名：</td>
+						<TD class="left">合同号：</td>
 						<td><INPUT type="text"  name="ypxxCustom.mc" /></TD>
-						<TD class="left">剂型：</TD>
+						<TD class="left">客户名称：</TD>
 						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
-						<TD class="left">规格：</TD>
+						<TD class="left">支票号：</TD>
 						<td ><INPUT type="text" name="ypxxCustom.gg" /></td>
-						<TD class="left">转换系数：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.zhxs" /></td>
 					</TR>
 					<TR>
-						<TD class="left">流水号：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.bm" /></td>
-						<TD class="left">生产企业：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.scqymc" /></td>
-						<TD class="left">商品名称：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.spmc" /></td>
-						 <td class="left">价格范围：</td>
+						 <td class="left">收入日期：</td>
 				  		<td>
-				      		<INPUT id="ypxxCustom.zbjglower" name="ypxxCustom.zbjglower" style="width:70px"/>
-							至
-							<INPUT id="ypxxCustom.zbjgupper" name="ypxxCustom.zbjgupper" style="width:70px"/>
-							
+				      		<input class="laydate-icon" id="instart" name="instart" style="width:150px; margin-right:10px;">
+				      		至
+				      		<input class="laydate-icon" id="inend" name="inend" style="width:150px;">
 				 		 </td>
-					</tr>
-					<tr>
-					  
-						<TD class="left">药品类别：</TD>
-						<td >
-							<select id="ypxxCustom.lb" name="ypxxCustom.lb" style="width:150px">
-								<option value="">全部</option>
-								<c:forEach items="${yplbList}" var="value">
-									<option value="${value.id}">${value.info}</option>
-								</c:forEach>
-							</select>
-						</td>
-						<TD class="left">交易状态：</TD>
-						<td >
-							<select id="ypxxCustom.jyzt" name="ypxxCustom.jyzt" style="width:150px">
-								<option value="">全部</option>
-								<c:forEach items="${jyztList}" var="value">
-									<option value="${value.id}">${value.info}</option>
-								</c:forEach>
-							</select>
-							
-						</td>
-						
-				 		 <td class="left" height="25">质量层次：</td>
+						 <td class="left">支出日期：</td>
 				  		<td>
-				  		<select id="ypxxCustom.zlcc" name="ypxxCustom.zlcc" style="width:150px">
-								<option value="">全部</option>
-								<c:forEach items="${ypzlccList}" var="value">
-									<option value="${value.id}">${value.info}</option>
-								</c:forEach>
-						</select>
-					
-				  		</td>
-						<td colspan=2 >
+				      		<input class="laydate-icon" id="outstart" name="outstart" style="width:150px; margin-right:10px;">
+				      		至
+				      		<input class="laydate-icon" id="outend" name="outend" style="width:150px;">
+				 		 </td>
+				 		 <td colspan=2 >
 							<a id="btn" href="#" onclick="ypxxquery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
 						</td>
-					</TR>
-					
+					</tr>
 				</TBODY>
 			</TABLE>
 	    </form>
