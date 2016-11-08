@@ -167,7 +167,7 @@
 								
 							</select>
 						</TD>
-						<td >
+						<td colspan=2 >
 						<shiro:hasPermission name="user:list">
 						<a id="btn" href="#" onclick="sysuserquery()"
 							class="easyui-linkbutton" iconCls='icon-search'>查询</a>

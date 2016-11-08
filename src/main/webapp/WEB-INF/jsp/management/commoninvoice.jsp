@@ -12,6 +12,36 @@
 <%@ include file="/WEB-INF/jsp/base/common_js.jsp"%>
 
 <script type="text/javascript">
+
+$(function() {
+	initGrid();
+	var start = {
+			  elem: '#start',
+			  format: 'YYYY/MM/DD',
+			  min: '2001-06-16', //设定最小日期为当前日期
+			  max: '2099-06-16', //最大日期
+			  istime: false,
+			  istoday: false,
+			  choose: function(datas){
+				  end.min = datas; //开始日选好后，重置结束日的最小日期
+				  end.start = datas //将结束日的初始值设定为开始日
+			  }
+			};
+	var end = {
+			  elem: '#end',
+			  format: 'YYYY/MM/DD',
+			  min: '2001-06-16',
+			  max: '2099-06-16',
+			  istime: false,
+			  istoday: false,
+			  choose: function(datas){
+				  start.max = datas; //结束日选好后，重置开始日的最大日期
+			  }
+			};
+			laydate(start);
+			laydate(end);
+});
+
 var addInvoice = function (){
 	var sendUrl = "${baseurl}/management/invoice/add";
 	createmodalwindow("添加发票", 800, 300, sendUrl);
@@ -206,10 +236,6 @@ function initGrid(){
 		});
 
 	}
-	$(function() {
-		initGrid();
-		
-	});
 
 	function commoninvoicequery() {
  
@@ -235,12 +261,11 @@ function initGrid(){
 						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
 						<td class="left">日期：</td>
 				  		<td>
-				      		<INPUT id="ypxxCustom.zbjglower" name="ypxxCustom.zbjglower" style="width:70px"/>
-							至
-							<INPUT id="ypxxCustom.zbjgupper" name="ypxxCustom.zbjgupper" style="width:70px"/>
-							
+				      		<input class="laydate-icon" id="start" name="start" style="width:150px; margin-right:10px;">
+				      		至
+				      		<input class="laydate-icon" id="end" name="end" style="width:150px;">
 				 		</td>
-				 		<td >
+				 		<td colspan=2 >
 							<a id="btn" href="#" onclick="commoninvoicequery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
 						</td>
 					</TR>

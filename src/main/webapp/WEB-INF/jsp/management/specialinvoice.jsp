@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/jsp/base/tag.jsp"%>
-<html> 
+<html>
 <head>
 <title>药品信息查询</title>
 <meta http-equiv="pragma" content="no-cache">
@@ -12,6 +12,37 @@
 <%@ include file="/WEB-INF/jsp/base/common_js.jsp"%>
 
 <script type="text/javascript">
+
+$(function() {
+	initGrid();
+	
+	var start = {
+			  elem: '#start',
+			  format: 'YYYY/MM/DD',
+			  min: '2001-06-16', //设定最小日期为当前日期
+			  max: '2099-06-16', //最大日期
+			  istime: false,
+			  istoday: false,
+			  choose: function(datas){
+				  end.min = datas; //开始日选好后，重置结束日的最小日期
+				  end.start = datas //将结束日的初始值设定为开始日
+			  }
+			};
+	var end = {
+			  elem: '#end',
+			  format: 'YYYY/MM/DD',
+			  min: '2001-06-16',
+			  max: '2099-06-16',
+			  istime: false,
+			  istoday: false,
+			  choose: function(datas){
+				  start.max = datas; //结束日选好后，重置开始日的最大日期
+			  }
+			};
+			laydate(start);
+			laydate(end);	
+});
+
 var addInvoice = function (){
 	var sendUrl = "${baseurl}/management/invoice/add";
 	createmodalwindow("添加发票", 800, 300, sendUrl);
@@ -206,10 +237,6 @@ function initGrid(){
 		});
 
 	}
-	$(function() {
-		initGrid();
-		
-	});
 
 	function specialinvoicequery() {
  
@@ -221,55 +248,51 @@ function initGrid(){
 </script>
 </HEAD>
 <BODY>
-<div id="specialinvoicequery_div">
-    <form id="specialinvoicequeryForm" name="specialinvoicequeryForm" action="${baseurl}/ypml/ypxx/exportypxx.action" method="post">
-			<TABLE  class="table_search">
+	<div id="specialinvoicequery_div">
+		<form id="specialinvoicequeryForm" name="specialinvoicequeryForm"
+			action="${baseurl}/ypml/ypxx/exportypxx.action" method="post">
+			<TABLE class="table_search">
 				<TBODY>
 					<TR>
-						
+
 						<TD class="left">合同号：</td>
-						<td><INPUT type="text"  name="ypxxCustom.mc" /></TD>
+						<td><INPUT type="text" name="ypxxCustom.mc" /></TD>
 						<TD class="left">客户名称：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
+						<td><INPUT type="text" name="ypxxCustom.jx" /></td>
 						<TD class="left">发票号：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
+						<td><INPUT type="text" name="ypxxCustom.jx" /></td>
 						<td class="left">日期：</td>
-				  		<td>
-				      		<INPUT id="ypxxCustom.zbjglower" name="ypxxCustom.zbjglower" style="width:70px"/>
-							至
-							<INPUT id="ypxxCustom.zbjgupper" name="ypxxCustom.zbjgupper" style="width:70px"/>
-							
-				 		</td>
-				 		<td >
-							<a id="btn" href="#" onclick="specialinvoicequery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
+						<td>
+				      		<input class="laydate-icon" id="start" name="start" style="width:150px; margin-right:10px;">
+				      		至
+				      		<input class="laydate-icon" id="end" name="end" style="width:150px;">
 						</td>
+						<td colspan=2><a id="btn" href="#"
+							onclick="specialinvoicequery()" class="easyui-linkbutton"
+							iconCls='icon-search'>查询</a></td>
 					</TR>
-					
+
 				</TBODY>
 			</TABLE>
-	    </form>
+		</form>
 		<TABLE border=0 cellSpacing=0 cellPadding=0 width="99%" align=center>
-		<TBODY>
-			<TR>
-				<TD>
-					<table id="ypxxlist"></table>
-				</TD>
-			</TR>
-		</TBODY>
-	</TABLE>
-</div>
-<div id="ypxximport_div">
-test
-</div>
-<div id="ypxxedit_div">
-
-</div>
-<form id="ypxxdelForm" name="ypxxdelForm" action="${baseurl}/ypml/ypxxdel.action" method="post">
-<input type="hidden" id="ypxxdelid" name="ypxxdelid"/>
-</form>
-<form id="rsyncForm" name="rsyncForm" action="${baseurl}/ypml/ypxx/rsyncypxx.action" method="post">
-
-</form>
+			<TBODY>
+				<TR>
+					<TD>
+						<table id="ypxxlist"></table>
+					</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+	</div>
+	<div id="ypxximport_div">test</div>
+	<div id="ypxxedit_div"></div>
+	<form id="ypxxdelForm" name="ypxxdelForm"
+		action="${baseurl}/ypml/ypxxdel.action" method="post">
+		<input type="hidden" id="ypxxdelid" name="ypxxdelid" />
+	</form>
+	<form id="rsyncForm" name="rsyncForm"
+		action="${baseurl}/ypml/ypxx/rsyncypxx.action" method="post"></form>
 </BODY>
 </HTML>
 

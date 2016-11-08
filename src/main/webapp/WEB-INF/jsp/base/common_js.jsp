@@ -18,4 +18,6 @@
 <script type="text/javascript"	src="../../js/zTree_v3/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript"	src="../../js/zTree_v3/jquery.ztree.excheck-3.5.js"></script>
 
+<script type="text/javascript"	src="../../js/laydate.js"></script>
+
 
