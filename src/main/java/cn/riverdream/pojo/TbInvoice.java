@@ -1,5 +1,6 @@
 package cn.riverdream.pojo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TbInvoice {
@@ -85,6 +86,13 @@ public class TbInvoice {
 
     public void setCreatedate(Date createdate) {
         this.createdate = createdate;
+    }
+    
+    public String getCreatedatestr(){
+    	SimpleDateFormat formatter; 
+        formatter = new SimpleDateFormat ("yyyy-MM-dd"); 
+        String ctime = formatter.format(this.createdate); 
+        return ctime;
     }
 
     public Integer getCreateuser() {

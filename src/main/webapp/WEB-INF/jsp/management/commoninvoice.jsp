@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/base/tag.jsp"%>
 <html> 
 <head>
-<title>药品信息查询</title>
+<title>普通发票查询</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -60,18 +60,18 @@ function ypxxexport_callback(data) {
 	_alert(result);
 	
 }
-var ypxxdelList = function(){
+var invoicedelList = function(){
 	_confirm('您确定要执行删除操作吗?',null,
 	  function(){
 		var ids = [];
-		var rows = $('#ypxxlist').datagrid('getSelections');
+		var rows = $('#invoicelist').datagrid('getSelections');
 		for(var i=0;i<rows.length;i++){
 			ids.push(rows[i].id);
 		}
 		if(ids.length>0){
-			$("#ypxxdelid").val(ids.join(','));
-			//alert($("#ypxxdelid").val());
-			jquerySubByFId('ypxxdelForm', ypxxdel_callback, null, "json");
+			$("#invoicedelid").val(ids.join(','));
+			//alert($("#invoicedelid").val());
+			jquerySubByFId('invoicedelForm', invoicedel_callback, null, "json");
 		}else{
 			alert_warn("请选择要删除的项目");
 		}
@@ -80,34 +80,34 @@ var ypxxdelList = function(){
 	)
 	
 };
-var ypxxdel = function(id){
+var invoicedel = function(id){
 	_confirm('您确定要执行删除操作吗?',null,
 			function(){
-				$("#ypxxdelid").val(id);
-				jquerySubByFId('ypxxdelForm', ypxxdel_callback, null, "json");
+				$("#invoicedelid").val(id);
+				jquerySubByFId('invoicedelForm', invoicedel_callback, null, "json");
 			}
 	)
 };
-function ypxxdel_callback(data) {
-	var result = getCallbackData(data);
-	_alert(result);
+function invoicedel_callback(data) {
+	//var result = getCallbackData(data);
+	_alert(data);
 	commoninvoicequery();
 }
-var ypxxedit = function (id){
+var invoiceedit = function (id){
 	//alert(id);
-	var sendUrl = "${baseurl}/ypml/ypxx/edit.action?editid="+id;
+	var sendUrl = "${baseurl}/management/invoice/toupdate?serialNo="+id;
 	
 	createmodalwindow("药品信息修改", 900, 500, sendUrl);
 	/* 
 	var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
-			_ajaxPostRequest(ajaxOption, '', ypxxedit_callback);  */
+			_ajaxPostRequest(ajaxOption, '', invoiceedit_callback);  */
 };
 
-/* function ypxxedit_callback(redata){
+/* function invoiceedit_callback(redata){
 	$('#commoninvoicequery_div').css("display","none");
-	$("#ypxxedit_div").css("display","block");
-	$("#ypxxedit_div").html(redata);
+	$("#invoiceedit_div").css("display","block");
+	$("#invoiceedit_div").html(redata);
 } */
 function invoiceinfo(id){
 var sendUrl = "${baseurl}/ypml/ypxx/view.action?id="+id;
@@ -120,7 +120,7 @@ var ypxxadd = function (){
 	createmodalwindow("药品信息添加", 900, 500, sendUrl);
 	/* var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
-			_ajaxPostRequest(ajaxOption, '', ypxxedit_callback);  */
+			_ajaxPostRequest(ajaxOption, '', invoiceedit_callback);  */
 };
 
 var rsyncypxx = function(id){
@@ -156,7 +156,7 @@ var columns = [ [{
 	title : '合同号',
 	width : 80
 },{
-	field : 'comsumer',
+	field : 'consumer',
 	title : '客户姓名',
 	width : 130
 },{
@@ -164,55 +164,66 @@ var columns = [ [{
 	title : '发票号',
 	width : 80
 },{
-	field : 'failedamount',
+	field : 'zuofei',
 	title : '作废',
-	width : 100
+	width : 100,
+	formatter:function(value, row, index){
+		if(row.status == 1){
+			return row.amount;
+		}else{
+			return "--"
+		}
+	}
 },{
 	field : 'amount',
 	title : '金额',
-	width : 50
+	width : 100,
+	formatter:function(value, row, index){
+		if(row.status == 0){
+			return row.amount;
+		}else if(row.status == 2){
+			return "<font color='red'>-"+row.amount+"</font>";
+		}else{
+			return "--";
+		}
+	}
 },{
 	field : 'company',
 	title : '单位名称',
 	width : 180
 },{
-	field : 'common',
+	field : 'createdatestr',
+	title : '创建日期',
+	width : 180
+},{
+	field : 'commont',
 	title : '备注',
 	width : 150
 }
-<c:if test="${ismanager=='1'}">
 ,{
 	field : 'opt1',
 	title : '修改',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:ypxxedit(\''+row.id+'\')>修改</a>';
+		return '<a href=javascript:invoiceedit(\''+row.serialno+'\')>修改</a>';
 	}
 },{
 	field : 'opt2',
 	title : '删除',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:ypxxdel(\''+row.id+'\')>删除</a>';
+		return '<a href=javascript:invoicedel(\''+row.serialno+'\')>删除</a>';
 	}
 }
-</c:if>
-,{
-	field : 'opt3',
-	title : '详细',
-	width : 60,
-	formatter:function(value, row, index){
-		return '<a href=javascript:invoiceinfo(\''+row.id+'\')>查看</a>';
-	}
-}]];
+]];
 
 function initGrid(){
-	$('#ypxxlist').datagrid({
+	$('#invoicelist').datagrid({
 		title : '普通发票列表',
 		nowrap : true,
 		striped : true,
 		//collapsible : true,
-		url : '${baseurl}/management/invoice/searchcommon',
+		url : '${baseurl}/management/invoice/search/common',
 		//sortName : 'code',
 		//sortOrder : 'desc',
 		//remoteSort : false,
@@ -226,7 +237,7 @@ function initGrid(){
 		pageSize:30,
 		pageList:[15,30,50,100],
 		onClickRow : function(index, field, value) {
-					$('#contractlist').datagrid('unselectRow', index);
+					$('#invoicelist').datagrid('unselectRow', index);
 				}
 		});
 
@@ -236,24 +247,32 @@ function initGrid(){
  
 		var formdata = $("#commoninvoicequeryForm").serializeJson();
 		//alert(formdata);
-		$('#ypxxlist').datagrid('unselectAll');
-		$('#ypxxlist').datagrid('load', formdata);
+		$('#invoicelist').datagrid('unselectAll');
+		$('#invoicelist').datagrid('load', formdata);
+	}
+	
+	function invoicequery() {
+		 
+		var formdata = $("#commoninvoicequeryForm").serializeJson();
+		//alert(formdata);
+		$('#invoicelist').datagrid('unselectAll');
+		$('#invoicelist').datagrid('load', formdata);
 	}
 </script>
 </HEAD>
 <BODY>
 <div id="commoninvoicequery_div">
-    <form id="commoninvoicequeryForm" name="commoninvoicequeryForm" action="${baseurl}/ypml/ypxx/exportypxx.action" method="post">
+    <form id="commoninvoicequeryForm" name="commoninvoicequeryForm" action="${baseurl}/management/invoice/search/common" method="post">
 			<TABLE  class="table_search">
 				<TBODY>
 					<TR>
 						
 						<TD class="left">合同号：</td>
-						<td><INPUT type="text"  name="ypxxCustom.mc" /></TD>
+						<td><INPUT type="text"  name="contractno" /></TD>
 						<TD class="left">客户名称：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
+						<td ><INPUT type="text" name="consumer" /></td>
 						<TD class="left">发票号：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
+						<td ><INPUT type="text" name="invoiceno" /></td>
 						<td class="left">日期：</td>
 				  		<td>
 				      		<input class="laydate-icon" id="start" name="start" style="width:150px; margin-right:10px;">
@@ -272,20 +291,19 @@ function initGrid(){
 		<TBODY>
 			<TR>
 				<TD>
-					<table id="ypxxlist"></table>
+					<table id="invoicelist"></table>
 				</TD>
 			</TR>
 		</TBODY>
 	</TABLE>
 </div>
 <div id="ypxximport_div">
-test
 </div>
-<div id="ypxxedit_div">
+<div id="invoiceedit_div">
 
 </div>
-<form id="ypxxdelForm" name="ypxxdelForm" action="${baseurl}/ypml/ypxxdel.action" method="post">
-<input type="hidden" id="ypxxdelid" name="ypxxdelid"/>
+<form id="invoicedelForm" name="invoicedelForm" action="${baseurl}/management/invoice/del" method="post">
+<input type="hidden" id="invoicedelid" name="serialno"/>
 </form>
 <form id="rsyncForm" name="rsyncForm" action="${baseurl}/ypml/ypxx/rsyncypxx.action" method="post">
 

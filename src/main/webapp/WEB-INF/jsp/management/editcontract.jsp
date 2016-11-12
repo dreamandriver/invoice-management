@@ -140,7 +140,7 @@
 								<TD height=30 width="15%" align=right >是否正式合同：</TD>
 								<TD class=category width="75%" colspan="3">
 								<div>
-									<input type="radio" name="contract.ifformal" value="1" <c:if test="${contract.ifformal=='1'}">checked="checked"</c:if>/ >是  &nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="contract.ifformal" value="1" <c:if test="${contract.ifformal=='1'}">checked="checked"</c:if> />是  &nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="radio" name="contract.ifformal" value="0" <c:if test="${contract.ifformal=='0'}">checked="checked"</c:if> />否
 								</div>
 								<div id="contract_companyTip"></div>

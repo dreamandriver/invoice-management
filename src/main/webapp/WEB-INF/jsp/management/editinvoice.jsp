@@ -23,28 +23,28 @@
 		});
 		//**********表单校验*************
 		$.formValidator.initConfig({
-			formID : "contractaddform",
+			formID : "invoiceaddform",
 			theme : "Default",
 			onError : function(msg, obj, errorlist) {
 				//alert(msg);
 			}
 		});
 		//客户名称
-		$("#contract_consumer").formValidator({
+		$("#invoice_invoiceno").formValidator({
 			onShow : "",
 			onCorrect:"&nbsp;"
 		}).inputValidator({
 			min : 1,
 			max : 20,
-			onError : "请输入客户名称(最长10个字符)"
+			onError : "请输入发票号"
 		});
-		//合同金额
-		$("#contract_amount").formValidator({
+		//发票金额
+		$("#invoice_amount").formValidator({
 			onShow : "",
 			onCorrect:"&nbsp;"
 		}).regexValidator({regExp:"decmal4",dataType:"enum",onError:"金额式不正确"});
 		//公司名称
-		$("#contract_company").formValidator({
+		$("#invoice_company").formValidator({
 			onShow : "",
 			onCorrect:"&nbsp;"
 		}).inputValidator({
@@ -53,35 +53,28 @@
 		});
 		
 	});
-	function contractsave(){
+	function invoiceedit(){
 		if($.formValidator.pageIsValid()){
-			jquerySubByFId('contractaddform',contractsave_callback,null,"json");
+			jquerySubByFId('invoiceaddform',invoiceedit_callback,null,"json");
 		}
 
 	}
-	function contractsave_callback(data){
+	function invoiceedit_callback(data){
 		//var result = getCallbackData(data);
 		var type = data.type;
 		if (TYPE_RESULT_SUCCESS == type) {
-			parent.contractQuery();
+			parent.invoicequery();
 			parent.closemodalwindow();
 		}else{
 			_alert(data);
 		}
 	}
 	
-	var selectConsumer = function (){
-		var sendUrl = "${baseurl}/management/contract/toadd";
-		createmodalwindow("创建合同", 800, 300, sendUrl);
-		/* var ajaxOption = new AjaxOption();
-				ajaxOption._initPostRequest(true,sendUrl,"json","html");
-				_ajaxPostRequest(ajaxOption, '', ypxximport_callback); */
-	};
-	
 	</script>
  </HEAD>
 <BODY>
-<form id="contractaddform" name="contractaddform" action="${baseurl}/management/contract/add" method="post">
+<form id="invoiceaddform" name="invoiceaddform" action="${baseurl}/management/invoice/update" method="post">
+<input type="hidden" name="invoice.serialno" value="${invoice.serialno}"/>
 <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" bgColor=#c4d8ed>
 		<TBODY>
 			<TR>
@@ -103,59 +96,77 @@
 						<TBODY>
 							
 							<TR>
+								<TD height=30 width="15%" align=right >合同号：</TD>
+								<TD class=category width="35%">
+								<div>
+									${contract.contractno}
+								</div>
+								
+								</TD>
 								<TD height=30 width="15%" align=right >客户名称：</TD>
 								<TD class=category width="35%">
 								<div>
-								<input type="text" id="contract_consumer" name="contract.consumer" value="${contract.consumer}" />
+									${contract.consumer}
 								</div>
-								<div id="contract_consumerTip"></div>
+								</TD>
+
+							</TR>
+							
+							
+							<TR>
+								<TD height=30 width="15%" align=right >发票号：</TD>
+								<TD class=category width="35%">
+								<div>
+									<input type="text" id="invoice_invoiceno" name="invoice.invoiceno" value="${invoice.invoiceno}"/>
+								</div>
+								<div id="invoice_invoicenoTip"></div>
+								</TD>
+								<TD height=30 width="15%" align=right >发票类型：</TD>
+								<TD class=category width="35%">
+								<div>
+									<input type="radio" name="invoice.invoicetype" value="0" <c:if test="${invoice.invoicetype=='0'}">checked="checked"</c:if> />普通发票  &nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="invoice.invoicetype" value="1" <c:if test="${invoice.invoicetype=='1'}">checked="checked"</c:if> />专业发票
+								</div>
+								</TD>
+							</TR>
+							<TR>
+								<TD height=30 width="15%" align=right >发票状态：</TD>
+								<TD class=category width="35%">
+								<div>
+									<input type="radio" name="invoice.status" value="0" <c:if test="${invoice.status=='0'}">checked="checked"</c:if> />正常  &nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="invoice.status" value="1" <c:if test="${invoice.status=='1'}">checked="checked"</c:if> />作废  &nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="invoice.status" value="2" <c:if test="${invoice.status=='2'}">checked="checked"</c:if> />退票
+								</div>
 								</TD>
 								<TD height=30 width="15%" align=right >金额：</TD>
 								<TD class=category width="35%">
 								<div>
-								<input type="text" id="contract_amount" name="contract.amount" value="${contract.amount}"   />
+								<input type="text" id="invoice_amount" name="invoice.amount" value="${invoice.amount}"   />
 								</div>
-								<div id="contract_amountTip"></div>
+								<div id="invoice_amountTip"></div>
 								</TD>
 							</TR>
 							
-							
-							<TR>
-								<TD height=30 width="15%" align=right >单位名称：</TD>
-								<TD class=category width="35%">
+							<TR >
+							    <TD height=30 width="15%" align=right >单位名称：</TD>
+								<TD class=category width="75%" colspan="3" >
 								<div>
-									<input type="text" id="contract_company" name="contract.company" value="${contract.company}"/>
+								<input type="text" id="invoice_company" name="invoice.company" value="${invoice.company}" style=" width: 640px;"/>
 								</div>
-								<div id="contract_companyTip"></div>
-								</TD>
-								<TD height=30 width="15%" align=right >创建日期：</TD>
-								<TD class=category width="35%">
-								<div>
-									${createDate}
-								</div>
-								</TD>
-							</TR>
-							<TR>
-								<TD height=30 width="15%" align=right >是否正式合同：</TD>
-								<TD class=category width="75%" colspan="3">
-								<div>
-									<input type="radio" name="contract.ifformal" value="1" checked="checked"/>是  &nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" name="contract.ifformal" value="0" />否
-								</div>
-								<div id="contract_companyTip"></div>
+								<div id="invoice_companyTip"></div>
 								</TD>
 							</TR>
 							
 							<TR >
 							    <TD height=30 width="15%" align=right >备注：</TD>
 								<TD class=category width="75%" colspan="3" >
-								<input type="text" name="contract.comment" value="${contract.comment}" style=" width: 640px;"/>
+								<input type="text" name="invoice.comment" value="${invoice.comment}" style=" width: 640px;"/>
 								</TD>
 							</TR>
 							
 							<tr>
 							  <td colspan=4 align=center class=category>
-								<a id="submitbtn" href="#" onclick="contractsave()">提交</a>
+								<a id="submitbtn" href="#" onclick="invoiceedit()">保存</a>
 								<a id="closebtn" href="#" onclick="parent.closemodalwindow()">关闭</a>
 							  </td>
 							</tr>

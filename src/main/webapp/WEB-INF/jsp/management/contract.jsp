@@ -51,17 +51,17 @@ var addContract = function (){
 			_ajaxPostRequest(ajaxOption, '', ypxximport_callback); */
 };
 
-var addinvoice = function (){
-	var sendUrl = "${baseurl}/management/invoice/toadd";
-	createmodalwindow("添加发票", 800, 300, sendUrl);
+var addinvoice = function (serialno){
+	var sendUrl = "${baseurl}/management/invoice/toadd?serialno="+ serialno;
+	createmodalwindow("添加发票", 800, 400, sendUrl);
 	/* var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
 			_ajaxPostRequest(ajaxOption, '', ypxximport_callback); */
 };
 
-var addcheck = function (){
-	var sendUrl = "${baseurl}/management/check/toadd";
-	createmodalwindow("添加支票", 800, 300, sendUrl);
+var addcheck = function (serialno){
+	var sendUrl = "${baseurl}/management/check/toadd?serialno="+ serialno;
+	createmodalwindow("添加支票", 800, 400, sendUrl);
 	/* var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
 			_ajaxPostRequest(ajaxOption, '', ypxximport_callback); */

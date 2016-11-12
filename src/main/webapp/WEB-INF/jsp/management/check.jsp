@@ -229,7 +229,6 @@ var columns = [ [{
 		return row.dictinfoByJyzt.info;
 	}
 }
-<c:if test="${ismanager=='1'}">
 ,{
 	field : 'opt1',
 	title : '修改',
@@ -245,15 +244,7 @@ var columns = [ [{
 		return '<a href=javascript:ypxxdel(\''+row.id+'\')>删除</a>';
 	}
 }
-</c:if>
-,{
-	field : 'opt3',
-	title : '详细',
-	width : 60,
-	formatter:function(value, row, index){
-		return '<a href=javascript:ypxxinfo(\''+row.id+'\')>查看</a>';
-	}
-}]];
+]];
 
 function initGrid(){
 	$('#ypxxlist').datagrid({
@@ -334,7 +325,6 @@ function initGrid(){
 	</TABLE>
 </div>
 <div id="ypxximport_div">
-test
 </div>
 <div id="ypxxedit_div">
 

@@ -74,7 +74,7 @@ public class ContractVo {
         try {
 			this.startDate = formatter.parse(start);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			this.startDate = null;
 		} 
 
 	}
@@ -89,7 +89,7 @@ public class ContractVo {
         try {
 			this.endDate = formatter.parse(end);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			this.endDate = null;
 		} 
 	}
 
