@@ -107,14 +107,14 @@
 						<TBODY>
 							
 							<TR>
-								<TD height=30 width="15%" align=right >用户账号：</TD>
+								<TD height=30 width="15%" align=right >客户名称：</TD>
 								<TD class=category width="35%">
 								<div>
 								<input type="text" id="sysuser_usercode" name="sysuserCustom.usercode" value="${sysuserCustom.userid}"   />
 								</div>
 								<div id="sysuser_usercodeTip"></div>
 								</TD>
-								<TD height=30 width="15%" align=right >用户名称：</TD>
+								<TD height=30 width="15%" align=right >金额：</TD>
 								<TD class=category width="35%">
 								<div>
 								<input type="text" id="sysuser_username" name="sysuserCustom.username" value="${sysuserCustom.username}"   />
@@ -125,42 +125,27 @@
 							
 							
 							<TR>
-								<TD height=30 width="15%" align=right >用户密码：</TD>
+								<TD height=30 width="15%" align=right >单位名称：</TD>
 								<TD class=category width="35%">
 								<div>
 									<input type="password" id="sysuser_password" name="sysuserCustom.pwd" value="${sysuserCustom.pwd}"/>
 								</div>
 								<div id="sysuser_passwordTip"></div>
 								</TD>
-								<TD height=30 width="15%" align=right >用户类型：</TD>
+								<TD height=30 width="15%" align=right >创建日期：</TD>
 								<TD class=category width="35%">
 								<div>
-								<select name="sysuserCustom.groupid" id="sysuser_groupid">
-									<option value="">请选择</option>
-									<c:forEach items="${userGroupList}" var="dictinfo">
-									   <option value="${dictinfo.id}" <c:if test="${sysuserCustom.groupid== dictinfo.id}">selected</c:if>>${dictinfo.info}</option>
-									</c:forEach>
-									
-								</select>
+									${createDate}
 								</div>
-								<div id="sysuser_groupidTip"></div>
 								</TD>
 								
 								
 							</TR>
-							<TR>
-							    <TD height=30 width="15%" align=right >用户单位名称：</TD>
-								<TD class=category width="35%">
-								<input type="text" name="sysuserCustom.sysmc" value="${sysuserCustom.sysmc}"/>
+							<TR rowspan="3">
+							    <TD height=30 width="15%" align=right >备注：</TD>
+								<TD class=category width="75%" colspan="3" >
+								<input type="text" name="sysuserCustom.sysmc" value="${sysuserCustom.sysmc}" style=" width: 640px;"/>
 								</TD>
-								<TD height=30 width="15%" align=right>用户状态：</TD>
-								<TD class=category width="35%">
-								<c:forEach items="${userStateList}" var="dictinfo">
-								   <input type="radio" name="sysuserCustom.userstate" value="${dictinfo.id}" <c:if test="${sysuserCustom.groupid== dictinfo.id}">checked</c:if>/>${dictinfo.info}
-								</c:forEach>
-								
-								</TD>
-								
 							</TR>
 							
 							<tr>
