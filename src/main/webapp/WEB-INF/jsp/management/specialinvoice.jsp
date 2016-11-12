@@ -44,7 +44,7 @@ $(function() {
 });
 
 var addInvoice = function (){
-	var sendUrl = "${baseurl}/management/invoice/add";
+	var sendUrl = "${baseurl}/management/invoice/toadd";
 	createmodalwindow("添加发票", 800, 300, sendUrl);
 	/* var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
@@ -138,12 +138,7 @@ function rsyncypxx_callback(data) {
 //工具栏
 
 
-var toolbar = [ {
-	id : 'btnAddInvoice',
-	text : '添加发票',
-	iconCls : 'icon-add',
-	handler :  addInvoice
-	},
+var toolbar = [ 
 	{
 		id : 'export',
 		text : '导出',

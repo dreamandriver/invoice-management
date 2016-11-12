@@ -14,7 +14,7 @@
     <result column="ACCOUNT" property="account" jdbcType="DOUBLE" />
     <result column="COMPANY" property="company" jdbcType="VARCHAR" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
-    <result column="CONSUMERID" property="consumerid" jdbcType="INTEGER" />
+    <result column="CONSUMER" property="consumer" jdbcType="VARCHAR" />
     <result column="COMMENT" property="comment" jdbcType="VARCHAR" />
     <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
     <result column="CREATEUSER" property="createuser" jdbcType="INTEGER" />
@@ -79,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     SERIALNO, CHECKNO, CONTRACTSERIALNO, INCOMEDATE, INCOMEAMOUNT, TAXPOINT, TAXAMOUNT, 
-    PAYAMOUNT, PAYDATE, ACCOUNT, COMPANY, STATUS, CONSUMERID, COMMENT, CREATEDATE, CREATEUSER
+    PAYAMOUNT, PAYDATE, ACCOUNT, COMPANY, STATUS, CONSUMER, COMMENT, CREATEDATE, CREATEUSER
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbCheckExample" >
     select
@@ -116,13 +116,13 @@
       INCOMEDATE, INCOMEAMOUNT, TAXPOINT, 
       TAXAMOUNT, PAYAMOUNT, PAYDATE, 
       ACCOUNT, COMPANY, STATUS, 
-      CONSUMERID, COMMENT, CREATEDATE, 
+      CONSUMER, COMMENT, CREATEDATE, 
       CREATEUSER)
     values (#{serialno,jdbcType=INTEGER}, #{checkno,jdbcType=VARCHAR}, #{contractserialno,jdbcType=INTEGER}, 
       #{incomedate,jdbcType=TIMESTAMP}, #{incomeamount,jdbcType=DOUBLE}, #{taxpoint,jdbcType=INTEGER}, 
       #{taxamount,jdbcType=DOUBLE}, #{payamount,jdbcType=DOUBLE}, #{paydate,jdbcType=TIMESTAMP}, 
       #{account,jdbcType=DOUBLE}, #{company,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{consumerid,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{consumer,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
       #{createuser,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.riverdream.pojo.TbCheck" >
@@ -164,8 +164,8 @@
       <if test="status != null" >
         STATUS,
       </if>
-      <if test="consumerid != null" >
-        CONSUMERID,
+      <if test="consumer != null" >
+        CONSUMER,
       </if>
       <if test="comment != null" >
         COMMENT,
@@ -214,8 +214,8 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="consumerid != null" >
-        #{consumerid,jdbcType=INTEGER},
+      <if test="consumer != null" >
+        #{consumer,jdbcType=VARCHAR},
       </if>
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
@@ -273,8 +273,8 @@
       <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.consumerid != null" >
-        CONSUMERID = #{record.consumerid,jdbcType=INTEGER},
+      <if test="record.consumer != null" >
+        CONSUMER = #{record.consumer,jdbcType=VARCHAR},
       </if>
       <if test="record.comment != null" >
         COMMENT = #{record.comment,jdbcType=VARCHAR},
@@ -304,7 +304,7 @@
       ACCOUNT = #{record.account,jdbcType=DOUBLE},
       COMPANY = #{record.company,jdbcType=VARCHAR},
       STATUS = #{record.status,jdbcType=INTEGER},
-      CONSUMERID = #{record.consumerid,jdbcType=INTEGER},
+      CONSUMER = #{record.consumer,jdbcType=VARCHAR},
       COMMENT = #{record.comment,jdbcType=VARCHAR},
       CREATEDATE = #{record.createdate,jdbcType=TIMESTAMP},
       CREATEUSER = #{record.createuser,jdbcType=INTEGER}
@@ -348,8 +348,8 @@
       <if test="status != null" >
         STATUS = #{status,jdbcType=INTEGER},
       </if>
-      <if test="consumerid != null" >
-        CONSUMERID = #{consumerid,jdbcType=INTEGER},
+      <if test="consumer != null" >
+        CONSUMER = #{consumer,jdbcType=VARCHAR},
       </if>
       <if test="comment != null" >
         COMMENT = #{comment,jdbcType=VARCHAR},
@@ -376,7 +376,7 @@
       ACCOUNT = #{account,jdbcType=DOUBLE},
       COMPANY = #{company,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=INTEGER},
-      CONSUMERID = #{consumerid,jdbcType=INTEGER},
+      CONSUMER = #{consumer,jdbcType=VARCHAR},
       COMMENT = #{comment,jdbcType=VARCHAR},
       CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
       CREATEUSER = #{createuser,jdbcType=INTEGER}

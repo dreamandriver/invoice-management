@@ -1,5 +1,6 @@
 package cn.riverdream.pojo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TbContract {
@@ -11,7 +12,7 @@ public class TbContract {
 
     private Date createdate;
 
-    private String consumerid;
+    private String consumer;
 
     private Double amount;
 
@@ -54,13 +55,20 @@ public class TbContract {
     public void setCreatedate(Date createdate) {
         this.createdate = createdate;
     }
-
-    public String getConsumerid() {
-        return consumerid;
+    
+    public String getCreatedatestr(){
+    	SimpleDateFormat formatter; 
+        formatter = new SimpleDateFormat ("yyyy-MM-dd"); 
+        String ctime = formatter.format(this.createdate); 
+        return ctime;
     }
 
-    public void setConsumerid(String consumerid) {
-        this.consumerid = consumerid == null ? null : consumerid.trim();
+    public String getConsumer() {
+        return consumer;
+    }
+
+    public void setConsumer(String consumer) {
+        this.consumer = consumer == null ? null : consumer.trim();
     }
 
     public Double getAmount() {

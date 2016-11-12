@@ -61,12 +61,7 @@
 				"menuid" : "1",
 				"menuname" : "业务管理",
 				"url" : "",
-				"menus" : [ {
-					"icon" : "icon-log",
-					"menuid" : "1_1",
-					"menuname" : "客户管理",
-					"url" : "/management/consumer"
-				},{
+				"menus" : [{
 					"icon" : "icon-log",
 					"menuid" : "1_1",
 					"menuname" : "合同管理",

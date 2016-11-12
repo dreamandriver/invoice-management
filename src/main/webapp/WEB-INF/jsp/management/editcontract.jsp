@@ -23,7 +23,7 @@
 		});
 		//**********表单校验*************
 		$.formValidator.initConfig({
-			formID : "contractaddform",
+			formID : "contracteditform",
 			theme : "Default",
 			onError : function(msg, obj, errorlist) {
 				//alert(msg);
@@ -53,13 +53,13 @@
 		});
 		
 	});
-	function contractsave(){
+	function contractedit(){
 		if($.formValidator.pageIsValid()){
-			jquerySubByFId('contractaddform',contractsave_callback,null,"json");
+			jquerySubByFId('contracteditform',contractedit_callback,null,"json");
 		}
 
 	}
-	function contractsave_callback(data){
+	function contractedit_callback(data){
 		//var result = getCallbackData(data);
 		var type = data.type;
 		if (TYPE_RESULT_SUCCESS == type) {
@@ -81,7 +81,8 @@
 	</script>
  </HEAD>
 <BODY>
-<form id="contractaddform" name="contractaddform" action="${baseurl}/management/contract/add" method="post">
+<form id="contracteditform" name="contracteditform" action="${baseurl}/management/contract/update" method="post">
+<input type="hidden" name="contract.serialno" value="${contract.serialno}"/>
 <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" bgColor=#c4d8ed>
 		<TBODY>
 			<TR>
@@ -131,7 +132,7 @@
 								<TD height=30 width="15%" align=right >创建日期：</TD>
 								<TD class=category width="35%">
 								<div>
-									${createDate}
+									${contract.createdatestr}
 								</div>
 								</TD>
 							</TR>
@@ -139,8 +140,8 @@
 								<TD height=30 width="15%" align=right >是否正式合同：</TD>
 								<TD class=category width="75%" colspan="3">
 								<div>
-									<input type="radio" name="contract.ifformal" value="1" checked="checked"/>是  &nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" name="contract.ifformal" value="0" />否
+									<input type="radio" name="contract.ifformal" value="1" <c:if test="${contract.ifformal=='1'}">checked="checked"</c:if>/ >是  &nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="contract.ifformal" value="0" <c:if test="${contract.ifformal=='0'}">checked="checked"</c:if> />否
 								</div>
 								<div id="contract_companyTip"></div>
 								</TD>
@@ -155,7 +156,7 @@
 							
 							<tr>
 							  <td colspan=4 align=center class=category>
-								<a id="submitbtn" href="#" onclick="contractsave()">提交</a>
+								<a id="submitbtn" href="#" onclick="contractedit()">保存</a>
 								<a id="closebtn" href="#" onclick="parent.closemodalwindow()">关闭</a>
 							  </td>
 							</tr>

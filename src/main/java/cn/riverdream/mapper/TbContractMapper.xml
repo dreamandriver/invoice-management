@@ -6,7 +6,7 @@
     <result column="CONTRACTNO" property="contractno" jdbcType="VARCHAR" />
     <result column="CREATERUSERID" property="createruserid" jdbcType="INTEGER" />
     <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
-    <result column="CONSUMERID" property="consumerid" jdbcType="VARCHAR" />
+    <result column="CONSUMER" property="consumer" jdbcType="VARCHAR" />
     <result column="AMOUNT" property="amount" jdbcType="DOUBLE" />
     <result column="COMPANY" property="company" jdbcType="VARCHAR" />
     <result column="COMMENT" property="comment" jdbcType="VARCHAR" />
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SERIALNO, CONTRACTNO, CREATERUSERID, CREATEDATE, CONSUMERID, AMOUNT, COMPANY, COMMENT, 
+    SERIALNO, CONTRACTNO, CREATERUSERID, CREATEDATE, CONSUMER, AMOUNT, COMPANY, COMMENT, 
     IFFORMAL, FLAG
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbContractExample" >
@@ -107,11 +107,11 @@
   </delete>
   <insert id="insert" parameterType="cn.riverdream.pojo.TbContract" >
     insert into tb_contract (SERIALNO, CONTRACTNO, CREATERUSERID, 
-      CREATEDATE, CONSUMERID, AMOUNT, 
+      CREATEDATE, CONSUMER, AMOUNT, 
       COMPANY, COMMENT, IFFORMAL, 
       FLAG)
     values (#{serialno,jdbcType=INTEGER}, #{contractno,jdbcType=VARCHAR}, #{createruserid,jdbcType=INTEGER}, 
-      #{createdate,jdbcType=TIMESTAMP}, #{consumerid,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{consumer,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
       #{company,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{ifformal,jdbcType=INTEGER}, 
       #{flag,jdbcType=INTEGER})
   </insert>
@@ -130,8 +130,8 @@
       <if test="createdate != null" >
         CREATEDATE,
       </if>
-      <if test="consumerid != null" >
-        CONSUMERID,
+      <if test="consumer != null" >
+        CONSUMER,
       </if>
       <if test="amount != null" >
         AMOUNT,
@@ -162,8 +162,8 @@
       <if test="createdate != null" >
         #{createdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="consumerid != null" >
-        #{consumerid,jdbcType=VARCHAR},
+      <if test="consumer != null" >
+        #{consumer,jdbcType=VARCHAR},
       </if>
       <if test="amount != null" >
         #{amount,jdbcType=DOUBLE},
@@ -203,8 +203,8 @@
       <if test="record.createdate != null" >
         CREATEDATE = #{record.createdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.consumerid != null" >
-        CONSUMERID = #{record.consumerid,jdbcType=VARCHAR},
+      <if test="record.consumer != null" >
+        CONSUMER = #{record.consumer,jdbcType=VARCHAR},
       </if>
       <if test="record.amount != null" >
         AMOUNT = #{record.amount,jdbcType=DOUBLE},
@@ -232,7 +232,7 @@
       CONTRACTNO = #{record.contractno,jdbcType=VARCHAR},
       CREATERUSERID = #{record.createruserid,jdbcType=INTEGER},
       CREATEDATE = #{record.createdate,jdbcType=TIMESTAMP},
-      CONSUMERID = #{record.consumerid,jdbcType=VARCHAR},
+      CONSUMER = #{record.consumer,jdbcType=VARCHAR},
       AMOUNT = #{record.amount,jdbcType=DOUBLE},
       COMPANY = #{record.company,jdbcType=VARCHAR},
       COMMENT = #{record.comment,jdbcType=VARCHAR},
@@ -254,8 +254,8 @@
       <if test="createdate != null" >
         CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="consumerid != null" >
-        CONSUMERID = #{consumerid,jdbcType=VARCHAR},
+      <if test="consumer != null" >
+        CONSUMER = #{consumer,jdbcType=VARCHAR},
       </if>
       <if test="amount != null" >
         AMOUNT = #{amount,jdbcType=DOUBLE},
@@ -280,7 +280,7 @@
     set CONTRACTNO = #{contractno,jdbcType=VARCHAR},
       CREATERUSERID = #{createruserid,jdbcType=INTEGER},
       CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
-      CONSUMERID = #{consumerid,jdbcType=VARCHAR},
+      CONSUMER = #{consumer,jdbcType=VARCHAR},
       AMOUNT = #{amount,jdbcType=DOUBLE},
       COMPANY = #{company,jdbcType=VARCHAR},
       COMMENT = #{comment,jdbcType=VARCHAR},

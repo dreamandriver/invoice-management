@@ -13,7 +13,7 @@ public class TbInvoice {
 
     private Integer contractserialno;
 
-    private Integer consumerid;
+    private String consumer;
 
     private Date createdate;
 
@@ -71,12 +71,12 @@ public class TbInvoice {
         this.contractserialno = contractserialno;
     }
 
-    public Integer getConsumerid() {
-        return consumerid;
+    public String getConsumer() {
+        return consumer;
     }
 
-    public void setConsumerid(Integer consumerid) {
-        this.consumerid = consumerid;
+    public void setConsumer(String consumer) {
+        this.consumer = consumer == null ? null : consumer.trim();
     }
 
     public Date getCreatedate() {

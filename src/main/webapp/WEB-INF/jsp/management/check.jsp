@@ -67,7 +67,7 @@ $(function() {
 			laydate(outend);	
 });
 var addCheck = function (){
-	var sendUrl = "${baseurl}/management/check/add";
+	var sendUrl = "${baseurl}/management/check/toadd";
 	createmodalwindow("添加支票", 800, 300, sendUrl);
 	/* var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
@@ -158,12 +158,7 @@ function rsyncypxx_callback(data) {
 //工具栏
 
 
-var toolbar = [ {
-	id : 'btnAddCheck',
-	text : '添加支票',
-	iconCls : 'icon-add',
-	handler :  addCheck
-	},
+var toolbar = [ 
 	{
 		id : 'export',
 		text : '导出',

@@ -845,63 +845,73 @@ public class TbCheckExample {
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridIsNull() {
-            addCriterion("CONSUMERID is null");
+        public Criteria andConsumerIsNull() {
+            addCriterion("CONSUMER is null");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridIsNotNull() {
-            addCriterion("CONSUMERID is not null");
+        public Criteria andConsumerIsNotNull() {
+            addCriterion("CONSUMER is not null");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridEqualTo(Integer value) {
-            addCriterion("CONSUMERID =", value, "consumerid");
+        public Criteria andConsumerEqualTo(String value) {
+            addCriterion("CONSUMER =", value, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridNotEqualTo(Integer value) {
-            addCriterion("CONSUMERID <>", value, "consumerid");
+        public Criteria andConsumerNotEqualTo(String value) {
+            addCriterion("CONSUMER <>", value, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridGreaterThan(Integer value) {
-            addCriterion("CONSUMERID >", value, "consumerid");
+        public Criteria andConsumerGreaterThan(String value) {
+            addCriterion("CONSUMER >", value, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridGreaterThanOrEqualTo(Integer value) {
-            addCriterion("CONSUMERID >=", value, "consumerid");
+        public Criteria andConsumerGreaterThanOrEqualTo(String value) {
+            addCriterion("CONSUMER >=", value, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridLessThan(Integer value) {
-            addCriterion("CONSUMERID <", value, "consumerid");
+        public Criteria andConsumerLessThan(String value) {
+            addCriterion("CONSUMER <", value, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridLessThanOrEqualTo(Integer value) {
-            addCriterion("CONSUMERID <=", value, "consumerid");
+        public Criteria andConsumerLessThanOrEqualTo(String value) {
+            addCriterion("CONSUMER <=", value, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridIn(List<Integer> values) {
-            addCriterion("CONSUMERID in", values, "consumerid");
+        public Criteria andConsumerLike(String value) {
+            addCriterion("CONSUMER like", value, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridNotIn(List<Integer> values) {
-            addCriterion("CONSUMERID not in", values, "consumerid");
+        public Criteria andConsumerNotLike(String value) {
+            addCriterion("CONSUMER not like", value, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridBetween(Integer value1, Integer value2) {
-            addCriterion("CONSUMERID between", value1, value2, "consumerid");
+        public Criteria andConsumerIn(List<String> values) {
+            addCriterion("CONSUMER in", values, "consumer");
             return (Criteria) this;
         }
 
-        public Criteria andConsumeridNotBetween(Integer value1, Integer value2) {
-            addCriterion("CONSUMERID not between", value1, value2, "consumerid");
+        public Criteria andConsumerNotIn(List<String> values) {
+            addCriterion("CONSUMER not in", values, "consumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerBetween(String value1, String value2) {
+            addCriterion("CONSUMER between", value1, value2, "consumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andConsumerNotBetween(String value1, String value2) {
+            addCriterion("CONSUMER not between", value1, value2, "consumer");
             return (Criteria) this;
         }
 

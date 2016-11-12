@@ -27,7 +27,7 @@ public class TbCheck {
 
     private Integer status;
 
-    private Integer consumerid;
+    private String consumer;
 
     private String comment;
 
@@ -131,12 +131,12 @@ public class TbCheck {
         this.status = status;
     }
 
-    public Integer getConsumerid() {
-        return consumerid;
+    public String getConsumer() {
+        return consumer;
     }
 
-    public void setConsumerid(Integer consumerid) {
-        this.consumerid = consumerid;
+    public void setConsumer(String consumer) {
+        this.consumer = consumer == null ? null : consumer.trim();
     }
 
     public String getComment() {

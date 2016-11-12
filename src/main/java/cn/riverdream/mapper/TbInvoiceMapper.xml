@@ -7,7 +7,7 @@
     <result column="INVOICETYPE" property="invoicetype" jdbcType="INTEGER" />
     <result column="CONTRACTNO" property="contractno" jdbcType="VARCHAR" />
     <result column="CONTRACTSERIALNO" property="contractserialno" jdbcType="INTEGER" />
-    <result column="CONSUMERID" property="consumerid" jdbcType="INTEGER" />
+    <result column="CONSUMER" property="consumer" jdbcType="VARCHAR" />
     <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
     <result column="CREATEUSER" property="createuser" jdbcType="INTEGER" />
     <result column="AMOUNT" property="amount" jdbcType="DOUBLE" />
@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SERIALNO, INVOICENO, INVOICETYPE, CONTRACTNO, CONTRACTSERIALNO, CONSUMERID, CREATEDATE, 
+    SERIALNO, INVOICENO, INVOICETYPE, CONTRACTNO, CONTRACTSERIALNO, CONSUMER, CREATEDATE, 
     CREATEUSER, AMOUNT, COMPANY, STATUS, COMMENT, WORKDATE, WORKUSER
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbInvoiceExample" >
@@ -111,12 +111,12 @@
   </delete>
   <insert id="insert" parameterType="cn.riverdream.pojo.TbInvoice" >
     insert into tb_invoice (SERIALNO, INVOICENO, INVOICETYPE, 
-      CONTRACTNO, CONTRACTSERIALNO, CONSUMERID, 
+      CONTRACTNO, CONTRACTSERIALNO, CONSUMER, 
       CREATEDATE, CREATEUSER, AMOUNT, 
       COMPANY, STATUS, COMMENT, 
       WORKDATE, WORKUSER)
     values (#{serialno,jdbcType=INTEGER}, #{invoiceno,jdbcType=VARCHAR}, #{invoicetype,jdbcType=INTEGER}, 
-      #{contractno,jdbcType=VARCHAR}, #{contractserialno,jdbcType=INTEGER}, #{consumerid,jdbcType=INTEGER}, 
+      #{contractno,jdbcType=VARCHAR}, #{contractserialno,jdbcType=INTEGER}, #{consumer,jdbcType=VARCHAR}, 
       #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER}, #{amount,jdbcType=DOUBLE}, 
       #{company,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, 
       #{workdate,jdbcType=TIMESTAMP}, #{workuser,jdbcType=INTEGER})
@@ -139,8 +139,8 @@
       <if test="contractserialno != null" >
         CONTRACTSERIALNO,
       </if>
-      <if test="consumerid != null" >
-        CONSUMERID,
+      <if test="consumer != null" >
+        CONSUMER,
       </if>
       <if test="createdate != null" >
         CREATEDATE,
@@ -183,8 +183,8 @@
       <if test="contractserialno != null" >
         #{contractserialno,jdbcType=INTEGER},
       </if>
-      <if test="consumerid != null" >
-        #{consumerid,jdbcType=INTEGER},
+      <if test="consumer != null" >
+        #{consumer,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null" >
         #{createdate,jdbcType=TIMESTAMP},
@@ -236,8 +236,8 @@
       <if test="record.contractserialno != null" >
         CONTRACTSERIALNO = #{record.contractserialno,jdbcType=INTEGER},
       </if>
-      <if test="record.consumerid != null" >
-        CONSUMERID = #{record.consumerid,jdbcType=INTEGER},
+      <if test="record.consumer != null" >
+        CONSUMER = #{record.consumer,jdbcType=VARCHAR},
       </if>
       <if test="record.createdate != null" >
         CREATEDATE = #{record.createdate,jdbcType=TIMESTAMP},
@@ -275,7 +275,7 @@
       INVOICETYPE = #{record.invoicetype,jdbcType=INTEGER},
       CONTRACTNO = #{record.contractno,jdbcType=VARCHAR},
       CONTRACTSERIALNO = #{record.contractserialno,jdbcType=INTEGER},
-      CONSUMERID = #{record.consumerid,jdbcType=INTEGER},
+      CONSUMER = #{record.consumer,jdbcType=VARCHAR},
       CREATEDATE = #{record.createdate,jdbcType=TIMESTAMP},
       CREATEUSER = #{record.createuser,jdbcType=INTEGER},
       AMOUNT = #{record.amount,jdbcType=DOUBLE},
@@ -303,8 +303,8 @@
       <if test="contractserialno != null" >
         CONTRACTSERIALNO = #{contractserialno,jdbcType=INTEGER},
       </if>
-      <if test="consumerid != null" >
-        CONSUMERID = #{consumerid,jdbcType=INTEGER},
+      <if test="consumer != null" >
+        CONSUMER = #{consumer,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null" >
         CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
@@ -339,7 +339,7 @@
       INVOICETYPE = #{invoicetype,jdbcType=INTEGER},
       CONTRACTNO = #{contractno,jdbcType=VARCHAR},
       CONTRACTSERIALNO = #{contractserialno,jdbcType=INTEGER},
-      CONSUMERID = #{consumerid,jdbcType=INTEGER},
+      CONSUMER = #{consumer,jdbcType=VARCHAR},
       CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
       CREATEUSER = #{createuser,jdbcType=INTEGER},
       AMOUNT = #{amount,jdbcType=DOUBLE},
