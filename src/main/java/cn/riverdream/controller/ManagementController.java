@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.riverdream.pojo.TbCheck;
 import cn.riverdream.pojo.TbContract;
+import cn.riverdream.service.CheckService;
 import cn.riverdream.service.ContractService;
 
 @Controller
@@ -18,6 +20,9 @@ public class ManagementController {
 
 	@Autowired
 	private ContractService contractService;
+	
+	@Autowired
+	private CheckService checkService;
 	
 	@RequestMapping("/{type}")
 	public String toPage(@PathVariable String type, Model model) {
@@ -29,10 +34,10 @@ public class ManagementController {
 		//返回当前日期
 		Date createDate = new Date();
 		SimpleDateFormat formatter; 
-	    formatter = new SimpleDateFormat ("yyyy-MM-dd"); 
+	    formatter = new SimpleDateFormat ("yyyy/MM/dd"); 
 	    String createDateStr = formatter.format(createDate); 
 		model.addAttribute("createDate", createDateStr);
-		if("invoice".equalsIgnoreCase(type)){
+		if("invoice".equalsIgnoreCase(type) ||"check".equalsIgnoreCase(type)){
 			TbContract contract = contractService.findBySerialNo(serialno);
 			model.addAttribute("contract", contract);
 		}

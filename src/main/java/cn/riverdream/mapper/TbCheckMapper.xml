@@ -5,6 +5,7 @@
     <id column="SERIALNO" property="serialno" jdbcType="INTEGER" />
     <result column="CHECKNO" property="checkno" jdbcType="VARCHAR" />
     <result column="CONTRACTSERIALNO" property="contractserialno" jdbcType="INTEGER" />
+    <result column="CONTRACTNO" property="contractno" jdbcType="VARCHAR" />
     <result column="INCOMEDATE" property="incomedate" jdbcType="TIMESTAMP" />
     <result column="INCOMEAMOUNT" property="incomeamount" jdbcType="DOUBLE" />
     <result column="TAXPOINT" property="taxpoint" jdbcType="INTEGER" />
@@ -78,8 +79,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SERIALNO, CHECKNO, CONTRACTSERIALNO, INCOMEDATE, INCOMEAMOUNT, TAXPOINT, TAXAMOUNT, 
-    PAYAMOUNT, PAYDATE, ACCOUNT, COMPANY, STATUS, CONSUMER, COMMENT, CREATEDATE, CREATEUSER
+    SERIALNO, CHECKNO, CONTRACTSERIALNO, CONTRACTNO, INCOMEDATE, INCOMEAMOUNT, TAXPOINT, 
+    TAXAMOUNT, PAYAMOUNT, PAYDATE, ACCOUNT, COMPANY, STATUS, CONSUMER, COMMENT, CREATEDATE, 
+    CREATEUSER
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbCheckExample" >
     select
@@ -113,17 +115,17 @@
   </delete>
   <insert id="insert" parameterType="cn.riverdream.pojo.TbCheck" >
     insert into tb_check (SERIALNO, CHECKNO, CONTRACTSERIALNO, 
-      INCOMEDATE, INCOMEAMOUNT, TAXPOINT, 
-      TAXAMOUNT, PAYAMOUNT, PAYDATE, 
-      ACCOUNT, COMPANY, STATUS, 
-      CONSUMER, COMMENT, CREATEDATE, 
-      CREATEUSER)
+      CONTRACTNO, INCOMEDATE, INCOMEAMOUNT, 
+      TAXPOINT, TAXAMOUNT, PAYAMOUNT, 
+      PAYDATE, ACCOUNT, COMPANY, 
+      STATUS, CONSUMER, COMMENT, 
+      CREATEDATE, CREATEUSER)
     values (#{serialno,jdbcType=INTEGER}, #{checkno,jdbcType=VARCHAR}, #{contractserialno,jdbcType=INTEGER}, 
-      #{incomedate,jdbcType=TIMESTAMP}, #{incomeamount,jdbcType=DOUBLE}, #{taxpoint,jdbcType=INTEGER}, 
-      #{taxamount,jdbcType=DOUBLE}, #{payamount,jdbcType=DOUBLE}, #{paydate,jdbcType=TIMESTAMP}, 
-      #{account,jdbcType=DOUBLE}, #{company,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{consumer,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
-      #{createuser,jdbcType=INTEGER})
+      #{contractno,jdbcType=VARCHAR}, #{incomedate,jdbcType=TIMESTAMP}, #{incomeamount,jdbcType=DOUBLE}, 
+      #{taxpoint,jdbcType=INTEGER}, #{taxamount,jdbcType=DOUBLE}, #{payamount,jdbcType=DOUBLE}, 
+      #{paydate,jdbcType=TIMESTAMP}, #{account,jdbcType=DOUBLE}, #{company,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{consumer,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.riverdream.pojo.TbCheck" >
     insert into tb_check
@@ -136,6 +138,9 @@
       </if>
       <if test="contractserialno != null" >
         CONTRACTSERIALNO,
+      </if>
+      <if test="contractno != null" >
+        CONTRACTNO,
       </if>
       <if test="incomedate != null" >
         INCOMEDATE,
@@ -186,6 +191,9 @@
       </if>
       <if test="contractserialno != null" >
         #{contractserialno,jdbcType=INTEGER},
+      </if>
+      <if test="contractno != null" >
+        #{contractno,jdbcType=VARCHAR},
       </if>
       <if test="incomedate != null" >
         #{incomedate,jdbcType=TIMESTAMP},
@@ -246,6 +254,9 @@
       <if test="record.contractserialno != null" >
         CONTRACTSERIALNO = #{record.contractserialno,jdbcType=INTEGER},
       </if>
+      <if test="record.contractno != null" >
+        CONTRACTNO = #{record.contractno,jdbcType=VARCHAR},
+      </if>
       <if test="record.incomedate != null" >
         INCOMEDATE = #{record.incomedate,jdbcType=TIMESTAMP},
       </if>
@@ -295,6 +306,7 @@
     set SERIALNO = #{record.serialno,jdbcType=INTEGER},
       CHECKNO = #{record.checkno,jdbcType=VARCHAR},
       CONTRACTSERIALNO = #{record.contractserialno,jdbcType=INTEGER},
+      CONTRACTNO = #{record.contractno,jdbcType=VARCHAR},
       INCOMEDATE = #{record.incomedate,jdbcType=TIMESTAMP},
       INCOMEAMOUNT = #{record.incomeamount,jdbcType=DOUBLE},
       TAXPOINT = #{record.taxpoint,jdbcType=INTEGER},
@@ -320,6 +332,9 @@
       </if>
       <if test="contractserialno != null" >
         CONTRACTSERIALNO = #{contractserialno,jdbcType=INTEGER},
+      </if>
+      <if test="contractno != null" >
+        CONTRACTNO = #{contractno,jdbcType=VARCHAR},
       </if>
       <if test="incomedate != null" >
         INCOMEDATE = #{incomedate,jdbcType=TIMESTAMP},
@@ -367,6 +382,7 @@
     update tb_check
     set CHECKNO = #{checkno,jdbcType=VARCHAR},
       CONTRACTSERIALNO = #{contractserialno,jdbcType=INTEGER},
+      CONTRACTNO = #{contractno,jdbcType=VARCHAR},
       INCOMEDATE = #{incomedate,jdbcType=TIMESTAMP},
       INCOMEAMOUNT = #{incomeamount,jdbcType=DOUBLE},
       TAXPOINT = #{taxpoint,jdbcType=INTEGER},

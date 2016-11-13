@@ -295,6 +295,76 @@ public class TbCheckExample {
             return (Criteria) this;
         }
 
+        public Criteria andContractnoIsNull() {
+            addCriterion("CONTRACTNO is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoIsNotNull() {
+            addCriterion("CONTRACTNO is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoEqualTo(String value) {
+            addCriterion("CONTRACTNO =", value, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoNotEqualTo(String value) {
+            addCriterion("CONTRACTNO <>", value, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoGreaterThan(String value) {
+            addCriterion("CONTRACTNO >", value, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoGreaterThanOrEqualTo(String value) {
+            addCriterion("CONTRACTNO >=", value, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoLessThan(String value) {
+            addCriterion("CONTRACTNO <", value, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoLessThanOrEqualTo(String value) {
+            addCriterion("CONTRACTNO <=", value, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoLike(String value) {
+            addCriterion("CONTRACTNO like", value, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoNotLike(String value) {
+            addCriterion("CONTRACTNO not like", value, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoIn(List<String> values) {
+            addCriterion("CONTRACTNO in", values, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoNotIn(List<String> values) {
+            addCriterion("CONTRACTNO not in", values, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoBetween(String value1, String value2) {
+            addCriterion("CONTRACTNO between", value1, value2, "contractno");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractnoNotBetween(String value1, String value2) {
+            addCriterion("CONTRACTNO not between", value1, value2, "contractno");
+            return (Criteria) this;
+        }
+
         public Criteria andIncomedateIsNull() {
             addCriterion("INCOMEDATE is null");
             return (Criteria) this;

@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/jsp/base/tag.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
 <html> 
 <head>
 <title>药品信息查询</title>
@@ -76,7 +77,7 @@ var addCheck = function (){
 
 
 var ypxxexport = function(){
-	jquerySubByFId('ypxxqueryForm', ypxxexport_callback, null, "json");
+	jquerySubByFId('checkqueryForm', ypxxexport_callback, null, "json");
 };
 
 function ypxxexport_callback(data) {
@@ -84,7 +85,7 @@ function ypxxexport_callback(data) {
 	_alert(result);
 	
 }
-var ypxxdelList = function(){
+var checkdelList = function(){
 	_confirm('您确定要执行删除操作吗?',null,
 	  function(){
 		var ids = [];
@@ -93,42 +94,42 @@ var ypxxdelList = function(){
 			ids.push(rows[i].id);
 		}
 		if(ids.length>0){
-			$("#ypxxdelid").val(ids.join(','));
-			jquerySubByFId('ypxxdelForm', ypxxdel_callback, null, "json");
+			$("#checkdelid").val(ids.join(','));
+			jquerySubByFId('checkdelForm', checkdel_callback, null, "json");
 		}else{
 			alert_warn("请选择要删除的项目");
 		}
 	  }
 	)
 };
-var ypxxdel = function(id){
+var checkdel = function(id){
 	_confirm('您确定要执行删除操作吗?',null,
 			function(){
-				$("#ypxxdelid").val(id);
-				jquerySubByFId('ypxxdelForm', ypxxdel_callback, null, "json");
+				$("#checkdelid").val(id);
+				jquerySubByFId('checkdelForm', checkdel_callback, null, "json");
 			}
 	)
 };
-function ypxxdel_callback(data) {
-	var result = getCallbackData(data);
-	_alert(result);
-	ypxxquery();
+function checkdel_callback(data) {
+	//var result = getCallbackData(data);
+	_alert(data);
+	checkquery();
 }
-var ypxxedit = function (id){
+var checkedit = function (id){
 	//alert(id);
-	var sendUrl = "${baseurl}/ypml/ypxx/edit.action?editid="+id;
+	var sendUrl = "${baseurl}/management/check/toupdate?serialNo="+id;
 	
 	createmodalwindow("药品信息修改", 900, 500, sendUrl);
 	/* 
 	var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
-			_ajaxPostRequest(ajaxOption, '', ypxxedit_callback);  */
+			_ajaxPostRequest(ajaxOption, '', checkedit_callback);  */
 };
 
-/* function ypxxedit_callback(redata){
-	$('#ypxxquery_div').css("display","none");
-	$("#ypxxedit_div").css("display","block");
-	$("#ypxxedit_div").html(redata);
+/* function checkedit_callback(redata){
+	$('#checkquery_div').css("display","none");
+	$("#checkedit_div").css("display","block");
+	$("#checkedit_div").html(redata);
 } */
 function ypxxinfo(id){
 var sendUrl = "${baseurl}/ypml/ypxx/view.action?id="+id;
@@ -141,7 +142,7 @@ var ypxxadd = function (){
 	createmodalwindow("药品信息添加", 900, 500, sendUrl);
 	/* var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
-			_ajaxPostRequest(ajaxOption, '', ypxxedit_callback);  */
+			_ajaxPostRequest(ajaxOption, '', checkedit_callback);  */
 };
 
 var rsyncypxx = function(id){
@@ -173,75 +174,76 @@ var columns = [ [{
 	title : '',
 	checkbox:true
 },{
-	field : 'bm',
+	field : 'contractno',
 	title : '合同号',
 	width : 80
 },{
-	field : 'mc',
+	field : 'consumer',
 	title : '客户名称',
 	width : 130
 },{
-	field : 'jx',
+	field : 'checkno',
 	title : '支票号',
 	width : 80
 },{
-	field : 'gg',
+	field : 'incomeamount',
 	title : '收入金额',
 	width : 100
 },{
-	field : 'zhxs',
+	field : 'incomedate',
 	title : '收入日期',
-	width : 50
+	width : 50,
+	formatter:function(value, row, index){
+		var date = new Date(value);
+	    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+	}
 },{
-	field : 'scqymc',
+	field : 'taxamount',
 	title : '扣税金额',
 	width : 180
 },{
-	field : 'spmc',
+	field : 'taxpoint',
 	title : '扣税税点',
 	width : 150
 },{
-	field : 'zbjg',
+	field : 'payamount',
 	title : '支出金额',
 	width : 50
 },{
-	field : 'zbjg',
+	field : 'paydate',
 	title : '支出日期',
-	width : 50
+	width : 50,
+	formatter:function(value, row, index){
+		var date = new Date(value);
+	    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+	}
+	
 },{
-	field : 'zbjg',
+	field : 'account',
 	title : '结算',
 	width : 50
 },{
-	field : 'zbjg',
+	field : 'company',
 	title : '单位名称',
 	width : 50
 },{
-	field : 'zbjg',
+	field : 'comment',
 	title : '备注',
 	width : 50
-},{
-	field : 'dictinfoByJyzt.info',
-	title : '交易状态',
-	width : 60,
-	//嵌套对象输出使用formatter方法
-	formatter:function(value, row, index){
-		return row.dictinfoByJyzt.info;
-	}
 }
 ,{
 	field : 'opt1',
 	title : '修改',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:ypxxedit(\''+row.id+'\')>修改</a>';
+		return '<a href=javascript:checkedit(\''+row.serialno+'\')>修改</a>';
 	}
 },{
 	field : 'opt2',
 	title : '删除',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:ypxxdel(\''+row.id+'\')>删除</a>';
+		return '<a href=javascript:checkdel(\''+row.serialno+'\')>删除</a>';
 	}
 }
 ]];
@@ -252,7 +254,7 @@ function initGrid(){
 		//nowrap : false,
 		striped : true,
 		//collapsible : true,
-		url : '${baseurl}/ypml/ypxx/list_result.action',
+		url : '${baseurl}/management/check/search',
 		//sortName : 'code',
 		//sortOrder : 'desc',
 		//remoteSort : false,
@@ -271,9 +273,9 @@ function initGrid(){
 
 	}
 
-	function ypxxquery() {
+	function checkquery() {
  
-		var formdata = $("#ypxxqueryForm").serializeJson();
+		var formdata = $("#checkqueryForm").serializeJson();
 		//alert(formdata);
 		$('#ypxxlist').datagrid('unselectAll');
 		$('#ypxxlist').datagrid('load', formdata);
@@ -281,18 +283,18 @@ function initGrid(){
 </script>
 </HEAD>
 <BODY>
-<div id="ypxxquery_div">
-    <form id="ypxxqueryForm" name="ypxxqueryForm" action="${baseurl}/ypml/ypxx/exportypxx.action" method="post">
+<div id="checkquery_div">
+    <form id="checkqueryForm" name="checkqueryForm" action="${baseurl}/management/check/search" method="post">
 			<TABLE  class="table_search">
 				<TBODY>
 					<TR>
 						
 						<TD class="left">合同号：</td>
-						<td><INPUT type="text"  name="ypxxCustom.mc" /></TD>
+						<td><INPUT type="text"  name="contractno" /></TD>
 						<TD class="left">客户名称：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.jx" /></td>
+						<td ><INPUT type="text" name="consumer" /></td>
 						<TD class="left">支票号：</TD>
-						<td ><INPUT type="text" name="ypxxCustom.gg" /></td>
+						<td ><INPUT type="text" name="checkno" /></td>
 					</TR>
 					<TR>
 						 <td class="left">收入日期：</td>
@@ -308,7 +310,7 @@ function initGrid(){
 				      		<input class="laydate-icon" id="outend" name="outend" style="width:150px;">
 				 		 </td>
 				 		 <td colspan=2 >
-							<a id="btn" href="#" onclick="ypxxquery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
+							<a id="btn" href="#" onclick="checkquery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
 						</td>
 					</tr>
 				</TBODY>
@@ -326,11 +328,11 @@ function initGrid(){
 </div>
 <div id="ypxximport_div">
 </div>
-<div id="ypxxedit_div">
+<div id="checkedit_div">
 
 </div>
-<form id="ypxxdelForm" name="ypxxdelForm" action="${baseurl}/ypml/ypxxdel.action" method="post">
-<input type="hidden" id="ypxxdelid" name="ypxxdelid"/>
+<form id="checkdelForm" name="checkdelForm" action="${baseurl}/management/check/del" method="post">
+<input type="hidden" id="checkdelid" name="serialno"/>
 </form>
 <form id="rsyncForm" name="rsyncForm" action="${baseurl}/ypml/ypxx/rsyncypxx.action" method="post">
 

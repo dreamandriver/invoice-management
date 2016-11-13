@@ -85,11 +85,11 @@
 		
 		//日期
 		$("#check_incomedatestr").formValidator({
-			onShow : "${createDate}",
+			onShow : "",
 			onCorrect:"&nbsp;"
 		});
 		$("#check_paydatestr").formValidator({
-			onShow : "${createDate}",
+			onShow : "",
 			onCorrect:"&nbsp;"
 		});
 		//公司名称
@@ -112,7 +112,7 @@
 		//var result = getCallbackData(data);
 		var type = data.type;
 		if (TYPE_RESULT_SUCCESS == type) {
-			parent.contractQuery();
+			parent.checkquery();
 			parent.closemodalwindow();
 		}else{
 			_alert(data);
@@ -122,10 +122,11 @@
 	</script>
  </HEAD>
 <BODY>
-<form id="checkaddform" name="checkaddform" action="${baseurl}/management/check/add" method="post">
-<input type="hidden" name="check.contractserialno" value="${contract.serialno}"/>
-<input type="hidden" name="check.contractno" value="${contract.contractno}"/>
-<input type="hidden" name="check.consumer" value="${contract.consumer}" />
+<form id="checkaddform" name="checkaddform" action="${baseurl}/management/check/update" method="post">
+<input type="hidden" name="check.contractserialno" value="${check.contractserialno}"/>
+<input type="hidden" name="check.contractno" value="${check.contractno}"/>
+<input type="hidden" name="check.consumer" value="${check.consumer}" />
+<input type="hidden" name="check.serialno" value="${check.serialno}" />
 <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" bgColor=#c4d8ed>
 		<TBODY>
 			<TR>
@@ -150,14 +151,14 @@
 								<TD height=30 width="15%" align=right >合同号：</TD>
 								<TD class=category width="35%">
 								<div>
-									${contract.contractno}
+									${check.contractno}
 								</div>
 								
 								</TD>
 								<TD height=30 width="15%" align=right >客户名称：</TD>
 								<TD class=category width="35%">
 								<div>
-									${contract.consumer}
+									${check.consumer}
 								</div>
 								</TD>
 
@@ -170,6 +171,7 @@
 								<div>
 									<input type="text" id="check_checkno" name="check.checkno" value="${check.checkno}"/>
 								</div>
+								
 								<div id="check_checknoTip"></div>
 								</TD>
 								<TD height=30 width="15%" align=right >税点(%)：</TD>
@@ -191,7 +193,7 @@
 								<TD height=30 width="15%" align=right >收入日期：</TD>
 								<TD class=category width="35%">
 								<div>
-									<input class="laydate-icon" id="check_incomedatestr" name="check.incomedatestr" value="${createDate}" style="width:150px;">
+									<input class="laydate-icon" id="check_incomedatestr" name="check.incomedate" value=<fmt:formatDate value='${check.incomedate}' pattern='yyyy/MM/dd' /> style="width:150px;">
 								</div>
 								<div id="check_incomedatestrTip"></div>
 								</TD>
@@ -208,8 +210,9 @@
 								<TD height=30 width="15%" align=right >支出日期：</TD>
 								<TD class=category width="35%">
 								<div>
-									<input class="laydate-icon" id="check_paydatestr" name="check.paydatestr" value="${createDate}" style="width:150px;">
+									<input class="laydate-icon" id="check_paydatestr" name="check.paydate" value=<fmt:formatDate value='${check.paydate}' pattern='yyyy/MM/dd' /> style="width:150px;">
 								</div>
+								
 								<div id="check_paydatestrTip"></div>
 								</TD>
 							</TR>
