@@ -158,33 +158,41 @@ var columns = [ [{
 },{
 	field : 'consumer',
 	title : '客户姓名',
-	width : 130
+	width : 80
 },{
 	field : 'invoiceno',
 	title : '发票号',
-	width : 80
+	width : 150
 },{
 	field : 'zuofei',
 	title : '作废',
 	width : 100,
 	formatter:function(value, row, index){
-		if(row.status == 1){
-			return row.amount;
+		if(row.serialno){
+			if(row.status == 1){
+				return row.amount;
+			}else{
+				return "--";
+			}
 		}else{
-			return "--"
-		}
+			return row.zuofei;
+		}		
 	}
 },{
 	field : 'amount',
 	title : '金额',
 	width : 100,
 	formatter:function(value, row, index){
-		if(row.status == 0){
-			return row.amount;
-		}else if(row.status == 2){
-			return "<font color='red'>-"+row.amount+"</font>";
+		if(row.serialno){
+			if(row.status == 0){
+				return row.amount;
+			}else if(row.status == 2){
+				return "<font color='red'>-"+row.amount+"</font>";
+			}else{
+				return "--";
+			}
 		}else{
-			return "--";
+			return row.amount;
 		}
 	}
 },{
@@ -194,25 +202,33 @@ var columns = [ [{
 },{
 	field : 'createdatestr',
 	title : '创建日期',
-	width : 180
+	width : 120
 },{
 	field : 'commont',
 	title : '备注',
-	width : 150
+	width : 180
 }
 ,{
 	field : 'opt1',
 	title : '修改',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:invoiceedit(\''+row.serialno+'\')>修改</a>';
+		if(row.serialno){
+			return '<a href=javascript:invoiceedit(\''+row.serialno+'\')>修改</a>';
+		}else{
+			return "--";
+		}
 	}
 },{
 	field : 'opt2',
 	title : '删除',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:invoicedel(\''+row.serialno+'\')>删除</a>';
+		if(row.serialno){
+			return '<a href=javascript:invoicedel(\''+row.serialno+'\')>删除</a>';
+		}else{
+			return "--";
+		}
 	}
 }
 ]];
@@ -229,6 +245,8 @@ function initGrid(){
 		//remoteSort : false,
 		idField : 'id',
 		//frozenColumns : frozenColumns,
+		//fitColumns: true,
+		showFooter:true,
 		columns : columns,
 		pagination : true,
 		rownumbers : true,

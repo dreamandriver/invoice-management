@@ -180,11 +180,11 @@ var columns = [ [{
 },{
 	field : 'consumer',
 	title : '客户名称',
-	width : 130
+	width : 80
 },{
 	field : 'checkno',
 	title : '支票号',
-	width : 80
+	width : 120
 },{
 	field : 'incomeamount',
 	title : '收入金额',
@@ -192,58 +192,74 @@ var columns = [ [{
 },{
 	field : 'incomedate',
 	title : '收入日期',
-	width : 50,
+	width : 80,
 	formatter:function(value, row, index){
-		var date = new Date(value);
-	    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+		if(row.serialno){
+			var date = new Date(value);
+		    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+		}else{
+			return "--";
+		}
 	}
 },{
 	field : 'taxamount',
 	title : '扣税金额',
-	width : 180
+	width : 100
 },{
 	field : 'taxpoint',
 	title : '扣税税点',
-	width : 150
+	width : 50
 },{
 	field : 'payamount',
 	title : '支出金额',
-	width : 50
+	width : 100
 },{
 	field : 'paydate',
 	title : '支出日期',
-	width : 50,
+	width : 80,
 	formatter:function(value, row, index){
-		var date = new Date(value);
-	    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+		if(row.serialno){
+			var date = new Date(value);
+		    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+		}else{
+			return "--";
+		}
 	}
 	
 },{
 	field : 'account',
 	title : '结算',
-	width : 50
+	width : 100
 },{
 	field : 'company',
 	title : '单位名称',
-	width : 50
+	width : 150
 },{
 	field : 'comment',
 	title : '备注',
-	width : 50
+	width : 150
 }
 ,{
 	field : 'opt1',
 	title : '修改',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:checkedit(\''+row.serialno+'\')>修改</a>';
+		if(row.serialno){
+			return '<a href=javascript:checkedit(\''+row.serialno+'\')>修改</a>';
+		}else{
+			return "--";
+		}
 	}
 },{
 	field : 'opt2',
 	title : '删除',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:checkdel(\''+row.serialno+'\')>删除</a>';
+		if(row.serialno){
+			return '<a href=javascript:checkdel(\''+row.serialno+'\')>删除</a>';
+		}else{
+			return "--";
+		}
 	}
 }
 ]];
@@ -261,6 +277,8 @@ function initGrid(){
 		idField : 'id',
 		//frozenColumns : frozenColumns,
 		columns : columns,
+		fitColumns: true,
+		showFooter:true,
 		pagination : true,
 		rownumbers : true,
 		toolbar : toolbar,

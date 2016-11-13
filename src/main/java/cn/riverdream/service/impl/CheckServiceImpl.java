@@ -1,8 +1,11 @@
 package cn.riverdream.service.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +92,33 @@ public class CheckServiceImpl implements CheckService {
 		PageInfo<TbCheck> pageInfo = new PageInfo<>(list);
 		long total = pageInfo.getTotal();
 		
+		BigDecimal ba = new BigDecimal(0);
+		BigDecimal bi = new BigDecimal(0);
+		BigDecimal bt = new BigDecimal(0);
+		BigDecimal bp = new BigDecimal(0);
+		//合计
+		List<TbCheck> listsum = checkMapper.selectByExample(example);
+		for (TbCheck t : listsum) {
+			Double account = t.getAccount();
+			Double incomeamount = t.getIncomeamount();
+			Double taxamount = t.getTaxamount();
+			Double payamount = t.getPayamount();
+			ba = ba.add(new BigDecimal(account));
+			bi = bi.add(new BigDecimal(incomeamount));
+			bt = bt.add(new BigDecimal(taxamount));
+			bp = bp.add(new BigDecimal(payamount));
+		}
+		List<Map<String,String>> sum = new ArrayList<>();
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("account", ba.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+		map.put("incomeamount", bi.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+		map.put("taxamount", bt.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+		map.put("payamount", bp.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+		map.put("contractno", "合计");
+		sum.add(map);
+		
 		DataGridResultInfo result = new DataGridResultInfo();
+		result.setFooter(sum);
 		result.setTotal(total);
 		result.setRows(list);
 		return result;

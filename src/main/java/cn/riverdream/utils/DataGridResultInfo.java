@@ -18,7 +18,16 @@ public class DataGridResultInfo implements ProcessResult {
 	//结果集
 	private List rows = new ArrayList();
 	
+	private List footer = new ArrayList();
 	
+
+	public List getFooter() {
+		return footer;
+	}
+
+	public void setFooter(List footer) {
+		this.footer = footer;
+	}
 
 	public long getTotal() {
 		return total;

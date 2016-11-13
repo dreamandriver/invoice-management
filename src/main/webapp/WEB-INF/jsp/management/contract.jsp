@@ -198,7 +198,13 @@ var columns = [ [{
 	title : '是否正式合同',
 	width : 80,
 	formatter:function(value, row, index){
-		return value == 1? "是":"否";
+		if(value ==1 ){
+			return "是";
+		}else if(value ==2){
+			return "否";
+		}else{
+			return "--";
+		}
 	}
 },{
 	field : 'comment',
@@ -210,28 +216,45 @@ var columns = [ [{
 	title : '修改',
 	width : 60,
 	formatter:function(value, row, index){
+		if(row.serialno){
 		return '<a href=javascript:contractedit(\''+row.serialno+'\')>修改</a>';
+		}else{
+			return "--";
+		}
+		
 	}
 },{
 	field : 'opt2',
 	title : '删除',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:contractdel(\''+row.serialno+'\')>删除</a>';
+		if(row.serialno){
+				return '<a href=javascript:contractdel(\''+row.serialno+'\')>删除</a>';
+			}else{
+				return "--";
+			}
 	}
 },{
 	field : 'opt3',
 	title : '添加发票',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:addinvoice(\''+row.serialno+'\')>添加发票</a>';
+		if(row.serialno){
+				return '<a href=javascript:addinvoice(\''+row.serialno+'\')>添加发票</a>';
+			}else{
+				return "--";
+			}
 	}
 },{
 	field : 'opt4',
 	title : '添加支票',
 	width : 60,
 	formatter:function(value, row, index){
-		return '<a href=javascript:addcheck(\''+row.serialno+'\')>添加支票</a>';
+		if(row.serialno){
+				return '<a href=javascript:addcheck(\''+row.serialno+'\')>添加支票</a>';
+			}else{
+				return "--";
+			}
 	}
 }
 ]];
@@ -248,6 +271,8 @@ function initGrid(){
 		//remoteSort : false,
 		idField : 'id',
 		//frozenColumns : frozenColumns,
+		fitColumns: true,
+		showFooter:true,
 		columns : columns,
 		pagination : true,
 		rownumbers : true,

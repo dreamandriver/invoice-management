@@ -1,8 +1,12 @@
 package cn.riverdream.service.impl;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,8 +115,29 @@ public class ContractServiceImpl implements ContractService {
 		// 取分页信息
 		PageInfo<TbContract> pageInfo = new PageInfo<>(list);
 		long total = pageInfo.getTotal();
+		
+		//合计
+		List<TbContract> listsum = contractMapper.selectByExample(example);
+		BigDecimal totalAmount = new BigDecimal(0);
+		for (TbContract t : listsum) {
+			Double amount = t.getAmount();
+			totalAmount = totalAmount.add(new BigDecimal(amount));
+		}
+		List<Map<String,String>> sum = new ArrayList<>();
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("amount", totalAmount.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+		map.put("contractno", "合计");
+		sum.add(map);
+		
+//		List<TbContract> sumList = new ArrayList<>();
+//		TbContract contract = new TbContract();
+//		contract.setAmount(totalAmount.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
+//		contract.setContractno("合计");
+//		contract.setCreatedate(new Date());
+//		sumList.add(contract);
 
 		DataGridResultInfo result = new DataGridResultInfo();
+		result.setFooter(sum);
 		result.setTotal(total);
 		result.setRows(list);
 		return result;
