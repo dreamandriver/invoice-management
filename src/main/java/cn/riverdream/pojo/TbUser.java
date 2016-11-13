@@ -3,11 +3,13 @@ package cn.riverdream.pojo;
 public class TbUser {
     private Integer serialno;
 
-    private Integer userid;
+    private String userid;
 
     private String username;
 
     private String password;
+
+    private String permission;
 
     public Integer getSerialno() {
         return serialno;
@@ -17,12 +19,12 @@ public class TbUser {
         this.serialno = serialno;
     }
 
-    public Integer getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserid(String userid) {
+        this.userid = userid == null ? null : userid.trim();
     }
 
     public String getUsername() {
@@ -39,5 +41,13 @@ public class TbUser {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission == null ? null : permission.trim();
     }
 }

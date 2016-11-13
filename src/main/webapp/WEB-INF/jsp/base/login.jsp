@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/base/tag.jsp"%>
 <html>
 <head>
-<TITLE><fmt:message key="title" bundle="${messagesBundle}" /></TITLE>
+<TITLE>系统登录</TITLE>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -114,7 +114,7 @@ $(document).ready(function(){
 		<DIV class="logincon">
 
 			<DIV class="title">
-				<IMG alt="" src="${baseurl}/images/login/logo.png">
+				<p style="font-size:60px;">管理系统</p>
 			</DIV>
 
 			<DIV class="cen_con">

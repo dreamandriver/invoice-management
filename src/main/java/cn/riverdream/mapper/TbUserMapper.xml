@@ -3,9 +3,10 @@
 <mapper namespace="cn.riverdream.mapper.TbUserMapper" >
   <resultMap id="BaseResultMap" type="cn.riverdream.pojo.TbUser" >
     <id column="SERIALNO" property="serialno" jdbcType="INTEGER" />
-    <result column="USERID" property="userid" jdbcType="INTEGER" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
     <result column="USERNAME" property="username" jdbcType="VARCHAR" />
     <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="permission" property="permission" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SERIALNO, USERID, USERNAME, PASSWORD
+    SERIALNO, USERID, USERNAME, PASSWORD, permission
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbUserExample" >
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="cn.riverdream.pojo.TbUser" >
     insert into tb_user (SERIALNO, USERID, USERNAME, 
-      PASSWORD)
-    values (#{serialno,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR})
+      PASSWORD, permission)
+    values (#{serialno,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.riverdream.pojo.TbUser" >
     insert into tb_user
@@ -119,19 +120,25 @@
       <if test="password != null" >
         PASSWORD,
       </if>
+      <if test="permission != null" >
+        permission,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="serialno != null" >
         #{serialno,jdbcType=INTEGER},
       </if>
       <if test="userid != null" >
-        #{userid,jdbcType=INTEGER},
+        #{userid,jdbcType=VARCHAR},
       </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -148,13 +155,16 @@
         SERIALNO = #{record.serialno,jdbcType=INTEGER},
       </if>
       <if test="record.userid != null" >
-        USERID = #{record.userid,jdbcType=INTEGER},
+        USERID = #{record.userid,jdbcType=VARCHAR},
       </if>
       <if test="record.username != null" >
         USERNAME = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null" >
         PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permission != null" >
+        permission = #{record.permission,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -164,9 +174,10 @@
   <update id="updateByExample" parameterType="map" >
     update tb_user
     set SERIALNO = #{record.serialno,jdbcType=INTEGER},
-      USERID = #{record.userid,jdbcType=INTEGER},
+      USERID = #{record.userid,jdbcType=VARCHAR},
       USERNAME = #{record.username,jdbcType=VARCHAR},
-      PASSWORD = #{record.password,jdbcType=VARCHAR}
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      permission = #{record.permission,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -175,7 +186,7 @@
     update tb_user
     <set >
       <if test="userid != null" >
-        USERID = #{userid,jdbcType=INTEGER},
+        USERID = #{userid,jdbcType=VARCHAR},
       </if>
       <if test="username != null" >
         USERNAME = #{username,jdbcType=VARCHAR},
@@ -183,14 +194,18 @@
       <if test="password != null" >
         PASSWORD = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="permission != null" >
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
     </set>
     where SERIALNO = #{serialno,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.riverdream.pojo.TbUser" >
     update tb_user
-    set USERID = #{userid,jdbcType=INTEGER},
+    set USERID = #{userid,jdbcType=VARCHAR},
       USERNAME = #{username,jdbcType=VARCHAR},
-      PASSWORD = #{password,jdbcType=VARCHAR}
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR}
     where SERIALNO = #{serialno,jdbcType=INTEGER}
   </update>
 </mapper>

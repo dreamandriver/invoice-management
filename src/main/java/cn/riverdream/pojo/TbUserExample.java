@@ -174,52 +174,62 @@ public class TbUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andUseridEqualTo(Integer value) {
+        public Criteria andUseridEqualTo(String value) {
             addCriterion("USERID =", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridNotEqualTo(Integer value) {
+        public Criteria andUseridNotEqualTo(String value) {
             addCriterion("USERID <>", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridGreaterThan(Integer value) {
+        public Criteria andUseridGreaterThan(String value) {
             addCriterion("USERID >", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridGreaterThanOrEqualTo(Integer value) {
+        public Criteria andUseridGreaterThanOrEqualTo(String value) {
             addCriterion("USERID >=", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridLessThan(Integer value) {
+        public Criteria andUseridLessThan(String value) {
             addCriterion("USERID <", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridLessThanOrEqualTo(Integer value) {
+        public Criteria andUseridLessThanOrEqualTo(String value) {
             addCriterion("USERID <=", value, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridIn(List<Integer> values) {
+        public Criteria andUseridLike(String value) {
+            addCriterion("USERID like", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotLike(String value) {
+            addCriterion("USERID not like", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridIn(List<String> values) {
             addCriterion("USERID in", values, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridNotIn(List<Integer> values) {
+        public Criteria andUseridNotIn(List<String> values) {
             addCriterion("USERID not in", values, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridBetween(Integer value1, Integer value2) {
+        public Criteria andUseridBetween(String value1, String value2) {
             addCriterion("USERID between", value1, value2, "userid");
             return (Criteria) this;
         }
 
-        public Criteria andUseridNotBetween(Integer value1, Integer value2) {
+        public Criteria andUseridNotBetween(String value1, String value2) {
             addCriterion("USERID not between", value1, value2, "userid");
             return (Criteria) this;
         }
@@ -361,6 +371,76 @@ public class TbUserExample {
 
         public Criteria andPasswordNotBetween(String value1, String value2) {
             addCriterion("PASSWORD not between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIsNull() {
+            addCriterion("permission is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIsNotNull() {
+            addCriterion("permission is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionEqualTo(String value) {
+            addCriterion("permission =", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionNotEqualTo(String value) {
+            addCriterion("permission <>", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionGreaterThan(String value) {
+            addCriterion("permission >", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionGreaterThanOrEqualTo(String value) {
+            addCriterion("permission >=", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionLessThan(String value) {
+            addCriterion("permission <", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionLessThanOrEqualTo(String value) {
+            addCriterion("permission <=", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionLike(String value) {
+            addCriterion("permission like", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionNotLike(String value) {
+            addCriterion("permission not like", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIn(List<String> values) {
+            addCriterion("permission in", values, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionNotIn(List<String> values) {
+            addCriterion("permission not in", values, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionBetween(String value1, String value2) {
+            addCriterion("permission between", value1, value2, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionNotBetween(String value1, String value2) {
+            addCriterion("permission not between", value1, value2, "permission");
             return (Criteria) this;
         }
     }

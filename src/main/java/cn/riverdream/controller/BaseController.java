@@ -18,4 +18,9 @@ public class BaseController {
 	public String toWelcomPage(Model model) {
 		return "base/welcome";
 	}
+	
+	@RequestMapping("/login")
+	public String tologin(Model model) {
+		return "base/login";
+	}
 }
