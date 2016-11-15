@@ -68,15 +68,10 @@ var addcheck = function (serialno){
 };
 
 
-var ypxxexport = function(){
-	jquerySubByFId('contractQueryForm', ypxxexport_callback, null, "json");
+var contractexport = function(){
+	jquerySubByFId('contractQueryForm', contractexport_callback, null, "json");
 };
 
-function ypxxexport_callback(data) {
-	var result = getCallbackData(data);
-	_alert(result);
-	
-}
 var contractdelList = function(){
 	_confirm('您确定要执行删除操作吗?',null,
 	  function(){
@@ -164,7 +159,7 @@ var toolbar = [ {
 		id : 'export',
 		text : '导出',
 		iconCls : 'icon-redo',
-		handler : ypxxexport
+		handler : contractexport
 	}];
 
 var frozenColumns;
