@@ -29,14 +29,13 @@
 				<!-- 对静态资源设置匿名访问 -->
 				/images/** = anon
 				/js/** = anon
+				/css/** = anon
 				/styles/** = anon
-				/jfreechart = anon
-				/test/** =anon
 				<!-- 验证码，可匿名访问 -->
 				/validatecode.jsp = anon
 
 				<!-- 退出拦截，请求logout.action执行退出操作 -->
-				/logout.action = logout
+				/logout = logout
 
 				<!-- /** = authc 所有url都必须认证通过才可以访问 -->
 				/** = authc

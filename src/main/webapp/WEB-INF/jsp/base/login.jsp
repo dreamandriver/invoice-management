@@ -81,12 +81,14 @@ $(document).ready(function(){
 
 	}
 	function login_commit_callback(data) {
-		var result = getCallbackData(data);
-		_alert(result);
-		var type = result.type;
+		//var result = getCallbackData(data);
+		data = getCallbackData(data);
+		var type = data.type;
+		alert( "type=" + type +";  flag = " + TYPE_RESULT_SUCCESS);
 		if (TYPE_RESULT_SUCCESS == type) {
 			setTimeout("tofirst()", 1000); 
 		} else {
+			_alert(data);
 			randomcode_refresh();
 		}
 
@@ -97,19 +99,19 @@ $(document).ready(function(){
 	}
 	function tofirst(){
 		if(parent.parent.parent){
-			parent.parent.parent.location='${baseurl}/first.action';
+			parent.parent.parent.location='${baseurl}/base';
 		}else if(parent.parent){
-			parent.parent.location='${baseurl}/first.action';
+			parent.parent.location='${baseurl}/base';
 		}else if(parent){
-			parent.location='${baseurl}/first.action';
+			parent.location='${baseurl}/base';
 		}else{
-			window.location='${baseurl}/first.action';
+			window.location='${baseurl}/base';
 		}
 	}
 </SCRIPT>
 </HEAD>
 <BODY style="background: #f6fdff url(${baseurl}/images/login/bg1.jpg) repeat-x;">
-	<FORM id="loginform" name="loginform" action="${baseurl}/login.action"
+	<FORM id="loginform" name="loginform" action="${baseurl}/login"
 		method="post">
 		<DIV class="logincon">
 
