@@ -30,7 +30,9 @@
 		//});
 
 		data = {
-			"menus" : [ {
+			"menus" : [ 
+			<c:if test="${activeUser.permission == 'admin'}">      
+			            {
 				"icon" : "icon-sys",
 				"menuid" : "1",
 				"menuname" : "系统管理",
@@ -41,7 +43,9 @@
 					"menuname" : "用戶管理",
 					"url" : "/sys/user"
 				}]
-			}, {
+			}, 
+			</c:if>
+			{
 				"icon" : "icon-sys",
 				"menuid" : "1",
 				"menuname" : "业务管理",

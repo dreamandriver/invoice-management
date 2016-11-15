@@ -3,6 +3,8 @@ package cn.riverdream.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.riverdream.pojo.TbContract;
+import cn.riverdream.pojo.TbUser;
 import cn.riverdream.service.ContractService;
 
 @Controller
@@ -36,6 +39,11 @@ public class ManagementController {
 			TbContract contract = contractService.findBySerialNo(serialno);
 			model.addAttribute("contract", contract);
 		}
+		
+		//身份
+		Subject subject = SecurityUtils.getSubject();
+		TbUser activeUser = (TbUser) subject.getPrincipal();
+		model.addAttribute("user", activeUser);
 		
 		return "management/add"+ type;
 	}

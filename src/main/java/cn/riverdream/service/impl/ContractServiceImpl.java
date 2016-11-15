@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ import cn.riverdream.pojo.TbContract;
 import cn.riverdream.pojo.TbContractExample;
 import cn.riverdream.pojo.TbDict;
 import cn.riverdream.pojo.TbDictExample;
+import cn.riverdream.pojo.TbUser;
 import cn.riverdream.pojo.TbDictExample.Criteria;
 import cn.riverdream.service.ContractService;
 import cn.riverdream.utils.DataGridResultInfo;
@@ -115,29 +118,27 @@ public class ContractServiceImpl implements ContractService {
 		// 取分页信息
 		PageInfo<TbContract> pageInfo = new PageInfo<>(list);
 		long total = pageInfo.getTotal();
-		
-		//合计
-		List<TbContract> listsum = contractMapper.selectByExample(example);
-		BigDecimal totalAmount = new BigDecimal(0);
-		for (TbContract t : listsum) {
-			Double amount = t.getAmount();
-			totalAmount = totalAmount.add(new BigDecimal(amount));
-		}
-		List<Map<String,String>> sum = new ArrayList<>();
-		HashMap<String,String> map = new HashMap<String,String>();
-		map.put("amount", totalAmount.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
-		map.put("contractno", "合计");
-		sum.add(map);
-		
-//		List<TbContract> sumList = new ArrayList<>();
-//		TbContract contract = new TbContract();
-//		contract.setAmount(totalAmount.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
-//		contract.setContractno("合计");
-//		contract.setCreatedate(new Date());
-//		sumList.add(contract);
-
 		DataGridResultInfo result = new DataGridResultInfo();
-		result.setFooter(sum);
+		
+		//身份
+		Subject subject = SecurityUtils.getSubject();
+		TbUser activeUser = (TbUser) subject.getPrincipal();
+		if ("admin".equalsIgnoreCase(activeUser.getPermission())) {
+			//合计
+			List<TbContract> listsum = contractMapper.selectByExample(example);
+			BigDecimal totalAmount = new BigDecimal(0);
+			for (TbContract t : listsum) {
+				Double amount = t.getAmount();
+				totalAmount = totalAmount.add(new BigDecimal(amount));
+			}
+			List<Map<String,String>> sum = new ArrayList<>();
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("amount", totalAmount.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+			map.put("contractno", "合计");
+			sum.add(map);
+			
+			result.setFooter(sum);
+		}
 		result.setTotal(total);
 		result.setRows(list);
 		return result;

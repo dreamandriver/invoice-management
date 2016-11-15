@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import cn.riverdream.mapper.TbCheckMapper;
 import cn.riverdream.model.CheckVo;
 import cn.riverdream.pojo.TbCheck;
 import cn.riverdream.pojo.TbCheckExample;
+import cn.riverdream.pojo.TbUser;
 import cn.riverdream.pojo.TbCheckExample.Criteria;
 import cn.riverdream.service.CheckService;
 import cn.riverdream.utils.DataGridResultInfo;
@@ -96,29 +99,35 @@ public class CheckServiceImpl implements CheckService {
 		BigDecimal bi = new BigDecimal(0);
 		BigDecimal bt = new BigDecimal(0);
 		BigDecimal bp = new BigDecimal(0);
-		//合计
-		List<TbCheck> listsum = checkMapper.selectByExample(example);
-		for (TbCheck t : listsum) {
-			Double account = t.getAccount();
-			Double incomeamount = t.getIncomeamount();
-			Double taxamount = t.getTaxamount();
-			Double payamount = t.getPayamount();
-			ba = ba.add(new BigDecimal(account));
-			bi = bi.add(new BigDecimal(incomeamount));
-			bt = bt.add(new BigDecimal(taxamount));
-			bp = bp.add(new BigDecimal(payamount));
-		}
-		List<Map<String,String>> sum = new ArrayList<>();
-		HashMap<String,String> map = new HashMap<String,String>();
-		map.put("account", ba.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
-		map.put("incomeamount", bi.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
-		map.put("taxamount", bt.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
-		map.put("payamount", bp.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
-		map.put("contractno", "合计");
-		sum.add(map);
-		
 		DataGridResultInfo result = new DataGridResultInfo();
-		result.setFooter(sum);
+		
+		//身份
+		Subject subject = SecurityUtils.getSubject();
+		TbUser activeUser = (TbUser) subject.getPrincipal();
+		if("admin".equalsIgnoreCase(activeUser.getPermission())){
+			//合计
+			List<TbCheck> listsum = checkMapper.selectByExample(example);
+			for (TbCheck t : listsum) {
+				Double account = t.getAccount();
+				Double incomeamount = t.getIncomeamount();
+				Double taxamount = t.getTaxamount();
+				Double payamount = t.getPayamount();
+				ba = ba.add(new BigDecimal(account));
+				bi = bi.add(new BigDecimal(incomeamount));
+				bt = bt.add(new BigDecimal(taxamount));
+				bp = bp.add(new BigDecimal(payamount));
+			}
+			List<Map<String,String>> sum = new ArrayList<>();
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("account", ba.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+			map.put("incomeamount", bi.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+			map.put("taxamount", bt.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+			map.put("payamount", bp.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
+			map.put("contractno", "合计");
+			sum.add(map);
+			result.setFooter(sum);
+		}
+		
 		result.setTotal(total);
 		result.setRows(list);
 		return result;
