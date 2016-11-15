@@ -102,7 +102,7 @@
 	//退出系统方法
 	function logout() {
 		_confirm('您确定要退出本系统吗?', null, function() {
-			location.href = '${baseurl}/logout.action';
+			location.href = '${baseurl}/logout';
 		})
 	}
 
@@ -122,10 +122,7 @@
 		style='background: url("../../../images/layout-browser-hd-bg.gif") repeat-x center 50% rgb(127, 153, 190); height: 30px; color: rgb(255, 255, 255); line-height: 20px; overflow: hidden; font-family: Verdana, 微软雅黑, 黑体;'
 		border="false" split="true" region="north">
 		<SPAN style="padding-right: 20px; float: right;" class="head">
-			欢迎当前用户：${activeUser.username}&nbsp;&nbsp; <A
-			href=javascript:showhelp()>使用帮助</A> &nbsp;&nbsp; <A title='修改密码'
-			ref='modifypwd' href="#" rel='${baseurl}/user/updatepwd.action'
-			icon='icon-null' id="modifypwd">修改密码</A> &nbsp;&nbsp; <A
+			欢迎当前用户：${activeUser.username}&nbsp;&nbsp;&nbsp; <A
 			id="loginOut" href=javascript:logout()>退出系统</A>
 
 		</SPAN> <SPAN style="padding-left: 10px; font-size: 16px;"><IMG

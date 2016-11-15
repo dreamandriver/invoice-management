@@ -5,14 +5,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.riverdream.pojo.TbUser;
 import cn.riverdream.utils.ResultInfo;
 import cn.riverdream.utils.ResultUtil;
 
@@ -23,6 +26,11 @@ public class BaseController {
 	public String toBasePage(Model model) {
 		model.addAttribute("version_number", "1.0");
 		model.addAttribute("version_date", "2016年11月14日");
+		Subject subject = SecurityUtils.getSubject();
+		//身份
+		TbUser activeUser = (TbUser) subject.getPrincipal();
+		model.addAttribute("activeUser", activeUser);
+
 		return "base/first";
 	}
 
@@ -59,8 +67,8 @@ public class BaseController {
 		return info;
 	}
 	
-	@RequestMapping("/logout")
-	public String toLogout(Model model) {
-		return "base/welcome";
-	}
+//	@RequestMapping("/logout")
+//	public String toLogout(Model model) {
+//		return "base/login";
+//	}
 }
