@@ -204,7 +204,7 @@ var columns = [ [{
 	title : '创建日期',
 	width : 120
 },{
-	field : 'commont',
+	field : 'comment',
 	title : '备注',
 	width : 180
 }
