@@ -39,23 +39,8 @@
 					"icon" : "icon-log",
 					"menuid" : "1_1",
 					"menuname" : "用戶管理",
-					"url" : "/yycg/sys/user/list.action"
-				}, {
-					"icon" : "icon-log",
-					"menuid" : "1_1",
-					"menuname" : "权限管理",
-					"url" : "/yycg/sys/permission/list.action"
-				}, {
-					"icon" : "icon-log",
-					"menuid" : "1_1",
-					"menuname" : "角色管理",
-					"url" : "/yycg/sys/role/list.action"
-				}, {
-					"icon" : "icon-log",
-					"menuid" : "1_1",
-					"menuname" : "流程定义",
-					"url" : "/yycg/sys/flow/processdeflist.action"
-				} ]
+					"url" : "/sys/user"
+				}]
 			}, {
 				"icon" : "icon-sys",
 				"menuid" : "1",
@@ -81,19 +66,8 @@
 					"menuid" : "1_1",
 					"menuname" : "支票管理",
 					"url" : "/management/check"
-				} ]
-			}, {
-				"icon" : "icon-sys",
-				"menuid" : "1",
-				"menuname" : "统计分析",
-				"url" : "",
-				"menus" : [ {
-					"icon" : "icon-log",
-					"menuid" : "1_1",
-					"menuname" : "综合查询",
-					"url" : "/analyze/index"
 				}]
-			} ]
+			}]
 		};
 		_menus = data;
 		initMenu(_menus);

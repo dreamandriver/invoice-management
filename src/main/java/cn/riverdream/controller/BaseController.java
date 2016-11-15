@@ -1,5 +1,8 @@
 package cn.riverdream.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -37,21 +40,27 @@ public class BaseController {
 	@ResponseBody
 	public ResultInfo login(Model model, String usercode, String pwd, String validateCode, HttpServletRequest request) {
 		String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");
+		ResultInfo info =null;
 		if (exceptionClassName != null) {
 			if (UnknownAccountException.class.getName().equals(exceptionClassName)) {
 				// 账号不存在
-				return ResultUtil.createFail("账号不存在", ResultInfo.TYPE_RESULT_FAIL);
+				info = ResultUtil.createFail("账号不存在", ResultInfo.TYPE_RESULT_FAIL);
 			} else if (IncorrectCredentialsException.class.getName().equals(exceptionClassName)) {
 				// 用户名或密码 错误
-				return ResultUtil.createFail("用户名或密码错误", ResultInfo.TYPE_RESULT_FAIL);
+				info =  ResultUtil.createFail("用户名或密码错误", ResultInfo.TYPE_RESULT_FAIL);
 			} else if ("randomCodeError".equals(exceptionClassName)) {
 				// 验证码错误
-				return ResultUtil.createFail("验证码错误", ResultInfo.TYPE_RESULT_FAIL);
+				info =  ResultUtil.createFail("验证码错误", ResultInfo.TYPE_RESULT_FAIL);
 			} else {
 				// 最终在异常处理器生成未知错误
-				return ResultUtil.createFail("未知错误", ResultInfo.TYPE_RESULT_FAIL);
+				info =  ResultUtil.createFail("未知错误", ResultInfo.TYPE_RESULT_FAIL);
 			}
 		}
-		return ResultUtil.createSuccess("登陆成功", ResultInfo.TYPE_RESULT_SUCCESS);
+		return info;
+	}
+	
+	@RequestMapping("/logout")
+	public String toLogout(Model model) {
+		return "base/welcome";
 	}
 }

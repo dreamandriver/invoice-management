@@ -101,7 +101,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/json;charset=utf-8");// 指定输出的格式为json
 			response.getWriter()
-					.write("{\"resultInfo\":{\"type\":\"1\",\"messageCode\":\"906\",\"message\":\"登陆成功\"}}");
+					.write("{\"type\":\"1\",\"messageCode\":\"906\",\"message\":\"登陆成功\"}");
 
 			return false;
 		} else {

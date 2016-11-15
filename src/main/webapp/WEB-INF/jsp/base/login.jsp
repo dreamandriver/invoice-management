@@ -82,15 +82,15 @@ $(document).ready(function(){
 	}
 	function login_commit_callback(data) {
 		//var result = getCallbackData(data);
-		data = getCallbackData(data);
+		//data = getCallbackData(data);
 		var type = data.type;
-		alert( "type=" + type +";  flag = " + TYPE_RESULT_SUCCESS);
-		if (TYPE_RESULT_SUCCESS == type) {
-			setTimeout("tofirst()", 1000); 
-		} else {
-			_alert(data);
-			randomcode_refresh();
-		}
+		//alert( "type=" + type +";  flag = " + TYPE_RESULT_SUCCESS);
+			if (TYPE_RESULT_SUCCESS == type) {
+				setTimeout("tofirst()", 1000); 
+			} else {
+				_alert(data);
+				randomcode_refresh();
+			}
 
 	}
 	function randomcode_refresh() {

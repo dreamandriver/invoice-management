@@ -14,7 +14,7 @@ public interface UserService {
 	
 	public void update(UserVo vo);
 	
-	public TbContract findBySerialNo(int serialNo);
+	public TbUser findBySerialNo(int serialNo);
 	
 	public TbUser findByUserId(String userId);
 }
