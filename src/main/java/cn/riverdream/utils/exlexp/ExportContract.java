@@ -1,5 +1,6 @@
 package cn.riverdream.utils.exlexp;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
  
 import javax.servlet.ServletOutputStream;
@@ -10,11 +11,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import cn.riverdream.pojo.TbContract;
 import cn.riverdream.utils.ExportInternalUtil;
  
 public class ExportContract {
  
-    public static void ExportExcel(String[] titles, ArrayList<User> list, ServletOutputStream outputStream) {
+    public static void ExportExcel(String[] titles, ArrayList<TbContract> list, ServletOutputStream outputStream) {
         // 创建一个workbook 对应一个excel应用文件
         XSSFWorkbook workBook = new XSSFWorkbook();
         // 在workbook中添加一个sheet,对应Excel文件中的sheet
@@ -36,27 +38,37 @@ public class ExportContract {
         // 构建表体数据
         for (int j = 0; j < list.size(); j++) {
             XSSFRow bodyRow = sheet.createRow(j + 1);
-            User user = list.get(j);
+            TbContract contract = list.get(j);
  
             cell = bodyRow.createCell(0);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getLastIp());
+            cell.setCellValue(contract.getContractno());
  
             cell = bodyRow.createCell(1);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getLastVisit());
+            cell.setCellValue(contract.getConsumer());
  
             cell = bodyRow.createCell(2);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getPassword());
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String date = df.format(contract.getCreatedate());
+            cell.setCellValue(date);
              
             cell = bodyRow.createCell(3);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getUserName());
+            cell.setCellValue(contract.getAmount());
              
             cell = bodyRow.createCell(4);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getUserId());
+            cell.setCellValue(contract.getCompany());
+            
+            cell = bodyRow.createCell(5);
+            cell.setCellStyle(bodyStyle);
+            cell.setCellValue(contract.getIfformal()==1?"是":"否");
+            
+            cell = bodyRow.createCell(6);
+            cell.setCellStyle(bodyStyle);
+            cell.setCellValue(contract.getComment());
         }
  
         try {

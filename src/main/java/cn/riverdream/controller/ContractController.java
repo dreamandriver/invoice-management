@@ -1,5 +1,12 @@
 package cn.riverdream.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +19,7 @@ import cn.riverdream.service.ContractService;
 import cn.riverdream.utils.DataGridResultInfo;
 import cn.riverdream.utils.ResultInfo;
 import cn.riverdream.utils.ResultUtil;
+import cn.riverdream.utils.exlexp.ExportContract;
 
 @Controller
 @RequestMapping("/management/contract")
@@ -68,4 +76,36 @@ public class ContractController {
 		}
 		return ResultUtil.createSuccess("更新成功", ResultInfo.TYPE_RESULT_SUCCESS);
 	}
+	
+	@RequestMapping(value = "/excelDownload")
+    public String exportExcel(HttpServletResponse response, ContractVo contractvo) {
+        try {
+            //String fileName = new String(("导出excel标题").getBytes(), "UTF-8") + ".xlsx";
+            String fileName=new String(("合同").getBytes("gb2312"), "iso8859-1")+ ".xlsx";
+            response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+            response.setCharacterEncoding("utf-8");
+ 
+            // response.setHeader("Content-disposition", "attachment; filename="
+            // + "exdddcel" + ".xlsx");// 组装附件名称和格式
+ 
+            String[] titles = { "合同号", "客户姓名", "创建日期", "金额", "单位名称", "是否正式合同", "备注" };
+ 
+            /*SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date = df.format(new Date());
+            Date dateNow = null;
+            try {
+                dateNow = df.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }*/
+            List<TbContract> list = contractService.findAll(contractvo);
+            ServletOutputStream outputStream = response.getOutputStream();
+            
+            ExportContract.ExportExcel(titles, (ArrayList<TbContract>) list, outputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -179,4 +179,30 @@ public class ContractServiceImpl implements ContractService {
 		return contract;
 	}
 
+	@Override
+	public List<TbContract> findAll(ContractVo vo) {
+		String consumer = vo.getConsumer();
+		String contractno = vo.getContractno();
+		Date start = vo.getStart();
+		Date end = vo.getEnd();
+
+		TbContractExample example = new TbContractExample();
+		cn.riverdream.pojo.TbContractExample.Criteria criteria = example.createCriteria();
+		if (StringUtils.isNoneBlank(consumer)) {
+			criteria.andConsumerLike("%" + consumer + "%");
+		}
+		if (StringUtils.isNotBlank(contractno)) {
+			criteria.andContractnoEqualTo(contractno);
+		}
+		if (start != null) {
+			criteria.andCreatedateGreaterThanOrEqualTo(start);
+		}
+		if (end != null) {
+			criteria.andCreatedateLessThanOrEqualTo(end);
+		}
+		criteria.andFlagEqualTo(1);
+		List<TbContract> list = contractMapper.selectByExample(example);
+		return list; 
+	}
+
 }

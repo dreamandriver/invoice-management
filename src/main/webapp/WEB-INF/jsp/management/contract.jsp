@@ -69,7 +69,8 @@ var addcheck = function (serialno){
 
 
 var contractexport = function(){
-	jquerySubByFId('contractQueryForm', contractexport_callback, null, "json");
+	//jquerySubByFId('contractQueryForm', contractexport_callback, null, "json");
+	$("#contractQueryForm").submit();
 };
 
 var contractdelList = function(){
@@ -293,7 +294,7 @@ function initGrid(){
 </HEAD>
 <BODY>
 <div id="contractQuery_div">
-    <form id="contractQueryForm" name="contractQueryForm" action="${baseurl}/management/contract/search" method="post">
+    <form id="contractQueryForm" name="contractQueryForm" action="${baseurl}/management/contract/excelDownload" method="post">
 			<TABLE  class="table_search">
 				<TBODY>
 					<TR>
