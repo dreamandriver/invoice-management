@@ -135,8 +135,20 @@ var columns = [ [{
 	title : '用户姓名',
 	width : 80
 },{
-	field : 'permission',
-	title : '权限',
+	field : 'permission1',
+	title : '操作发票',
+	width : 80,
+	formatter:function(value, row, index){
+		if(value == "admin"){
+			return "有";
+		}else{
+			return "无";
+		}
+		
+	}
+},{
+	field : 'permission2',
+	title : '操作支票',
 	width : 80,
 	formatter:function(value, row, index){
 		if(value == "admin"){

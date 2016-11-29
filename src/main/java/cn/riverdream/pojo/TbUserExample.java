@@ -374,73 +374,143 @@ public class TbUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andPermissionIsNull() {
-            addCriterion("permission is null");
+        public Criteria andPermission1IsNull() {
+            addCriterion("permission1 is null");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionIsNotNull() {
-            addCriterion("permission is not null");
+        public Criteria andPermission1IsNotNull() {
+            addCriterion("permission1 is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionEqualTo(String value) {
-            addCriterion("permission =", value, "permission");
+        public Criteria andPermission1EqualTo(String value) {
+            addCriterion("permission1 =", value, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionNotEqualTo(String value) {
-            addCriterion("permission <>", value, "permission");
+        public Criteria andPermission1NotEqualTo(String value) {
+            addCriterion("permission1 <>", value, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionGreaterThan(String value) {
-            addCriterion("permission >", value, "permission");
+        public Criteria andPermission1GreaterThan(String value) {
+            addCriterion("permission1 >", value, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionGreaterThanOrEqualTo(String value) {
-            addCriterion("permission >=", value, "permission");
+        public Criteria andPermission1GreaterThanOrEqualTo(String value) {
+            addCriterion("permission1 >=", value, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionLessThan(String value) {
-            addCriterion("permission <", value, "permission");
+        public Criteria andPermission1LessThan(String value) {
+            addCriterion("permission1 <", value, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionLessThanOrEqualTo(String value) {
-            addCriterion("permission <=", value, "permission");
+        public Criteria andPermission1LessThanOrEqualTo(String value) {
+            addCriterion("permission1 <=", value, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionLike(String value) {
-            addCriterion("permission like", value, "permission");
+        public Criteria andPermission1Like(String value) {
+            addCriterion("permission1 like", value, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionNotLike(String value) {
-            addCriterion("permission not like", value, "permission");
+        public Criteria andPermission1NotLike(String value) {
+            addCriterion("permission1 not like", value, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionIn(List<String> values) {
-            addCriterion("permission in", values, "permission");
+        public Criteria andPermission1In(List<String> values) {
+            addCriterion("permission1 in", values, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionNotIn(List<String> values) {
-            addCriterion("permission not in", values, "permission");
+        public Criteria andPermission1NotIn(List<String> values) {
+            addCriterion("permission1 not in", values, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionBetween(String value1, String value2) {
-            addCriterion("permission between", value1, value2, "permission");
+        public Criteria andPermission1Between(String value1, String value2) {
+            addCriterion("permission1 between", value1, value2, "permission1");
             return (Criteria) this;
         }
 
-        public Criteria andPermissionNotBetween(String value1, String value2) {
-            addCriterion("permission not between", value1, value2, "permission");
+        public Criteria andPermission1NotBetween(String value1, String value2) {
+            addCriterion("permission1 not between", value1, value2, "permission1");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2IsNull() {
+            addCriterion("permission2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2IsNotNull() {
+            addCriterion("permission2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2EqualTo(String value) {
+            addCriterion("permission2 =", value, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2NotEqualTo(String value) {
+            addCriterion("permission2 <>", value, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2GreaterThan(String value) {
+            addCriterion("permission2 >", value, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2GreaterThanOrEqualTo(String value) {
+            addCriterion("permission2 >=", value, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2LessThan(String value) {
+            addCriterion("permission2 <", value, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2LessThanOrEqualTo(String value) {
+            addCriterion("permission2 <=", value, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2Like(String value) {
+            addCriterion("permission2 like", value, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2NotLike(String value) {
+            addCriterion("permission2 not like", value, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2In(List<String> values) {
+            addCriterion("permission2 in", values, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2NotIn(List<String> values) {
+            addCriterion("permission2 not in", values, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2Between(String value1, String value2) {
+            addCriterion("permission2 between", value1, value2, "permission2");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermission2NotBetween(String value1, String value2) {
+            addCriterion("permission2 not between", value1, value2, "permission2");
             return (Criteria) this;
         }
     }

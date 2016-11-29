@@ -77,6 +77,11 @@
 			onCorrect:"&nbsp;"
 		}).regexValidator({regExp:"num",dataType:"enum",onError:"金额式不正确"});
 		
+		$("#check_other").formValidator({
+			onShow : "",
+			onCorrect:"&nbsp;"
+		}).regexValidator({regExp:"num",dataType:"enum",onError:"金额式不正确"});
+		
 		$("#check_taxpoint").formValidator({
 			onShow : "",
 			onCorrect:"&nbsp;"
@@ -214,6 +219,15 @@
 								</div>
 								
 								<div id="check_paydatestrTip"></div>
+								</TD>
+							</TR>
+							<TR >
+							    <TD height=30 width="15%" align=right >其他费用：</TD>
+								<TD class=category width="75%" colspan="3" >
+								<div>
+								<input type="text" id="check_other" name="check.other" value="${check.other}" style=" width: 640px;"/>
+								</div>
+								<div id="check_otherTip"></div>
 								</TD>
 							</TR>
 							<TR >

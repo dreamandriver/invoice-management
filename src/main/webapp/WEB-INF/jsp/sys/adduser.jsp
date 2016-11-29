@@ -133,8 +133,8 @@
 								<TD height=30 width="15%" align=right >是否有权限：</TD>
 								<TD class=category width="35%">
 								<div>
-									<input type="radio" name = "user.permission" value ="admin"> 有 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" name = "user.permission" value ="" checked="checked"> 无
+									<input type="checkbox" name = "user.permission1" value ="admin"> 发票 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type=""checkbox" name = "user.permission2" value ="admin"> 支票
 								</div>
 								</TD>
 							</TR>

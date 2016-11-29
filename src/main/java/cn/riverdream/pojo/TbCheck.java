@@ -2,8 +2,6 @@ package cn.riverdream.pojo;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class TbCheck {
     private Integer serialno;
 
@@ -13,7 +11,6 @@ public class TbCheck {
 
     private String contractno;
 
-    //@DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date incomedate;
 
     private Double incomeamount;
@@ -24,8 +21,9 @@ public class TbCheck {
 
     private Double payamount;
 
-   // @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date paydate;
+
+    private Double other;
 
     private Double account;
 
@@ -119,6 +117,14 @@ public class TbCheck {
 
     public void setPaydate(Date paydate) {
         this.paydate = paydate;
+    }
+
+    public Double getOther() {
+        return other;
+    }
+
+    public void setOther(Double other) {
+        this.other = other;
     }
 
     public Double getAccount() {

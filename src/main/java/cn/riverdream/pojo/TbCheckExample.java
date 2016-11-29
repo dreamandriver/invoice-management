@@ -725,6 +725,66 @@ public class TbCheckExample {
             return (Criteria) this;
         }
 
+        public Criteria andOtherIsNull() {
+            addCriterion("OTHER is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherIsNotNull() {
+            addCriterion("OTHER is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherEqualTo(Double value) {
+            addCriterion("OTHER =", value, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherNotEqualTo(Double value) {
+            addCriterion("OTHER <>", value, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherGreaterThan(Double value) {
+            addCriterion("OTHER >", value, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherGreaterThanOrEqualTo(Double value) {
+            addCriterion("OTHER >=", value, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherLessThan(Double value) {
+            addCriterion("OTHER <", value, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherLessThanOrEqualTo(Double value) {
+            addCriterion("OTHER <=", value, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherIn(List<Double> values) {
+            addCriterion("OTHER in", values, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherNotIn(List<Double> values) {
+            addCriterion("OTHER not in", values, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherBetween(Double value1, Double value2) {
+            addCriterion("OTHER between", value1, value2, "other");
+            return (Criteria) this;
+        }
+
+        public Criteria andOtherNotBetween(Double value1, Double value2) {
+            addCriterion("OTHER not between", value1, value2, "other");
+            return (Criteria) this;
+        }
+
         public Criteria andAccountIsNull() {
             addCriterion("ACCOUNT is null");
             return (Criteria) this;

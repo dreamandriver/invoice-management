@@ -12,6 +12,7 @@
     <result column="TAXAMOUNT" property="taxamount" jdbcType="DOUBLE" />
     <result column="PAYAMOUNT" property="payamount" jdbcType="DOUBLE" />
     <result column="PAYDATE" property="paydate" jdbcType="TIMESTAMP" />
+    <result column="OTHER" property="other" jdbcType="DOUBLE" />
     <result column="ACCOUNT" property="account" jdbcType="DOUBLE" />
     <result column="COMPANY" property="company" jdbcType="VARCHAR" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
@@ -80,8 +81,8 @@
   </sql>
   <sql id="Base_Column_List" >
     SERIALNO, CHECKNO, CONTRACTSERIALNO, CONTRACTNO, INCOMEDATE, INCOMEAMOUNT, TAXPOINT, 
-    TAXAMOUNT, PAYAMOUNT, PAYDATE, ACCOUNT, COMPANY, STATUS, CONSUMER, COMMENT, CREATEDATE, 
-    CREATEUSER
+    TAXAMOUNT, PAYAMOUNT, PAYDATE, OTHER, ACCOUNT, COMPANY, STATUS, CONSUMER, COMMENT, 
+    CREATEDATE, CREATEUSER
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbCheckExample" >
     select
@@ -117,15 +118,17 @@
     insert into tb_check (SERIALNO, CHECKNO, CONTRACTSERIALNO, 
       CONTRACTNO, INCOMEDATE, INCOMEAMOUNT, 
       TAXPOINT, TAXAMOUNT, PAYAMOUNT, 
-      PAYDATE, ACCOUNT, COMPANY, 
-      STATUS, CONSUMER, COMMENT, 
-      CREATEDATE, CREATEUSER)
+      PAYDATE, OTHER, ACCOUNT, 
+      COMPANY, STATUS, CONSUMER, 
+      COMMENT, CREATEDATE, CREATEUSER
+      )
     values (#{serialno,jdbcType=INTEGER}, #{checkno,jdbcType=VARCHAR}, #{contractserialno,jdbcType=INTEGER}, 
       #{contractno,jdbcType=VARCHAR}, #{incomedate,jdbcType=TIMESTAMP}, #{incomeamount,jdbcType=DOUBLE}, 
       #{taxpoint,jdbcType=INTEGER}, #{taxamount,jdbcType=DOUBLE}, #{payamount,jdbcType=DOUBLE}, 
-      #{paydate,jdbcType=TIMESTAMP}, #{account,jdbcType=DOUBLE}, #{company,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{consumer,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
-      #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER})
+      #{paydate,jdbcType=TIMESTAMP}, #{other,jdbcType=DOUBLE}, #{account,jdbcType=DOUBLE}, 
+      #{company,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{consumer,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.riverdream.pojo.TbCheck" >
     insert into tb_check
@@ -159,6 +162,9 @@
       </if>
       <if test="paydate != null" >
         PAYDATE,
+      </if>
+      <if test="other != null" >
+        OTHER,
       </if>
       <if test="account != null" >
         ACCOUNT,
@@ -212,6 +218,9 @@
       </if>
       <if test="paydate != null" >
         #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=DOUBLE},
       </if>
       <if test="account != null" >
         #{account,jdbcType=DOUBLE},
@@ -275,6 +284,9 @@
       <if test="record.paydate != null" >
         PAYDATE = #{record.paydate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.other != null" >
+        OTHER = #{record.other,jdbcType=DOUBLE},
+      </if>
       <if test="record.account != null" >
         ACCOUNT = #{record.account,jdbcType=DOUBLE},
       </if>
@@ -313,6 +325,7 @@
       TAXAMOUNT = #{record.taxamount,jdbcType=DOUBLE},
       PAYAMOUNT = #{record.payamount,jdbcType=DOUBLE},
       PAYDATE = #{record.paydate,jdbcType=TIMESTAMP},
+      OTHER = #{record.other,jdbcType=DOUBLE},
       ACCOUNT = #{record.account,jdbcType=DOUBLE},
       COMPANY = #{record.company,jdbcType=VARCHAR},
       STATUS = #{record.status,jdbcType=INTEGER},
@@ -354,6 +367,9 @@
       <if test="paydate != null" >
         PAYDATE = #{paydate,jdbcType=TIMESTAMP},
       </if>
+      <if test="other != null" >
+        OTHER = #{other,jdbcType=DOUBLE},
+      </if>
       <if test="account != null" >
         ACCOUNT = #{account,jdbcType=DOUBLE},
       </if>
@@ -389,6 +405,7 @@
       TAXAMOUNT = #{taxamount,jdbcType=DOUBLE},
       PAYAMOUNT = #{payamount,jdbcType=DOUBLE},
       PAYDATE = #{paydate,jdbcType=TIMESTAMP},
+      OTHER = #{other,jdbcType=DOUBLE},
       ACCOUNT = #{account,jdbcType=DOUBLE},
       COMPANY = #{company,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=INTEGER},

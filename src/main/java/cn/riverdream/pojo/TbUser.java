@@ -9,7 +9,9 @@ public class TbUser {
 
     private String password;
 
-    private String permission;
+    private String permission1;
+
+    private String permission2;
 
     public Integer getSerialno() {
         return serialno;
@@ -43,11 +45,19 @@ public class TbUser {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getPermission() {
-        return permission;
+    public String getPermission1() {
+        return permission1;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission == null ? null : permission.trim();
+    public void setPermission1(String permission1) {
+        this.permission1 = permission1 == null ? null : permission1.trim();
+    }
+
+    public String getPermission2() {
+        return permission2;
+    }
+
+    public void setPermission2(String permission2) {
+        this.permission2 = permission2 == null ? null : permission2.trim();
     }
 }

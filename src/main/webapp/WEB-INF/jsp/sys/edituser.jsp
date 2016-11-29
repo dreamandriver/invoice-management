@@ -134,16 +134,16 @@
 								<TD height=30 width="15%" align=right >是否有权限：</TD>
 								<TD class=category width="35%">
 								<div>
-									<input type="radio" name = "user.permission" value ="admin"
-									<c:if test="${user.permission == 'admin'}">
+									<input type="checkbox" name = "user.permission1" value ="admin"
+									<c:if test="${user.permission1 == 'admin'}">
 										checked="checked"
 									</c:if>
-									> 有 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" name = "user.permission" value ="" 
-									<c:if test="${user.permission == ''}">
+									> 发票 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="checkbox" name = "user.permission2" value ="admin" 
+									<c:if test="${user.permission2 == 'admin'}">
 										checked="checked"
 									</c:if>
-									> 无
+									> 支票
 								</div>
 								</TD>
 							</TR>

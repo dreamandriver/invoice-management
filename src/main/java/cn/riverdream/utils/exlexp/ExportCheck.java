@@ -1,5 +1,6 @@
 package cn.riverdream.utils.exlexp;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
  
 import javax.servlet.ServletOutputStream;
@@ -10,11 +11,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import cn.riverdream.pojo.TbCheck;
 import cn.riverdream.utils.ExportInternalUtil;
  
 public class ExportCheck {
  
-    public static void ExportExcel(String[] titles, ArrayList<User> list, ServletOutputStream outputStream) {
+    public static void ExportExcel(String[] titles, ArrayList<TbCheck> list, ServletOutputStream outputStream) {
         // 创建一个workbook 对应一个excel应用文件
         XSSFWorkbook workBook = new XSSFWorkbook();
         // 在workbook中添加一个sheet,对应Excel文件中的sheet
@@ -36,27 +38,59 @@ public class ExportCheck {
         // 构建表体数据
         for (int j = 0; j < list.size(); j++) {
             XSSFRow bodyRow = sheet.createRow(j + 1);
-            User user = list.get(j);
+            TbCheck check = list.get(j);
  
             cell = bodyRow.createCell(0);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getLastIp());
+            cell.setCellValue(check.getContractno());
  
             cell = bodyRow.createCell(1);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getLastVisit());
+            cell.setCellValue(check.getConsumer());
  
             cell = bodyRow.createCell(2);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getPassword());
+            cell.setCellValue(check.getCheckno());
              
             cell = bodyRow.createCell(3);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getUserName());
+            cell.setCellValue(check.getIncomeamount());
              
             cell = bodyRow.createCell(4);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(user.getUserId());
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String date = df.format(check.getIncomedate());
+            cell.setCellValue(date);
+            
+            cell = bodyRow.createCell(5);
+            cell.setCellStyle(bodyStyle);
+            cell.setCellValue(check.getTaxamount());
+            
+            cell = bodyRow.createCell(6);
+            cell.setCellStyle(bodyStyle);
+            cell.setCellValue(check.getTaxpoint());
+            
+            cell = bodyRow.createCell(7);
+            cell.setCellStyle(bodyStyle);
+            cell.setCellValue(check.getPayamount());
+            
+            cell = bodyRow.createCell(8);
+            cell.setCellStyle(bodyStyle);
+            SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+            String date1 = df.format(check.getPaydate());
+            cell.setCellValue(date1);
+            
+            cell = bodyRow.createCell(9);
+            cell.setCellStyle(bodyStyle);
+            cell.setCellValue(check.getAccount());
+            
+            cell = bodyRow.createCell(10);
+            cell.setCellStyle(bodyStyle);
+            cell.setCellValue(check.getCompany());
+            
+            cell = bodyRow.createCell(11);
+            cell.setCellStyle(bodyStyle);
+            cell.setCellValue(check.getComment());
         }
  
         try {

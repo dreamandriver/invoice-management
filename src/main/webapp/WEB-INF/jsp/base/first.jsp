@@ -31,7 +31,7 @@
 
 		data = {
 			"menus" : [ 
-			<c:if test="${activeUser.permission == 'admin'}">      
+			<c:if test="${activeUser.userid == 'admin'}">      
 			            {
 				"icon" : "icon-sys",
 				"menuid" : "1",

@@ -77,7 +77,8 @@ var addCheck = function (){
 
 
 var ypxxexport = function(){
-	jquerySubByFId('checkqueryForm', ypxxexport_callback, null, "json");
+	//jquerySubByFId('checkqueryForm', ypxxexport_callback, null, "json");
+	$("#checkqueryForm").submit();
 };
 
 function ypxxexport_callback(data) {
@@ -227,6 +228,17 @@ var columns = [ [{
 	}
 	
 },{
+	field : 'other',
+	title : '其他',
+	width : 100,
+	formatter:function(value, row, index){
+		if(value){
+			return value;
+		}else if(row.serialno){
+			return "0";
+		}
+	}
+},{
 	field : 'account',
 	title : '结算',
 	width : 100
@@ -302,7 +314,7 @@ function initGrid(){
 </HEAD>
 <BODY>
 <div id="checkquery_div">
-    <form id="checkqueryForm" name="checkqueryForm" action="${baseurl}/management/check/search" method="post">
+    <form id="checkqueryForm" name="checkqueryForm" action="${baseurl}/management/check/excelDownload" method="post">
 			<TABLE  class="table_search">
 				<TBODY>
 					<TR>

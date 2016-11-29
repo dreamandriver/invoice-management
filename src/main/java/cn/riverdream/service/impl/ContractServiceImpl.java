@@ -65,11 +65,11 @@ public class ContractServiceImpl implements ContractService {
 				contractNo = year + month + "001";
 			} else {
 				Integer num = Integer.parseInt(dict.getValue().substring(4)) + 1;
-				if(num<10){
+				if (num < 10) {
 					contractNo = year + month + "00" + num;
-				}else if(num<100){
+				} else if (num < 100) {
 					contractNo = year + month + "0" + num;
-				}else{
+				} else {
 					contractNo = year + month + num;
 				}
 			}
@@ -119,26 +119,26 @@ public class ContractServiceImpl implements ContractService {
 		PageInfo<TbContract> pageInfo = new PageInfo<>(list);
 		long total = pageInfo.getTotal();
 		DataGridResultInfo result = new DataGridResultInfo();
-		
-		//身份
+
+		// 身份
 		Subject subject = SecurityUtils.getSubject();
 		TbUser activeUser = (TbUser) subject.getPrincipal();
-		if ("admin".equalsIgnoreCase(activeUser.getPermission())) {
-			//合计
-			List<TbContract> listsum = contractMapper.selectByExample(example);
-			BigDecimal totalAmount = new BigDecimal(0);
-			for (TbContract t : listsum) {
-				Double amount = t.getAmount();
-				totalAmount = totalAmount.add(new BigDecimal(amount));
-			}
-			List<Map<String,String>> sum = new ArrayList<>();
-			HashMap<String,String> map = new HashMap<String,String>();
-			map.put("amount", totalAmount.setScale(2,BigDecimal.ROUND_HALF_UP).toString());
-			map.put("contractno", "合计");
-			sum.add(map);
-			
-			result.setFooter(sum);
+		// if ("admin".equalsIgnoreCase(activeUser.getPermission1())) {
+		// 合计
+		List<TbContract> listsum = contractMapper.selectByExample(example);
+		BigDecimal totalAmount = new BigDecimal(0);
+		for (TbContract t : listsum) {
+			Double amount = t.getAmount();
+			totalAmount = totalAmount.add(new BigDecimal(amount));
 		}
+		List<Map<String, String>> sum = new ArrayList<>();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("amount", totalAmount.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+		map.put("contractno", "合计");
+		sum.add(map);
+
+		result.setFooter(sum);
+		// }
 		result.setTotal(total);
 		result.setRows(list);
 		return result;
@@ -173,7 +173,7 @@ public class ContractServiceImpl implements ContractService {
 		criteria.andSerialnoEqualTo(serialNo);
 		List<TbContract> list = contractMapper.selectByExample(example);
 		TbContract contract = new TbContract();
-		if(list!= null && list.size()>0){
+		if (list != null && list.size() > 0) {
 			contract = list.get(0);
 		}
 		return contract;
@@ -202,7 +202,7 @@ public class ContractServiceImpl implements ContractService {
 		}
 		criteria.andFlagEqualTo(1);
 		List<TbContract> list = contractMapper.selectByExample(example);
-		return list; 
+		return list;
 	}
 
 }

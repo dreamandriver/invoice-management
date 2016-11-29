@@ -6,7 +6,8 @@
     <result column="USERID" property="userid" jdbcType="VARCHAR" />
     <result column="USERNAME" property="username" jdbcType="VARCHAR" />
     <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
-    <result column="permission" property="permission" jdbcType="VARCHAR" />
+    <result column="permission1" property="permission1" jdbcType="VARCHAR" />
+    <result column="permission2" property="permission2" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SERIALNO, USERID, USERNAME, PASSWORD, permission
+    SERIALNO, USERID, USERNAME, PASSWORD, permission1, permission2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbUserExample" >
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="cn.riverdream.pojo.TbUser" >
     insert into tb_user (SERIALNO, USERID, USERNAME, 
-      PASSWORD, permission)
+      PASSWORD, permission1, permission2
+      )
     values (#{serialno,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR})
+      #{password,jdbcType=VARCHAR}, #{permission1,jdbcType=VARCHAR}, #{permission2,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.riverdream.pojo.TbUser" >
     insert into tb_user
@@ -120,8 +123,11 @@
       <if test="password != null" >
         PASSWORD,
       </if>
-      <if test="permission != null" >
-        permission,
+      <if test="permission1 != null" >
+        permission1,
+      </if>
+      <if test="permission2 != null" >
+        permission2,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -137,8 +143,11 @@
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="permission != null" >
-        #{permission,jdbcType=VARCHAR},
+      <if test="permission1 != null" >
+        #{permission1,jdbcType=VARCHAR},
+      </if>
+      <if test="permission2 != null" >
+        #{permission2,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -163,8 +172,11 @@
       <if test="record.password != null" >
         PASSWORD = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.permission != null" >
-        permission = #{record.permission,jdbcType=VARCHAR},
+      <if test="record.permission1 != null" >
+        permission1 = #{record.permission1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permission2 != null" >
+        permission2 = #{record.permission2,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -177,7 +189,8 @@
       USERID = #{record.userid,jdbcType=VARCHAR},
       USERNAME = #{record.username,jdbcType=VARCHAR},
       PASSWORD = #{record.password,jdbcType=VARCHAR},
-      permission = #{record.permission,jdbcType=VARCHAR}
+      permission1 = #{record.permission1,jdbcType=VARCHAR},
+      permission2 = #{record.permission2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -194,8 +207,11 @@
       <if test="password != null" >
         PASSWORD = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="permission != null" >
-        permission = #{permission,jdbcType=VARCHAR},
+      <if test="permission1 != null" >
+        permission1 = #{permission1,jdbcType=VARCHAR},
+      </if>
+      <if test="permission2 != null" >
+        permission2 = #{permission2,jdbcType=VARCHAR},
       </if>
     </set>
     where SERIALNO = #{serialno,jdbcType=INTEGER}
@@ -205,7 +221,8 @@
     set USERID = #{userid,jdbcType=VARCHAR},
       USERNAME = #{username,jdbcType=VARCHAR},
       PASSWORD = #{password,jdbcType=VARCHAR},
-      permission = #{permission,jdbcType=VARCHAR}
+      permission1 = #{permission1,jdbcType=VARCHAR},
+      permission2 = #{permission2,jdbcType=VARCHAR}
     where SERIALNO = #{serialno,jdbcType=INTEGER}
   </update>
 </mapper>

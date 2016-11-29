@@ -230,7 +230,9 @@ var columns = [ [{
 				return "--";
 			}
 	}
-},{
+}
+<c:if test="${activeUser.permission1 == 'admin'}">   
+,{
 	field : 'opt3',
 	title : '添加发票',
 	width : 60,
@@ -241,7 +243,10 @@ var columns = [ [{
 				return "--";
 			}
 	}
-},{
+}
+</c:if>
+<c:if test="${activeUser.permission2 == 'admin'}">   
+,{
 	field : 'opt4',
 	title : '添加支票',
 	width : 60,
@@ -253,6 +258,7 @@ var columns = [ [{
 			}
 	}
 }
+</c:if>
 ]];
 
 function initGrid(){

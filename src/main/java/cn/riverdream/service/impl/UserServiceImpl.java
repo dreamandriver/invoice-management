@@ -71,8 +71,11 @@ public class UserServiceImpl implements UserService {
 		String password = user.getPassword();
 		String pwd = m.getMD5ofStr(password);
 		user.setPassword(pwd);
-		if(StringUtils.isBlank(user.getPermission())){
-			user.setPermission("");
+		if(StringUtils.isBlank(user.getPermission1())){
+			user.setPermission1("");
+		}
+		if(StringUtils.isBlank(user.getPermission2())){
+			user.setPermission2("");
 		}
 		userMapper.updateByPrimaryKey(user);
 		
