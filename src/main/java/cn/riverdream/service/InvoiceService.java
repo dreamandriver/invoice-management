@@ -1,5 +1,7 @@
 package cn.riverdream.service;
 
+import java.util.List;
+
 import cn.riverdream.model.InvoiceVo;
 import cn.riverdream.pojo.TbInvoice;
 import cn.riverdream.utils.DataGridResultInfo;
@@ -15,5 +17,7 @@ public interface InvoiceService {
 	TbInvoice findBySerialNo(Integer serialNo);
 
 	void update(InvoiceVo invoicevo);
+
+	List<TbInvoice> findAll(Integer type, InvoiceVo invoicekvo);
 
 }

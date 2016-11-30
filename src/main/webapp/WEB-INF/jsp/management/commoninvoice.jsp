@@ -51,11 +51,12 @@ var addInvoice = function (){
 };
 
 
-var ypxxexport = function(){
-	jquerySubByFId('commoninvoicequeryForm', ypxxexport_callback, null, "json");
+var commoninvoiceexport = function(){
+	//jquerySubByFId('commoninvoicequeryForm', commoninvoiceexport_callback, null, "json");
+	$("#commoninvoicequeryForm").submit();
 };
 
-function ypxxexport_callback(data) {
+function commoninvoiceexport_callback(data) {
 	var result = getCallbackData(data);
 	_alert(result);
 	
@@ -142,7 +143,7 @@ var toolbar = [
 		id : 'export',
 		text : '导出',
 		iconCls : 'icon-redo',
-		handler : ypxxexport
+		handler : commoninvoiceexport
 	}];
 
 var frozenColumns;
@@ -288,7 +289,7 @@ function initGrid(){
 </HEAD>
 <BODY>
 <div id="commoninvoicequery_div">
-    <form id="commoninvoicequeryForm" name="commoninvoicequeryForm" action="${baseurl}/management/invoice/search/common" method="post">
+    <form id="commoninvoicequeryForm" name="commoninvoicequeryForm" action="${baseurl}/management/invoice/common/excelDownload" method="post">
 			<TABLE  class="table_search">
 				<TBODY>
 					<TR>

@@ -1,5 +1,12 @@
 package cn.riverdream.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +22,7 @@ import cn.riverdream.service.InvoiceService;
 import cn.riverdream.utils.DataGridResultInfo;
 import cn.riverdream.utils.ResultInfo;
 import cn.riverdream.utils.ResultUtil;
+import cn.riverdream.utils.exlexp.ExportInvoice;
 
 @Controller
 @RequestMapping("/management/invoice")
@@ -80,4 +88,42 @@ public class InvoiceController {
 		}
 		return ResultUtil.createSuccess("更新成功", ResultInfo.TYPE_RESULT_SUCCESS);
 	}
+	
+	@RequestMapping(value = "/{type}/excelDownload")
+    public String exportExcel(HttpServletResponse response, InvoiceVo invoicekvo, @PathVariable String type) {
+        try {
+        	Integer itype = 0;
+        	String title = "普通发票";
+        	if (type.equalsIgnoreCase("special")) {
+        		itype = 1;
+        		title = "专业发票";
+        	}
+            //String fileName = new String(("导出excel标题").getBytes(), "UTF-8") + ".xlsx";
+            String fileName=new String((title).getBytes("gb2312"), "iso8859-1")+ ".xlsx";
+            response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+            response.setCharacterEncoding("utf-8");
+ 
+            // response.setHeader("Content-disposition", "attachment; filename="
+            // + "exdddcel" + ".xlsx");// 组装附件名称和格式
+ 
+            String[] titles = { "合同号", "客户姓名", "发票号", "作废", "金额", "扣税税点", "扣税金额", "单位名称", "创建日期", "备注" };
+ 
+            /*SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date = df.format(new Date());
+            Date dateNow = null;
+            try {
+                dateNow = df.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }*/
+            List<TbInvoice> list = invoiceService.findAll(itype,invoicekvo);
+            ServletOutputStream outputStream = response.getOutputStream();
+            
+            ExportInvoice.ExportExcel(titles, (ArrayList<TbInvoice>) list, outputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

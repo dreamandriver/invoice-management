@@ -176,4 +176,37 @@ public class InvoiceServiceImpl implements InvoiceService {
 		invoiceMapper.updateByExampleSelective(invoicevo.getInvoice(), example);
 	}
 
+	@Override
+	public List<TbInvoice> findAll(Integer type, InvoiceVo vo) {
+		
+		String contractno = vo.getContractno();
+		String consumer = vo.getConsumer();
+		String invoiceno = vo.getInvoiceno();
+		Date start = vo.getStart();
+		Date end = vo.getEnd();
+
+		TbInvoiceExample example = new TbInvoiceExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andInvoicetypeEqualTo(type);
+		criteria.andStatusNotEqualTo(3);
+
+		if (StringUtils.isNotBlank(contractno)) {
+			criteria.andContractnoEqualTo(contractno);
+		}
+		if (StringUtils.isNotBlank(invoiceno)) {
+			criteria.andInvoicenoEqualTo(invoiceno);
+		}
+		if (StringUtils.isNotBlank(consumer)) {
+			criteria.andConsumerLike("%" + consumer + "%");
+		}
+		if (start != null) {
+			criteria.andCreatedateGreaterThanOrEqualTo(start);
+		}
+		if (end != null) {
+			criteria.andCreatedateLessThanOrEqualTo(end);
+		}
+		List<TbInvoice> list = invoiceMapper.selectByExample(example);
+		return list;
+	}
+
 }

@@ -76,12 +76,12 @@ var addCheck = function (){
 };
 
 
-var ypxxexport = function(){
-	//jquerySubByFId('checkqueryForm', ypxxexport_callback, null, "json");
+var checkexport = function(){
+	//jquerySubByFId('checkqueryForm', checkexport_callback, null, "json");
 	$("#checkqueryForm").submit();
 };
 
-function ypxxexport_callback(data) {
+function checkexport_callback(data) {
 	var result = getCallbackData(data);
 	_alert(result);
 	
@@ -165,7 +165,7 @@ var toolbar = [
 		id : 'export',
 		text : '导出',
 		iconCls : 'icon-redo',
-		handler : ypxxexport
+		handler : checkexport
 	}];
 
 var frozenColumns;

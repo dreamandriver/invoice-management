@@ -19,15 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.riverdream.model.CheckVo;
-import cn.riverdream.model.ContractVo;
 import cn.riverdream.pojo.TbCheck;
-import cn.riverdream.pojo.TbContract;
 import cn.riverdream.service.CheckService;
 import cn.riverdream.utils.DataGridResultInfo;
 import cn.riverdream.utils.ResultInfo;
 import cn.riverdream.utils.ResultUtil;
 import cn.riverdream.utils.exlexp.ExportCheck;
-import cn.riverdream.utils.exlexp.ExportContract;
 
 @Controller
 @RequestMapping("/management/check")

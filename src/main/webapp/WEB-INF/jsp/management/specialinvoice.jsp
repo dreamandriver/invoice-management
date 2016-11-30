@@ -51,11 +51,12 @@ var addInvoice = function (){
 };
 
 
-var ypxxexport = function(){
-	jquerySubByFId('commoninvoicequeryForm', ypxxexport_callback, null, "json");
+var specialinvoiceexport = function(){
+	//jquerySubByFId('specialinvoicequeryForm', specialinvoiceexport_callback, null, "json");
+	$("#specialinvoicequeryForm").submit();
 };
 
-function ypxxexport_callback(data) {
+function specialinvoiceexport_callback(data) {
 	var result = getCallbackData(data);
 	_alert(result);
 	
@@ -142,7 +143,7 @@ var toolbar = [
 		id : 'export',
 		text : '导出',
 		iconCls : 'icon-redo',
-		handler : ypxxexport
+		handler : specialinvoiceexport
 	}];
 
 var frozenColumns;
@@ -271,7 +272,7 @@ function initGrid(){
 
 	function commoninvoicequery() {
  
-		var formdata = $("#commoninvoicequeryForm").serializeJson();
+		var formdata = $("#specialinvoicequeryForm").serializeJson();
 		//alert(formdata);
 		$('#invoicelist').datagrid('unselectAll');
 		$('#invoicelist').datagrid('load', formdata);
@@ -279,7 +280,7 @@ function initGrid(){
 	
 	function invoicequery() {
 		 
-		var formdata = $("#commoninvoicequeryForm").serializeJson();
+		var formdata = $("#specialinvoicequeryForm").serializeJson();
 		//alert(formdata);
 		$('#invoicelist').datagrid('unselectAll');
 		$('#invoicelist').datagrid('load', formdata);
@@ -288,7 +289,7 @@ function initGrid(){
 </HEAD>
 <BODY>
 <div id="commoninvoicequery_div">
-    <form id="commoninvoicequeryForm" name="commoninvoicequeryForm" action="${baseurl}/management/invoice/search/special" method="post">
+    <form id="specialinvoicequeryForm" name="specialinvoicequeryForm" action="${baseurl}/management/invoice/special/excelDownload" method="post">
 			<TABLE  class="table_search">
 				<TBODY>
 					<TR>
