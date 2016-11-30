@@ -52,6 +52,15 @@
 			onError : "请填写公司名称"
 		});
 		
+		//公合同号
+		$("#contract_contractNo").formValidator({
+			onShow : "",
+			onCorrect:"&nbsp;"
+		}).inputValidator({
+			min : 1,
+			onError : "合同号不能为空"
+		});
+		
 	});
 	function contractsave(){
 		if($.formValidator.pageIsValid()){
@@ -110,12 +119,12 @@
 								</div>
 								<div id="contract_consumerTip"></div>
 								</TD>
-								<TD height=30 width="15%" align=right >金额：</TD>
+								<TD height=30 width="15%" align=right >合同号：</TD>
 								<TD class=category width="35%">
 								<div>
-								<input type="text" id="contract_amount" name="contract.amount" value="${contract.amount}"   />
+								<input type="text" id="contract_contractNo" name="contract.contractno" value="${contractNo}"   />
 								</div>
-								<div id="contract_amountTip"></div>
+								<div id="contract_contractNoTip"></div>
 								</TD>
 							</TR>
 							
@@ -128,21 +137,28 @@
 								</div>
 								<div id="contract_companyTip"></div>
 								</TD>
-								<TD height=30 width="15%" align=right >创建日期：</TD>
+								<TD height=30 width="15%" align=right >金额：</TD>
 								<TD class=category width="35%">
 								<div>
-									${createDate}
+								<input type="text" id="contract_amount" name="contract.amount" value="${contract.amount}"   />
 								</div>
+								<div id="contract_amountTip"></div>
 								</TD>
 							</TR>
 							<TR>
 								<TD height=30 width="15%" align=right >是否正式合同：</TD>
-								<TD class=category width="75%" colspan="3">
+								<TD class=category width="35%" >
 								<div>
 									<input type="radio" name="contract.ifformal" value="1" checked="checked"/>是  &nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="radio" name="contract.ifformal" value="0" />否
 								</div>
 								<div id="contract_companyTip"></div>
+								</TD>
+								<TD height=30 width="15%" align=right >创建日期：</TD>
+								<TD class=category width="35%">
+								<div>
+									${createDate}
+								</div>
 								</TD>
 							</TR>
 							

@@ -38,6 +38,10 @@ public class ContractController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public ResultInfo saveContract(ContractVo contractvo) {
+		String contractno = contractvo.getContract().getContractno();
+		if(contractService.findByContractNo(contractno) != null){
+			return ResultUtil.createFail("合同号重复,请修改合同号", ResultInfo.TYPE_RESULT_FAIL);
+		}
 		try {
 			contractService.save(contractvo.getContract());
 		} catch (Exception e) {

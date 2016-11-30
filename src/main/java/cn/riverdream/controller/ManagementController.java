@@ -58,6 +58,10 @@ public class ManagementController {
 			TbContract contract = contractService.findBySerialNo(serialno);
 			model.addAttribute("contract", contract);
 		}
+		if("contract".equalsIgnoreCase(type)){
+			String contractNo = contractService.getcontractNo();
+			model.addAttribute("contractNo", contractNo);
+		}
 		
 		//身份
 		Subject subject = SecurityUtils.getSubject();

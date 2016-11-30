@@ -196,7 +196,7 @@ var columns = [ [{
 	formatter:function(value, row, index){
 		if(value ==1 ){
 			return "是";
-		}else if(value ==2){
+		}else if(value ==0){
 			return "否";
 		}else{
 			return "--";

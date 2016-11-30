@@ -18,4 +18,8 @@ public interface ContractService {
 	public void update(ContractVo contractvo);
 	
 	public TbContract findBySerialNo(int serialNo);
+
+	public String getcontractNo();
+	
+	public TbContract findByContractNo(String contractNo);
 }
