@@ -73,6 +73,11 @@ public class ContractController {
 	@RequestMapping("/update")
 	@ResponseBody
 	public ResultInfo updateContract(ContractVo contractvo) {
+		String contractno = contractvo.getContract().getContractno();
+		TbContract contract = contractService.findByContractNo(contractno);
+		if( contract!= null && contract.getSerialno() != contractvo.getContract().getSerialno()){
+			return ResultUtil.createFail("合同号重复,请修改合同号", ResultInfo.TYPE_RESULT_FAIL);
+		}
 		try {
 			contractService.update(contractvo);
 		} catch (Exception e) {

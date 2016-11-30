@@ -16,6 +16,8 @@
     <result column="COMMENT" property="comment" jdbcType="VARCHAR" />
     <result column="WORKDATE" property="workdate" jdbcType="TIMESTAMP" />
     <result column="WORKUSER" property="workuser" jdbcType="INTEGER" />
+    <result column="TAXPOINT" property="taxpoint" jdbcType="DOUBLE" />
+    <result column="TAXAMOUNT" property="taxamount" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     SERIALNO, INVOICENO, INVOICETYPE, CONTRACTNO, CONTRACTSERIALNO, CONSUMER, CREATEDATE, 
-    CREATEUSER, AMOUNT, COMPANY, STATUS, COMMENT, WORKDATE, WORKUSER
+    CREATEUSER, AMOUNT, COMPANY, STATUS, COMMENT, WORKDATE, WORKUSER, TAXPOINT, TAXAMOUNT
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbInvoiceExample" >
     select
@@ -114,12 +116,14 @@
       CONTRACTNO, CONTRACTSERIALNO, CONSUMER, 
       CREATEDATE, CREATEUSER, AMOUNT, 
       COMPANY, STATUS, COMMENT, 
-      WORKDATE, WORKUSER)
+      WORKDATE, WORKUSER, TAXPOINT, 
+      TAXAMOUNT)
     values (#{serialno,jdbcType=INTEGER}, #{invoiceno,jdbcType=VARCHAR}, #{invoicetype,jdbcType=INTEGER}, 
       #{contractno,jdbcType=VARCHAR}, #{contractserialno,jdbcType=INTEGER}, #{consumer,jdbcType=VARCHAR}, 
       #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER}, #{amount,jdbcType=DOUBLE}, 
       #{company,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, 
-      #{workdate,jdbcType=TIMESTAMP}, #{workuser,jdbcType=INTEGER})
+      #{workdate,jdbcType=TIMESTAMP}, #{workuser,jdbcType=INTEGER}, #{taxpoint,jdbcType=DOUBLE}, 
+      #{taxamount,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="cn.riverdream.pojo.TbInvoice" >
     insert into tb_invoice
@@ -166,6 +170,12 @@
       <if test="workuser != null" >
         WORKUSER,
       </if>
+      <if test="taxpoint != null" >
+        TAXPOINT,
+      </if>
+      <if test="taxamount != null" >
+        TAXAMOUNT,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="serialno != null" >
@@ -209,6 +219,12 @@
       </if>
       <if test="workuser != null" >
         #{workuser,jdbcType=INTEGER},
+      </if>
+      <if test="taxpoint != null" >
+        #{taxpoint,jdbcType=DOUBLE},
+      </if>
+      <if test="taxamount != null" >
+        #{taxamount,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -263,6 +279,12 @@
       <if test="record.workuser != null" >
         WORKUSER = #{record.workuser,jdbcType=INTEGER},
       </if>
+      <if test="record.taxpoint != null" >
+        TAXPOINT = #{record.taxpoint,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxamount != null" >
+        TAXAMOUNT = #{record.taxamount,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,7 +305,9 @@
       STATUS = #{record.status,jdbcType=INTEGER},
       COMMENT = #{record.comment,jdbcType=VARCHAR},
       WORKDATE = #{record.workdate,jdbcType=TIMESTAMP},
-      WORKUSER = #{record.workuser,jdbcType=INTEGER}
+      WORKUSER = #{record.workuser,jdbcType=INTEGER},
+      TAXPOINT = #{record.taxpoint,jdbcType=DOUBLE},
+      TAXAMOUNT = #{record.taxamount,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -330,6 +354,12 @@
       <if test="workuser != null" >
         WORKUSER = #{workuser,jdbcType=INTEGER},
       </if>
+      <if test="taxpoint != null" >
+        TAXPOINT = #{taxpoint,jdbcType=DOUBLE},
+      </if>
+      <if test="taxamount != null" >
+        TAXAMOUNT = #{taxamount,jdbcType=DOUBLE},
+      </if>
     </set>
     where SERIALNO = #{serialno,jdbcType=INTEGER}
   </update>
@@ -347,7 +377,9 @@
       STATUS = #{status,jdbcType=INTEGER},
       COMMENT = #{comment,jdbcType=VARCHAR},
       WORKDATE = #{workdate,jdbcType=TIMESTAMP},
-      WORKUSER = #{workuser,jdbcType=INTEGER}
+      WORKUSER = #{workuser,jdbcType=INTEGER},
+      TAXPOINT = #{taxpoint,jdbcType=DOUBLE},
+      TAXAMOUNT = #{taxamount,jdbcType=DOUBLE}
     where SERIALNO = #{serialno,jdbcType=INTEGER}
   </update>
 </mapper>

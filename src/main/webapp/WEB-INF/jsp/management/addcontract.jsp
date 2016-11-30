@@ -52,7 +52,7 @@
 			onError : "请填写公司名称"
 		});
 		
-		//公合同号
+		//合同号
 		$("#contract_contractNo").formValidator({
 			onShow : "",
 			onCorrect:"&nbsp;"

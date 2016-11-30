@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.ObjectUtils.Null;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +18,6 @@ import cn.riverdream.mapper.TbCheckMapper;
 import cn.riverdream.model.CheckVo;
 import cn.riverdream.pojo.TbCheck;
 import cn.riverdream.pojo.TbCheckExample;
-import cn.riverdream.pojo.TbUser;
 import cn.riverdream.pojo.TbCheckExample.Criteria;
 import cn.riverdream.service.CheckService;
 import cn.riverdream.utils.DataGridResultInfo;
@@ -39,11 +35,13 @@ public class CheckServiceImpl implements CheckService {
 		Double payamount = check.getPayamount();
 		Double incomeamount = check.getIncomeamount();
 		Integer taxpoint = check.getTaxpoint();
+		Double other = check.getOther();
 		BigDecimal p = new BigDecimal(Double.toString(payamount));
 		BigDecimal i = new BigDecimal(Double.toString(incomeamount));
 		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
+		BigDecimal o = new BigDecimal(Double.toString(other));
 
-		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p);
+		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p).subtract(o);
 		check.setAccount(result.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		BigDecimal tax = i.multiply(t).divide(new BigDecimal(100));
 		check.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
@@ -103,8 +101,8 @@ public class CheckServiceImpl implements CheckService {
 		DataGridResultInfo result = new DataGridResultInfo();
 
 		// 身份
-		Subject subject = SecurityUtils.getSubject();
-		TbUser activeUser = (TbUser) subject.getPrincipal();
+		//Subject subject = SecurityUtils.getSubject();
+		//TbUser activeUser = (TbUser) subject.getPrincipal();
 		// if("admin".equalsIgnoreCase(activeUser.getPermission1())){
 		// 合计
 		List<TbCheck> listsum = checkMapper.selectByExample(example);
@@ -165,16 +163,18 @@ public class CheckServiceImpl implements CheckService {
 		Double payamount = check.getPayamount();
 		Double incomeamount = check.getIncomeamount();
 		Integer taxpoint = check.getTaxpoint();
+		Double other = check.getOther();
 		BigDecimal p = new BigDecimal(Double.toString(payamount));
 		BigDecimal i = new BigDecimal(Double.toString(incomeamount));
 		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
+		BigDecimal o = new BigDecimal(Double.toString(other));
 
-		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).subtract(p);
+		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p).subtract(o);
 		check.setAccount(result.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		BigDecimal tax = i.multiply(t).divide(new BigDecimal(100));
 		check.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		// checkMapper.updateByExampleSelective(check, example);
-		checkMapper.updateByPrimaryKeySelective(vo.getCheck());
+		checkMapper.updateByPrimaryKeySelective(check);
 	}
 
 	@Override

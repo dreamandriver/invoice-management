@@ -994,6 +994,126 @@ public class TbInvoiceExample {
             addCriterion("WORKUSER not between", value1, value2, "workuser");
             return (Criteria) this;
         }
+
+        public Criteria andTaxpointIsNull() {
+            addCriterion("TAXPOINT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointIsNotNull() {
+            addCriterion("TAXPOINT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointEqualTo(Double value) {
+            addCriterion("TAXPOINT =", value, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointNotEqualTo(Double value) {
+            addCriterion("TAXPOINT <>", value, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointGreaterThan(Double value) {
+            addCriterion("TAXPOINT >", value, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointGreaterThanOrEqualTo(Double value) {
+            addCriterion("TAXPOINT >=", value, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointLessThan(Double value) {
+            addCriterion("TAXPOINT <", value, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointLessThanOrEqualTo(Double value) {
+            addCriterion("TAXPOINT <=", value, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointIn(List<Double> values) {
+            addCriterion("TAXPOINT in", values, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointNotIn(List<Double> values) {
+            addCriterion("TAXPOINT not in", values, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointBetween(Double value1, Double value2) {
+            addCriterion("TAXPOINT between", value1, value2, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxpointNotBetween(Double value1, Double value2) {
+            addCriterion("TAXPOINT not between", value1, value2, "taxpoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountIsNull() {
+            addCriterion("TAXAMOUNT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountIsNotNull() {
+            addCriterion("TAXAMOUNT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountEqualTo(Double value) {
+            addCriterion("TAXAMOUNT =", value, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountNotEqualTo(Double value) {
+            addCriterion("TAXAMOUNT <>", value, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountGreaterThan(Double value) {
+            addCriterion("TAXAMOUNT >", value, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountGreaterThanOrEqualTo(Double value) {
+            addCriterion("TAXAMOUNT >=", value, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountLessThan(Double value) {
+            addCriterion("TAXAMOUNT <", value, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountLessThanOrEqualTo(Double value) {
+            addCriterion("TAXAMOUNT <=", value, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountIn(List<Double> values) {
+            addCriterion("TAXAMOUNT in", values, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountNotIn(List<Double> values) {
+            addCriterion("TAXAMOUNT not in", values, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountBetween(Double value1, Double value2) {
+            addCriterion("TAXAMOUNT between", value1, value2, "taxamount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxamountNotBetween(Double value1, Double value2) {
+            addCriterion("TAXAMOUNT not between", value1, value2, "taxamount");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

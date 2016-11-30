@@ -32,6 +32,10 @@ public class TbInvoice {
 
     private Integer workuser;
 
+    private Double taxpoint;
+
+    private Double taxamount;
+
     public Integer getSerialno() {
         return serialno;
     }
@@ -87,14 +91,14 @@ public class TbInvoice {
     public void setCreatedate(Date createdate) {
         this.createdate = createdate;
     }
-    
+
     public String getCreatedatestr(){
     	SimpleDateFormat formatter; 
         formatter = new SimpleDateFormat ("yyyy-MM-dd"); 
         String ctime = formatter.format(this.createdate); 
         return ctime;
     }
-
+    
     public Integer getCreateuser() {
         return createuser;
     }
@@ -149,5 +153,21 @@ public class TbInvoice {
 
     public void setWorkuser(Integer workuser) {
         this.workuser = workuser;
+    }
+
+    public Double getTaxpoint() {
+        return taxpoint;
+    }
+
+    public void setTaxpoint(Double taxpoint) {
+        this.taxpoint = taxpoint;
+    }
+
+    public Double getTaxamount() {
+        return taxamount;
+    }
+
+    public void setTaxamount(Double taxamount) {
+        this.taxamount = taxamount;
     }
 }

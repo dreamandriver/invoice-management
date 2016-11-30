@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +18,6 @@ import cn.riverdream.mapper.TbInvoiceMapper;
 import cn.riverdream.model.InvoiceVo;
 import cn.riverdream.pojo.TbInvoice;
 import cn.riverdream.pojo.TbInvoiceExample;
-import cn.riverdream.pojo.TbUser;
 import cn.riverdream.pojo.TbInvoiceExample.Criteria;
 import cn.riverdream.service.InvoiceService;
 import cn.riverdream.utils.DataGridResultInfo;
@@ -71,12 +68,13 @@ public class InvoiceServiceImpl implements InvoiceService {
 		DataGridResultInfo result = new DataGridResultInfo();
 
 		// 身份
-		Subject subject = SecurityUtils.getSubject();
-		TbUser activeUser = (TbUser) subject.getPrincipal();
+		//Subject subject = SecurityUtils.getSubject();
+		//TbUser activeUser = (TbUser) subject.getPrincipal();
 		// if ("admin".equalsIgnoreCase(activeUser.getPermission1())) {
 		// 合计
 		BigDecimal zf = new BigDecimal(0);// 作废
 		BigDecimal zc = new BigDecimal(0);// 正常
+		BigDecimal ta = new BigDecimal(0);// 税金
 		List<TbInvoice> listsum = invoiceMapper.selectByExample(example);
 		for (TbInvoice ti : listsum) {
 			BigDecimal bd = new BigDecimal(ti.getAmount());
@@ -89,11 +87,16 @@ public class InvoiceServiceImpl implements InvoiceService {
 			} else if (2 == status) {// 退票
 				zc = zc.subtract(bd);
 			}
+			if (ti.getTaxamount() != null) {
+				BigDecimal bd1 = new BigDecimal(ti.getTaxamount());
+				ta = ta.add(bd1);
+			}
 		}
 		List<Map<String, String>> sum = new ArrayList<>();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("zuofei", zf.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 		map.put("amount", zc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+		map.put("taxamount", ta.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 		map.put("contractno", "合计");
 		sum.add(map);
 
@@ -106,6 +109,19 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Override
 	public Integer save(TbInvoice invoice) {
+		
+		Double amount = invoice.getAmount();
+		Double taxpoint = invoice.getTaxpoint();
+		BigDecimal a = new BigDecimal(Double.toString(amount));
+		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
+		BigDecimal tax = t.multiply(a).divide(new BigDecimal(100));
+		if(invoice.getStatus() == 1){//作废
+			tax = new BigDecimal(0);
+		}else if(invoice.getStatus() == 2){//退票
+			tax = new BigDecimal(0).subtract(tax);
+		}
+		invoice.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+		
 		invoice.setCreatedate(new Date());
 		invoice.setWorkdate(new Date());
 		invoiceMapper.insert(invoice);
@@ -140,6 +156,19 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Override
 	public void update(InvoiceVo invoicevo) {
+		
+		Double amount = invoicevo.getInvoice().getAmount();
+		Double taxpoint = invoicevo.getInvoice().getTaxpoint();
+		BigDecimal a = new BigDecimal(Double.toString(amount));
+		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
+		BigDecimal tax = t.multiply(a).divide(new BigDecimal(100));
+		if(invoicevo.getInvoice().getStatus() == 1){//作废
+			tax = new BigDecimal(0);
+		}else if(invoicevo.getInvoice().getStatus() == 2){//退票
+			tax = new BigDecimal(0).subtract(tax);
+		}
+		invoicevo.getInvoice().setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+		
 		Integer serialNo = invoicevo.getInvoice().getSerialno();
 		TbInvoiceExample example = new TbInvoiceExample();
 		Criteria criteria = example.createCriteria();

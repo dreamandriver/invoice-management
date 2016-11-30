@@ -52,6 +52,12 @@
 			onError : "请填写公司名称"
 		});
 		
+		
+		$("#invoice_taxpoint").formValidator({
+			onShow : "",
+			onCorrect:"&nbsp;"
+		}).regexValidator({regExp:"num",dataType:"enum",onError:"税点格式不正确"});
+		
 	});
 	function invoiceedit(){
 		if($.formValidator.pageIsValid()){
@@ -149,11 +155,18 @@
 							
 							<TR >
 							    <TD height=30 width="15%" align=right >单位名称：</TD>
-								<TD class=category width="75%" colspan="3" >
+								<TD class=category width="35%" >
 								<div>
-								<input type="text" id="invoice_company" name="invoice.company" value="${invoice.company}" style=" width: 640px;"/>
+								<input type="text" id="invoice_company" name="invoice.company" value="${invoice.company}" style=" width: 340px;"/>
 								</div>
 								<div id="invoice_companyTip"></div>
+								</TD>
+								<TD height=30 width="15%" align=right >税点(%)：</TD>
+								<TD class=category width="35%">
+								<div>
+									<input type="text" id="invoice_taxpoint" name="invoice.taxpoint" value="${invoice.taxpoint}"/>
+								</div>
+								<div id="invoice_taxpointTip"></div>
 								</TD>
 							</TR>
 							

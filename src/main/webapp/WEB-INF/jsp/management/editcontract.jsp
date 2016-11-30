@@ -111,12 +111,12 @@
 								</div>
 								<div id="contract_consumerTip"></div>
 								</TD>
-								<TD height=30 width="15%" align=right >金额：</TD>
+								<TD height=30 width="15%" align=right >合同号：</TD>
 								<TD class=category width="35%">
 								<div>
-								<input type="text" id="contract_amount" name="contract.amount" value="${contract.amount}"   />
+								<input type="text" id="contract_contractNo" name="contract.contractno" value="${contract.contractno}"   />
 								</div>
-								<div id="contract_amountTip"></div>
+								<div id="contract_contractNoTip"></div>
 								</TD>
 							</TR>
 							
@@ -129,21 +129,28 @@
 								</div>
 								<div id="contract_companyTip"></div>
 								</TD>
-								<TD height=30 width="15%" align=right >创建日期：</TD>
+								<TD height=30 width="15%" align=right >金额：</TD>
 								<TD class=category width="35%">
 								<div>
-									${contract.createdatestr}
+								<input type="text" id="contract_amount" name="contract.amount" value="${contract.amount}"   />
 								</div>
+								<div id="contract_amountTip"></div>
 								</TD>
 							</TR>
 							<TR>
 								<TD height=30 width="15%" align=right >是否正式合同：</TD>
-								<TD class=category width="75%" colspan="3">
+								<TD class=category width="35%" >
 								<div>
 									<input type="radio" name="contract.ifformal" value="1" <c:if test="${contract.ifformal=='1'}">checked="checked"</c:if> />是  &nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="radio" name="contract.ifformal" value="0" <c:if test="${contract.ifformal=='0'}">checked="checked"</c:if> />否
 								</div>
 								<div id="contract_companyTip"></div>
+								</TD>
+								<TD height=30 width="15%" align=right >创建日期：</TD>
+								<TD class=category width="35%">
+								<div>
+									${contract.createdatestr}
+								</div>
 								</TD>
 							</TR>
 							

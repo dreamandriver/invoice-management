@@ -196,6 +196,14 @@ var columns = [ [{
 		}
 	}
 },{
+	field : 'taxpoint',
+	title : '扣税税点',
+	width : 100
+},{
+	field : 'taxamount',
+	title : '扣税金额',
+	width : 100
+},{
 	field : 'company',
 	title : '单位名称',
 	width : 180

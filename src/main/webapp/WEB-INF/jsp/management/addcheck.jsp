@@ -85,7 +85,7 @@
 		$("#check_taxpoint").formValidator({
 			onShow : "",
 			onCorrect:"&nbsp;"
-		}).regexValidator({regExp:"num",dataType:"enum",onError:"金额式不正确"});
+		}).regexValidator({regExp:"num",dataType:"enum",onError:"税点格式不正确"});
 		
 		
 		//日期
