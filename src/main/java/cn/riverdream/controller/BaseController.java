@@ -1,8 +1,5 @@
 package cn.riverdream.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;

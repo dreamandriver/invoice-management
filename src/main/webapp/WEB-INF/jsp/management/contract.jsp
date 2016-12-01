@@ -110,12 +110,20 @@ var contractedit = function (id){
 	//alert(id);
 	var sendUrl = "${baseurl}/management/contract/toupdate?serialNo="+id;
 	
-	createmodalwindow("药品信息修改", 900, 500, sendUrl);
+	createmodalwindow("合同信息修改", 900, 500, sendUrl);
 	/* 
 	var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
 			_ajaxPostRequest(ajaxOption, '', contractedit_callback);  */
 };
+
+//显示合同详情
+var showcontract = function(serialNo){
+	
+	var sendUrl = '${baseurl}/management/contract/detail/' + serialNo;
+	
+	createmodalwindow("合同详情", 1500, 800, sendUrl);
+}
 
 /* function contractedit_callback(redata){
 	$('#contractQuery_div').css("display","none");
@@ -172,7 +180,12 @@ var columns = [ [{
 },{
 	field : 'contractno',
 	title : '合同号',
-	width : 80
+	width : 80,
+	formatter:function(value, row, index){
+		if(row.serialno){
+		    return '<a href=javascript:showcontract(\''+row.serialno+'\')>'+value+'</a>'
+		}
+	}
 },{
 	field : 'consumer',
 	title : '客户姓名',

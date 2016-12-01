@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,6 +39,17 @@ public class CheckController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));   //true:允许输入空值，false:不能为空值
+	}
+	
+	@RequestMapping("/searchd/{contractno}")
+	@ResponseBody
+	public DataGridResultInfo getCheck(@PathVariable String contractno) {
+		CheckVo checkvo = new CheckVo();
+		checkvo.setContractno(contractno);
+		checkvo.setPage(1);
+		checkvo.setRows(30);
+		DataGridResultInfo gridResultInfo = checkService.find(checkvo);
+		return gridResultInfo;
 	}
 	
 	@RequestMapping("/search")

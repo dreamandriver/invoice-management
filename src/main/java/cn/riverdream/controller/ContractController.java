@@ -7,15 +7,20 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.riverdream.model.ContractVo;
 import cn.riverdream.pojo.TbContract;
+import cn.riverdream.pojo.TbUser;
 import cn.riverdream.service.ContractService;
+import cn.riverdream.service.UserService;
 import cn.riverdream.utils.DataGridResultInfo;
 import cn.riverdream.utils.ResultInfo;
 import cn.riverdream.utils.ResultUtil;
@@ -27,6 +32,9 @@ public class ContractController {
 
 	@Autowired
 	private ContractService contractService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/search")
 	@ResponseBody
@@ -117,4 +125,17 @@ public class ContractController {
         }
         return null;
     }
+	
+	@RequestMapping("/detail/{serialNo}")
+	public String toContractDetail(@PathVariable Integer serialNo,  Model model) {
+		TbContract contract = contractService.findBySerialNo(serialNo);
+		model.addAttribute("contract", contract);
+		Subject subject = SecurityUtils.getSubject();
+		//身份
+		TbUser activeUser = (TbUser) subject.getPrincipal();
+		TbUser user = userService.findByUserId(activeUser.getUserid());
+		model.addAttribute("activeUser", user);
+		return "management/detail";
+	}
+	
 }

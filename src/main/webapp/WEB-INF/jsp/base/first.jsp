@@ -109,10 +109,14 @@
 			location.href = '${baseurl}/logout';
 		})
 	}
-
-	//帮助
-	function showhelp() {
-		window.open('${baseurl}/help/help.html', '帮助文档');
+	
+	//显示合同详情
+	function showContract(serialNo){
+		$('#tabs').tabs('add',{   
+		    title:'合同详情',   
+		    content:createFrame('${baseurl}/management/contract/detail/' + serialNo),   
+		    closable:true
+		});  
 	}
 </SCRIPT>
 

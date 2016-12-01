@@ -120,13 +120,20 @@ var checkedit = function (id){
 	//alert(id);
 	var sendUrl = "${baseurl}/management/check/toupdate?serialNo="+id;
 	
-	createmodalwindow("药品信息修改", 900, 500, sendUrl);
+	createmodalwindow("支票信息修改", 900, 500, sendUrl);
 	/* 
 	var ajaxOption = new AjaxOption();
 			ajaxOption._initPostRequest(true,sendUrl,"json","html");
 			_ajaxPostRequest(ajaxOption, '', checkedit_callback);  */
 };
 
+//显示合同详情
+var showcontract = function(serialNo){
+	
+	var sendUrl = '${baseurl}/management/contract/detail/' + serialNo;
+	
+	createmodalwindow("合同详情", 1500, 800, sendUrl);
+}
 /* function checkedit_callback(redata){
 	$('#checkquery_div').css("display","none");
 	$("#checkedit_div").css("display","block");
@@ -177,7 +184,12 @@ var columns = [ [{
 },{
 	field : 'contractno',
 	title : '合同号',
-	width : 80
+	width : 80,
+	formatter:function(value, row, index){
+		if(row.serialno){
+		    return '<a href=javascript:showcontract(\''+row.contractserialno+'\')>'+value+'</a>'
+		}
+	}
 },{
 	field : 'consumer',
 	title : '客户名称',
@@ -278,7 +290,7 @@ var columns = [ [{
 
 function initGrid(){
 	$('#ypxxlist').datagrid({
-		title : '药品信息列表',
+		title : '支票信息列表',
 		//nowrap : false,
 		striped : true,
 		//collapsible : true,
@@ -295,6 +307,7 @@ function initGrid(){
 		rownumbers : true,
 		toolbar : toolbar,
 		loadMsg:"",
+		pageSize:30,
 		pageList:[15,30,50,100],
 		onClickRow : function(index, field, value) {
 					$('#ypxxlist').datagrid('unselectRow', index);
@@ -310,6 +323,7 @@ function initGrid(){
 		$('#ypxxlist').datagrid('unselectAll');
 		$('#ypxxlist').datagrid('load', formdata);
 	}
+	
 </script>
 </HEAD>
 <BODY>

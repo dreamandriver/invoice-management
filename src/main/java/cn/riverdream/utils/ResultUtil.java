@@ -64,6 +64,7 @@ public class ResultUtil {
 		return new SubmitResultInfo(resultInfo);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static DataGridResultInfo createDataGridResultInfo(int page,long total,List rows){
 		DataGridResultInfo dataGridResultInfo = new DataGridResultInfo();
 		dataGridResultInfo.setRows(rows);

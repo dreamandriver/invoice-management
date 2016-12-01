@@ -76,7 +76,6 @@ public class ExportCheck {
             
             cell = bodyRow.createCell(8);
             cell.setCellStyle(bodyStyle);
-            SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
             String date1 = df.format(check.getPaydate());
             cell.setCellValue(date1);
             
