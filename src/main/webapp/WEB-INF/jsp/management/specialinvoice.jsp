@@ -223,7 +223,7 @@ var columns = [ [{
 	width : 180
 },{
 	field : 'createdatestr',
-	title : '创建日期',
+	title : '开票日期',
 	width : 120
 },{
 	field : 'comment',
@@ -313,7 +313,7 @@ function initGrid(){
 						<td ><INPUT type="text" name="consumer" /></td>
 						<TD class="left">发票号：</TD>
 						<td ><INPUT type="text" name="invoiceno" /></td>
-						<td class="left">日期：</td>
+						<td class="left">开票日期：</td>
 				  		<td>
 				      		<input class="laydate-icon" id="start" name="start" style="width:150px; margin-right:10px;">
 				      		至

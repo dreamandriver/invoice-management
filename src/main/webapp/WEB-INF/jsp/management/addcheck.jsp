@@ -196,7 +196,7 @@
 								<TD height=30 width="15%" align=right >收入日期：</TD>
 								<TD class=category width="35%">
 								<div>
-									<input class="laydate-icon" id="check_incomedatestr" name="check.incomedatestr" value="${createDate}" style="width:150px;">
+									<input class="laydate-icon" id="check_incomedatestr" name="check.incomedate" value="${createDate}" style="width:150px;">
 								</div>
 								<div id="check_incomedatestrTip"></div>
 								</TD>
@@ -213,7 +213,7 @@
 								<TD height=30 width="15%" align=right >支出日期：</TD>
 								<TD class=category width="35%">
 								<div>
-									<input class="laydate-icon" id="check_paydatestr" name="check.paydatestr" value="${createDate}" style="width:150px;">
+									<input class="laydate-icon" id="check_paydatestr" name="check.paydate" value="${createDate}" style="width:150px;">
 								</div>
 								<div id="check_paydatestrTip"></div>
 								</TD>

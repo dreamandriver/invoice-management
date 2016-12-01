@@ -21,6 +21,18 @@
 		$('#closebtn').linkbutton({   
     		iconCls: 'icon-cancel'  
 		});
+		
+		var paydate = {
+				  elem: '#invoice_createdate',
+				  format: 'YYYY/MM/DD',
+				  min: '2001-06-16',
+				  max: '2099-06-16',
+				  istime: false,
+				  istoday: false,
+				};
+		laydate(paydate);
+				
+		
 		//**********表单校验*************
 		$.formValidator.initConfig({
 			formID : "invoiceaddform",
@@ -154,12 +166,12 @@
 							</TR>
 							
 							<TR >
-							    <TD height=30 width="15%" align=right >单位名称：</TD>
+							    <TD height=30 width="15%" align=right >开票日期：</TD>
 								<TD class=category width="35%" >
 								<div>
-								<input type="text" id="invoice_company" name="invoice.company" value="${invoice.company}" style=" width: 340px;"/>
+									<input class="laydate-icon" id="invoice_createdate" name="invoice.createdate" value="<fmt:formatDate value='${invoice.createdate}' pattern='yyyy/MM/dd' />" style="width:150px;">
 								</div>
-								<div id="invoice_companyTip"></div>
+								<div id="invoice_createdateTip"></div>
 								</TD>
 								<TD height=30 width="15%" align=right >税点(%)：</TD>
 								<TD class=category width="35%">
@@ -169,7 +181,15 @@
 								<div id="invoice_taxpointTip"></div>
 								</TD>
 							</TR>
-							
+							<TR >
+							    <TD height=30 width="15%" align=right >单位名称：</TD>
+								<TD class=category width="75%" colspan="3">
+								<div>
+								<input type="text" id="invoice_company" name="invoice.company" value="${invoice.company}" style=" width: 640px;"/>
+								</div>
+								<div id="invoice_companyTip"></div>
+								</TD>
+							</TR>
 							<TR >
 							    <TD height=30 width="15%" align=right >备注：</TD>
 								<TD class=category width="75%" colspan="3" >

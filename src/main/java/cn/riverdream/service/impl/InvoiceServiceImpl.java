@@ -122,7 +122,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 		}
 		invoice.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		
-		invoice.setCreatedate(new Date());
 		invoice.setWorkdate(new Date());
 		invoiceMapper.insert(invoice);
 		return invoice.getSerialno();

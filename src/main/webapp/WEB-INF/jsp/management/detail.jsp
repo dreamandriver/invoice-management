@@ -80,7 +80,7 @@ var columns1 = [ [{
 	width : 180
 },{
 	field : 'createdatestr',
-	title : '创建日期',
+	title : '开票日期',
 	width : 120
 },{
 	field : 'comment',
@@ -157,7 +157,7 @@ var columns2 = [ [{
 	width : 180
 },{
 	field : 'createdatestr',
-	title : '创建日期',
+	title : '开票日期',
 	width : 120
 },{
 	field : 'comment',

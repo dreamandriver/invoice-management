@@ -123,7 +123,7 @@ public class InvoiceController {
             // response.setHeader("Content-disposition", "attachment; filename="
             // + "exdddcel" + ".xlsx");// 组装附件名称和格式
  
-            String[] titles = { "合同号", "客户姓名", "发票号", "作废", "金额", "扣税税点", "扣税金额", "单位名称", "创建日期", "备注" };
+            String[] titles = { "合同号", "客户姓名", "发票号", "作废", "金额", "扣税税点", "扣税金额", "单位名称", "开票日期", "备注" };
  
             /*SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date = df.format(new Date());
