@@ -21,8 +21,8 @@ public class BaseController {
 
 	@RequestMapping("/base")
 	public String toBasePage(Model model) {
-		model.addAttribute("version_number", "1.0");
-		model.addAttribute("version_date", "2016年11月14日");
+		model.addAttribute("version_number", "1.1");
+		model.addAttribute("version_date", "2016年12月2日");
 		Subject subject = SecurityUtils.getSubject();
 		//身份
 		TbUser activeUser = (TbUser) subject.getPrincipal();

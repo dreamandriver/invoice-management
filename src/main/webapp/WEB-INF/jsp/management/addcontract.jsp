@@ -21,6 +21,17 @@
 		$('#closebtn').linkbutton({   
     		iconCls: 'icon-cancel'  
 		});
+		
+		var paydate = {
+				  elem: '#contract_createdate',
+				  format: 'YYYY/MM/DD',
+				  min: '2001-06-16',
+				  max: '2099-06-16',
+				  istime: false,
+				  istoday: false,
+				};
+		laydate(paydate);
+		
 		//**********表单校验*************
 		$.formValidator.initConfig({
 			formID : "contractaddform",
@@ -157,8 +168,9 @@
 								<TD height=30 width="15%" align=right >创建日期：</TD>
 								<TD class=category width="35%">
 								<div>
-									${createDate}
+									<input class="laydate-icon" id="contract_createdate" name="contract.createdate" value="${createDate}" style="width:150px;">
 								</div>
+								<div id="contract_createdateTip"></div>
 								</TD>
 							</TR>
 							
