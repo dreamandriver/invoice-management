@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/jsp/base/tag.jsp"%>
 <html> 
@@ -110,7 +110,7 @@ var showcontract = function(serialNo){
 	
 	var sendUrl = '${baseurl}/management/contract/detail/' + serialNo;
 	
-	createmodalwindow("合同详情", 1500, 800, sendUrl);
+	createmodalwindow("合同详情", 1100, 580, sendUrl);
 }
 
 /* function invoiceedit_callback(redata){

@@ -60,7 +60,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 			criteria.andCreatedateLessThanOrEqualTo(end);
 		}
 		
-		example.setOrderByClause("createdate desc");
+		example.setOrderByClause("createdate desc,invoiceno desc");
 		PageHelper.startPage(page, rows);
 		List<TbInvoice> list = invoiceMapper.selectByExample(example);
 

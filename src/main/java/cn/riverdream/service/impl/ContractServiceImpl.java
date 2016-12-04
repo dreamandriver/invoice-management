@@ -15,14 +15,20 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import cn.riverdream.mapper.TbCheckMapper;
 import cn.riverdream.mapper.TbContractMapper;
 import cn.riverdream.mapper.TbDictMapper;
+import cn.riverdream.mapper.TbInvoiceMapper;
 import cn.riverdream.model.ContractVo;
+import cn.riverdream.pojo.TbCheck;
+import cn.riverdream.pojo.TbCheckExample;
 import cn.riverdream.pojo.TbContract;
 import cn.riverdream.pojo.TbContractExample;
 import cn.riverdream.pojo.TbDict;
 import cn.riverdream.pojo.TbDictExample;
 import cn.riverdream.pojo.TbDictExample.Criteria;
+import cn.riverdream.pojo.TbInvoice;
+import cn.riverdream.pojo.TbInvoiceExample;
 import cn.riverdream.service.ContractService;
 import cn.riverdream.utils.DataGridResultInfo;
 
@@ -34,6 +40,12 @@ public class ContractServiceImpl implements ContractService {
 
 	@Autowired
 	private TbDictMapper dictMapper;
+	
+	@Autowired
+	private TbInvoiceMapper invoiceMapper;
+	
+	@Autowired
+	private TbCheckMapper checkMapper;
 
 	@Override
 	public Integer save(TbContract contract) {
@@ -153,7 +165,7 @@ public class ContractServiceImpl implements ContractService {
 			criteria.andCreatedateLessThanOrEqualTo(end);
 		}
 		criteria.andFlagEqualTo(1);
-		example.setOrderByClause("createdate desc");
+		example.setOrderByClause("createdate desc, contractno desc");
 		int page = vo.getPage();
 		int rows = vo.getRows();
 		PageHelper.startPage(page, rows);
@@ -203,10 +215,29 @@ public class ContractServiceImpl implements ContractService {
 	@Override
 	public void update(ContractVo vo) {
 		Integer serialno = vo.getContract().getSerialno();
+		String contractno = vo.getContract().getContractno();
+		String consumer = vo.getContract().getConsumer();
 		TbContractExample example = new TbContractExample();
 		cn.riverdream.pojo.TbContractExample.Criteria criteria = example.createCriteria();
 		criteria.andSerialnoEqualTo(serialno);
 		contractMapper.updateByExampleSelective(vo.getContract(), example);
+		
+		TbInvoiceExample invoiceExample = new TbInvoiceExample();
+		cn.riverdream.pojo.TbInvoiceExample.Criteria criteria2 = invoiceExample.createCriteria();
+		criteria2.andContractserialnoEqualTo(serialno);
+		TbInvoice invoice = new TbInvoice();
+		invoice.setContractno(contractno);
+		invoice.setConsumer(consumer);
+		invoiceMapper.updateByExampleSelective(invoice, invoiceExample);
+		
+		TbCheckExample checkExample = new TbCheckExample();
+		cn.riverdream.pojo.TbCheckExample.Criteria criteria3 = checkExample.createCriteria();
+		criteria3.andContractserialnoEqualTo(serialno);
+		TbCheck check = new TbCheck();
+		check.setContractno(contractno);
+		check.setConsumer(consumer);
+		checkMapper.updateByExampleSelective(check, checkExample);
+		
 	}
 
 	@Override
