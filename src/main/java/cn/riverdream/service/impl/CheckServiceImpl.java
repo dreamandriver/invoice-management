@@ -41,7 +41,8 @@ public class CheckServiceImpl implements CheckService {
 		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
 		BigDecimal o = new BigDecimal(Double.toString(other));
 
-		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p).subtract(o);
+		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p)
+				.subtract(o);
 		check.setAccount(result.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		BigDecimal tax = i.multiply(t).divide(new BigDecimal(100));
 		check.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
@@ -86,7 +87,7 @@ public class CheckServiceImpl implements CheckService {
 		if (outend != null) {
 			criteria.andPaydateLessThanOrEqualTo(outend);
 		}
-		
+
 		example.setOrderByClause("incomedate desc, checkno desc");
 		PageHelper.startPage(page, rows);
 		List<TbCheck> list = checkMapper.selectByExample(example);
@@ -103,8 +104,8 @@ public class CheckServiceImpl implements CheckService {
 		DataGridResultInfo result = new DataGridResultInfo();
 
 		// 身份
-		//Subject subject = SecurityUtils.getSubject();
-		//TbUser activeUser = (TbUser) subject.getPrincipal();
+		// Subject subject = SecurityUtils.getSubject();
+		// TbUser activeUser = (TbUser) subject.getPrincipal();
 		// if("admin".equalsIgnoreCase(activeUser.getPermission1())){
 		// 合计
 		List<TbCheck> listsum = checkMapper.selectByExample(example);
@@ -114,8 +115,8 @@ public class CheckServiceImpl implements CheckService {
 			Double taxamount = t.getTaxamount();
 			Double payamount = t.getPayamount();
 			Double other = t.getOther();
-			if (other == null){
-				other=0.00;
+			if (other == null) {
+				other = 0.00;
 			}
 			ba = ba.add(new BigDecimal(account));
 			bi = bi.add(new BigDecimal(incomeamount));
@@ -171,7 +172,8 @@ public class CheckServiceImpl implements CheckService {
 		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
 		BigDecimal o = new BigDecimal(Double.toString(other));
 
-		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p).subtract(o);
+		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p)
+				.subtract(o);
 		check.setAccount(result.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		BigDecimal tax = i.multiply(t).divide(new BigDecimal(100));
 		check.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());

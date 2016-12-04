@@ -40,58 +40,24 @@ public class ContractServiceImpl implements ContractService {
 
 	@Autowired
 	private TbDictMapper dictMapper;
-	
+
 	@Autowired
 	private TbInvoiceMapper invoiceMapper;
-	
+
 	@Autowired
 	private TbCheckMapper checkMapper;
 
 	@Override
 	public Integer save(TbContract contract) {
 
-//		String contractNo;
-//		// 生成合同编号 编号规则：1610001（两位年份+两位月份+三位流水）
-//		SimpleDateFormat formatter;
-//		formatter = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss a");
-//		String ctime = formatter.format(new Date());
-//		String year = ctime.substring(2, 4);
-//		String month = ctime.substring(5, 7);
-//
-//		TbDictExample dictExample = new TbDictExample();
-//		Criteria dictCriteria = dictExample.createCriteria();
-//		dictCriteria.andItemEqualTo("contractNo");
-//		List<TbDict> dictList = dictMapper.selectByExample(dictExample);
-//		if (dictList == null || dictList.size() == 0) {
-//			contractNo = year + month + "001";
-//		} else {
-//			TbDict dict = dictList.get(0);
-//			if (dict == null || dict.getValue() == null) {
-//				contractNo = year + month + "001";
-//			} else if (!dict.getValue().startsWith(year)) {
-//				contractNo = year + month + "001";
-//			} else if (!dict.getValue().startsWith(year + month)) {
-//				contractNo = year + month + "001";
-//			} else {
-//				Integer num = Integer.parseInt(dict.getValue().substring(4)) + 1;
-//				if (num < 10) {
-//					contractNo = year + month + "00" + num;
-//				} else if (num < 100) {
-//					contractNo = year + month + "0" + num;
-//				} else {
-//					contractNo = year + month + num;
-//				}
-//			}
-//		}
-
 		contract.setCreatedate(new Date());
 		contract.setFlag(1);
 
 		contractMapper.insert(contract);
-		
+
 		String contractNo = getcontractNo();
 		String contractno2 = contract.getContractno();
-		if(contractNo.equalsIgnoreCase(contractno2)){
+		if (contractNo.equalsIgnoreCase(contractno2)) {
 			TbDict dict = new TbDict();
 			dict.setItem("contractNo");
 			dict.setValue(contractNo);
@@ -104,9 +70,9 @@ public class ContractServiceImpl implements ContractService {
 
 		return contract.getSerialno();
 	}
-	
+
 	@Override
-	public String getcontractNo(){
+	public String getcontractNo() {
 		String contractNo;
 		// 生成合同编号 编号规则：1610001（两位年份+两位月份+三位流水）
 		SimpleDateFormat formatter;
@@ -177,8 +143,8 @@ public class ContractServiceImpl implements ContractService {
 		DataGridResultInfo result = new DataGridResultInfo();
 
 		// 身份
-		//Subject subject = SecurityUtils.getSubject();
-		//TbUser activeUser = (TbUser) subject.getPrincipal();
+		// Subject subject = SecurityUtils.getSubject();
+		// TbUser activeUser = (TbUser) subject.getPrincipal();
 		// if ("admin".equalsIgnoreCase(activeUser.getPermission1())) {
 		// 合计
 		List<TbContract> listsum = contractMapper.selectByExample(example);
@@ -221,7 +187,7 @@ public class ContractServiceImpl implements ContractService {
 		cn.riverdream.pojo.TbContractExample.Criteria criteria = example.createCriteria();
 		criteria.andSerialnoEqualTo(serialno);
 		contractMapper.updateByExampleSelective(vo.getContract(), example);
-		
+
 		TbInvoiceExample invoiceExample = new TbInvoiceExample();
 		cn.riverdream.pojo.TbInvoiceExample.Criteria criteria2 = invoiceExample.createCriteria();
 		criteria2.andContractserialnoEqualTo(serialno);
@@ -229,7 +195,7 @@ public class ContractServiceImpl implements ContractService {
 		invoice.setContractno(contractno);
 		invoice.setConsumer(consumer);
 		invoiceMapper.updateByExampleSelective(invoice, invoiceExample);
-		
+
 		TbCheckExample checkExample = new TbCheckExample();
 		cn.riverdream.pojo.TbCheckExample.Criteria criteria3 = checkExample.createCriteria();
 		criteria3.andContractserialnoEqualTo(serialno);
@@ -237,7 +203,7 @@ public class ContractServiceImpl implements ContractService {
 		check.setContractno(contractno);
 		check.setConsumer(consumer);
 		checkMapper.updateByExampleSelective(check, checkExample);
-		
+
 	}
 
 	@Override
@@ -284,13 +250,13 @@ public class ContractServiceImpl implements ContractService {
 	public TbContract findByContractNo(String contractNo) {
 		TbContractExample example = new TbContractExample();
 		cn.riverdream.pojo.TbContractExample.Criteria criteria = example.createCriteria();
-		
+
 		if (StringUtils.isNotBlank(contractNo)) {
 			criteria.andContractnoEqualTo(contractNo);
 		}
 		criteria.andFlagEqualTo(1);
 		List<TbContract> list = contractMapper.selectByExample(example);
-		if(list == null || list.size()==0){
+		if (list == null || list.size() == 0) {
 			return null;
 		}
 		return list.get(0);
