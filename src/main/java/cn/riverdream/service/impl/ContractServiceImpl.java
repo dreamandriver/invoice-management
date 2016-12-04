@@ -153,6 +153,7 @@ public class ContractServiceImpl implements ContractService {
 			criteria.andCreatedateLessThanOrEqualTo(end);
 		}
 		criteria.andFlagEqualTo(1);
+		example.setOrderByClause("createdate desc");
 		int page = vo.getPage();
 		int rows = vo.getRows();
 		PageHelper.startPage(page, rows);

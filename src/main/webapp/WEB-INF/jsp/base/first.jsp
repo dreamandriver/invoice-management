@@ -55,7 +55,9 @@
 					"menuid" : "1_1",
 					"menuname" : "合同管理",
 					"url" : "/management/contract"
-				}, {
+				}
+				<c:if test="${activeUser.permission1 == 'admin'}">  
+				, {
 					"icon" : "icon-log",
 					"menuid" : "1_1",
 					"menuname" : "普通发票管理",
@@ -65,12 +67,17 @@
 					"menuid" : "1_1",
 					"menuname" : "专业发票管理",
 					"url" : "/management/specialinvoice"
-				} ,{
+				} 
+				</c:if>
+				<c:if test="${activeUser.permission2 == 'admin'}"> 
+				,{
 					"icon" : "icon-log",
 					"menuid" : "1_1",
 					"menuname" : "支票管理",
 					"url" : "/management/check"
-				}]
+				}
+				</c:if>
+				]
 			}]
 		};
 		_menus = data;

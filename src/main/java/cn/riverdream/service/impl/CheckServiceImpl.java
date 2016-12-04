@@ -86,6 +86,8 @@ public class CheckServiceImpl implements CheckService {
 		if (outend != null) {
 			criteria.andPaydateLessThanOrEqualTo(outend);
 		}
+		
+		example.setOrderByClause("incomedate desc");
 		PageHelper.startPage(page, rows);
 		List<TbCheck> list = checkMapper.selectByExample(example);
 

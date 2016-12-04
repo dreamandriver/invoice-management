@@ -134,7 +134,7 @@
 								<TD class=category width="35%">
 								<div>
 									<input type="checkbox" name = "user.permission1" value ="admin"> 发票 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type=""checkbox" name = "user.permission2" value ="admin"> 支票
+									<input type="checkbox" name = "user.permission2" value ="admin"> 支票
 								</div>
 								</TD>
 							</TR>
