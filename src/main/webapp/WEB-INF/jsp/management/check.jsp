@@ -337,6 +337,8 @@ function initGrid(){
 						<td><INPUT type="text"  name="contractno" /></TD>
 						<TD class="left">客户名称：</TD>
 						<td ><INPUT type="text" name="consumer" /></td>
+						<TD class="left">单位名称：</TD>
+						<td ><INPUT type="text" name="company" /></td>
 						<TD class="left">支票号：</TD>
 						<td ><INPUT type="text" name="checkno" /></td>
 					</TR>
@@ -353,7 +355,7 @@ function initGrid(){
 				      		至
 				      		<input class="laydate-icon" id="outend" name="outend" style="width:150px;">
 				 		 </td>
-				 		 <td colspan=2 >
+				 		 <td colspan=4 >
 							<a id="btn" href="#" onclick="checkquery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
 						</td>
 					</tr>

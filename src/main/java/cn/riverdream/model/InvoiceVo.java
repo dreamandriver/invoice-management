@@ -14,9 +14,11 @@ public class InvoiceVo {
 	private TbInvoice invoice;
 
 	private TbContract contract;
-	
+
 	private String consumer;
-	
+
+	private String company;
+
 	private String contractno;
 
 	private String invoiceno;
@@ -28,6 +30,14 @@ public class InvoiceVo {
 	private int page;
 
 	private int rows;
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
 
 	public String getConsumer() {
 		return consumer;

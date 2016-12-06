@@ -311,6 +311,8 @@ function initGrid(){
 						<td><INPUT type="text"  name="contractno" /></TD>
 						<TD class="left">客户名称：</TD>
 						<td ><INPUT type="text" name="consumer" /></td>
+						<TD class="left">单位名称：</TD>
+						<td ><INPUT type="text" name="company" /></td>
 						<TD class="left">发票号：</TD>
 						<td ><INPUT type="text" name="invoiceno" /></td>
 						<td class="left">开票日期：</td>

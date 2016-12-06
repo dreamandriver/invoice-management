@@ -54,6 +54,7 @@ public class CheckServiceImpl implements CheckService {
 	public DataGridResultInfo find(CheckVo vo) {
 		String contractno = vo.getContractno();
 		String consumer = vo.getConsumer();
+		String company = vo.getCompany();
 		String checkno = vo.getCheckno();
 		Date instart = vo.getInstart();
 		Date inend = vo.getInend();
@@ -74,6 +75,9 @@ public class CheckServiceImpl implements CheckService {
 		}
 		if (StringUtils.isNotBlank(consumer)) {
 			criteria.andConsumerLike("%" + consumer + "%");
+		}
+		if (StringUtils.isNoneBlank(company)) {
+			criteria.andCompanyLike("%" + company + "%");
 		}
 		if (instart != null) {
 			criteria.andIncomedateGreaterThanOrEqualTo(instart);

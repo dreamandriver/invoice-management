@@ -33,6 +33,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 		String contractno = vo.getContractno();
 		String consumer = vo.getConsumer();
+		String company = vo.getCompany();
 		String invoiceno = vo.getInvoiceno();
 		Date start = vo.getStart();
 		Date end = vo.getEnd();
@@ -52,6 +53,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 		}
 		if (StringUtils.isNotBlank(consumer)) {
 			criteria.andConsumerLike("%" + consumer + "%");
+		}
+		if (StringUtils.isNoneBlank(company)) {
+			criteria.andCompanyLike("%" + company + "%");
 		}
 		if (start != null) {
 			criteria.andCreatedateGreaterThanOrEqualTo(start);

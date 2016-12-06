@@ -322,6 +322,8 @@ function initGrid(){
 						<td><INPUT type="text"  name="contractno" /></TD>
 						<TD class="left">客户名称：</TD>
 						<td ><INPUT type="text" name="consumer" /></td>
+						<TD class="left">单位名称：</TD>
+						<td ><INPUT type="text" name="company" /></td>
 						 <td class="left">日期：</td>
 				  		<td>
 				      		<input class="laydate-icon" id="start" name="start" style="width:150px; margin-right:10px;">

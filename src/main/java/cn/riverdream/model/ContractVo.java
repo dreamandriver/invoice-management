@@ -7,23 +7,33 @@ import java.util.Date;
 import cn.riverdream.pojo.TbContract;
 
 public class ContractVo {
-	
+
 	private int serialno;
 
 	private TbContract contract;
-	
+
 	private String contractno;
-	
+
 	private String consumer;
-	
+
+	private String company;
+
 	private Date startDate;
-	
+
 	private Date endDate;
-	
+
 	private int page;
-	
+
 	private int rows;
-	
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
 	public int getSerialno() {
 		return serialno;
 	}
@@ -69,13 +79,13 @@ public class ContractVo {
 	}
 
 	public void setStart(String start) {
-		SimpleDateFormat formatter; 
-        formatter = new SimpleDateFormat ("yyyy/MM/dd"); 
-        try {
+		SimpleDateFormat formatter;
+		formatter = new SimpleDateFormat("yyyy/MM/dd");
+		try {
 			this.startDate = formatter.parse(start);
 		} catch (ParseException e) {
 			this.startDate = null;
-		} 
+		}
 
 	}
 
@@ -84,13 +94,13 @@ public class ContractVo {
 	}
 
 	public void setEnd(String end) {
-		SimpleDateFormat formatter; 
-        formatter = new SimpleDateFormat ("yyyy/MM/dd"); 
-        try {
+		SimpleDateFormat formatter;
+		formatter = new SimpleDateFormat("yyyy/MM/dd");
+		try {
 			this.endDate = formatter.parse(end);
 		} catch (ParseException e) {
 			this.endDate = null;
-		} 
+		}
 	}
 
 	public TbContract getContract() {

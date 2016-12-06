@@ -8,16 +8,17 @@ import cn.riverdream.pojo.TbCheck;
 import cn.riverdream.pojo.TbContract;
 
 public class CheckVo {
-	
 
 	private Integer serialno;
 
 	private TbCheck Check;
-	
+
 	private TbContract contract;
-	
+
 	private String consumer;
-	
+
+	private String company;
+
 	private String contractno;
 
 	private String checkno;
@@ -25,7 +26,7 @@ public class CheckVo {
 	private Date instartDate;
 
 	private Date inendDate;
-	
+
 	private Date outstartDate;
 
 	private Date outendDate;
@@ -33,7 +34,15 @@ public class CheckVo {
 	private int page;
 
 	private int rows;
-	
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
 	public Integer getSerialno() {
 		return serialno;
 	}
@@ -87,7 +96,7 @@ public class CheckVo {
 			this.instartDate = null;
 		}
 	}
-	
+
 	public Date getInend() {
 		return inendDate;
 	}

@@ -112,6 +112,7 @@ public class ContractServiceImpl implements ContractService {
 	public DataGridResultInfo find(ContractVo vo) {
 		String consumer = vo.getConsumer();
 		String contractno = vo.getContractno();
+		String company = vo.getCompany();
 		Date start = vo.getStart();
 		Date end = vo.getEnd();
 
@@ -119,6 +120,9 @@ public class ContractServiceImpl implements ContractService {
 		cn.riverdream.pojo.TbContractExample.Criteria criteria = example.createCriteria();
 		if (StringUtils.isNoneBlank(consumer)) {
 			criteria.andConsumerLike("%" + consumer + "%");
+		}
+		if (StringUtils.isNoneBlank(company)) {
+			criteria.andCompanyLike("%" + company + "%");
 		}
 		if (StringUtils.isNotBlank(contractno)) {
 			criteria.andContractnoEqualTo(contractno);
