@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,10 @@ import cn.riverdream.mapper.TbCheckMapper;
 import cn.riverdream.mapper.TbContractMapper;
 import cn.riverdream.mapper.TbDictMapper;
 import cn.riverdream.mapper.TbInvoiceMapper;
+import cn.riverdream.model.CheckVo;
+import cn.riverdream.model.Contract;
 import cn.riverdream.model.ContractVo;
+import cn.riverdream.model.InvoiceVo;
 import cn.riverdream.pojo.TbCheck;
 import cn.riverdream.pojo.TbCheckExample;
 import cn.riverdream.pojo.TbContract;
@@ -29,7 +33,9 @@ import cn.riverdream.pojo.TbDictExample;
 import cn.riverdream.pojo.TbDictExample.Criteria;
 import cn.riverdream.pojo.TbInvoice;
 import cn.riverdream.pojo.TbInvoiceExample;
+import cn.riverdream.service.CheckService;
 import cn.riverdream.service.ContractService;
+import cn.riverdream.service.InvoiceService;
 import cn.riverdream.utils.DataGridResultInfo;
 
 @Service
@@ -46,6 +52,12 @@ public class ContractServiceImpl implements ContractService {
 
 	@Autowired
 	private TbCheckMapper checkMapper;
+	
+	@Autowired
+	private InvoiceService invoiceService;
+	
+	@Autowired
+	private CheckService checkService;
 
 	@Override
 	public Integer save(TbContract contract) {
@@ -139,6 +151,40 @@ public class ContractServiceImpl implements ContractService {
 		int rows = vo.getRows();
 		PageHelper.startPage(page, rows);
 		List<TbContract> list = contractMapper.selectByExample(example);
+		List<Contract> newList = new ArrayList<Contract>();
+		for (TbContract c : list) {
+			Contract dest = new Contract();
+			try {
+				BeanUtils.copyProperties(dest, c);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			//普票合计
+			InvoiceVo civ = new InvoiceVo();
+			civ.setContractno(c.getContractno());
+			DataGridResultInfo civResult = invoiceService.find(0, civ);
+			@SuppressWarnings("unchecked")
+			HashMap<String, String> civMap= (HashMap<String, String>) civResult.getFooter().get(0);
+			dest.setCinvoice(civMap.get("amount"));
+			
+			//专票合计
+			InvoiceVo siv = new InvoiceVo();
+			civ.setContractno(c.getContractno());
+			DataGridResultInfo sivResult = invoiceService.find(1, siv);
+			@SuppressWarnings("unchecked")
+			HashMap<String, String> sivMap= (HashMap<String, String>) sivResult.getFooter().get(0);
+			dest.setSinvoice(sivMap.get("amount"));
+			
+			//支票合计
+			CheckVo ch = new CheckVo();
+			ch.setContractno(c.getContractno());
+			DataGridResultInfo chResult = checkService.find(ch);
+			@SuppressWarnings("unchecked")
+			HashMap<String, String> chMap = (HashMap<String, String>) chResult.getFooter().get(0);
+			dest.setCheck(chMap.get("incomeamount"));
+			
+			newList.add(dest);
+		}
 
 		// 取分页信息
 		PageInfo<TbContract> pageInfo = new PageInfo<>(list);
@@ -165,7 +211,7 @@ public class ContractServiceImpl implements ContractService {
 		result.setFooter(sum);
 		// }
 		result.setTotal(total);
-		result.setRows(list);
+		result.setRows(newList);
 		return result;
 	}
 

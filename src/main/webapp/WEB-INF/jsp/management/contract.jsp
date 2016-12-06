@@ -197,7 +197,7 @@ var columns = [ [{
 },{
 	field : 'amount',
 	title : '金额(元)',
-	width : 80
+	width : 100
 },{
 	field : 'company',
 	title : '单位名称',
@@ -215,7 +215,26 @@ var columns = [ [{
 			return "--";
 		}
 	}
+}
+<c:if test="${activeUser.permission1 == 'admin'}">  
+,{
+	field : 'cinvoice',
+	title : '普票',
+	width : 100
 },{
+	field : 'sinvoice',
+	title : '专票',
+	width : 100
+}
+</c:if>
+<c:if test="${activeUser.permission2 == 'admin'}"> 
+,{
+	field : 'check',
+	title : '支票',
+	width : 100
+}
+</c:if>
+,{
 	field : 'comment',
 	title : '备注',
 	width : 350
