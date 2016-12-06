@@ -495,52 +495,52 @@ public class TbCheckExample {
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointEqualTo(Integer value) {
+		public Criteria andTaxpointEqualTo(Double value) {
 			addCriterion("TAXPOINT =", value, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointNotEqualTo(Integer value) {
+		public Criteria andTaxpointNotEqualTo(Double value) {
 			addCriterion("TAXPOINT <>", value, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointGreaterThan(Integer value) {
+		public Criteria andTaxpointGreaterThan(Double value) {
 			addCriterion("TAXPOINT >", value, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointGreaterThanOrEqualTo(Integer value) {
+		public Criteria andTaxpointGreaterThanOrEqualTo(Double value) {
 			addCriterion("TAXPOINT >=", value, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointLessThan(Integer value) {
+		public Criteria andTaxpointLessThan(Double value) {
 			addCriterion("TAXPOINT <", value, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointLessThanOrEqualTo(Integer value) {
+		public Criteria andTaxpointLessThanOrEqualTo(Double value) {
 			addCriterion("TAXPOINT <=", value, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointIn(List<Integer> values) {
+		public Criteria andTaxpointIn(List<Double> values) {
 			addCriterion("TAXPOINT in", values, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointNotIn(List<Integer> values) {
+		public Criteria andTaxpointNotIn(List<Double> values) {
 			addCriterion("TAXPOINT not in", values, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointBetween(Integer value1, Integer value2) {
+		public Criteria andTaxpointBetween(Double value1, Double value2) {
 			addCriterion("TAXPOINT between", value1, value2, "taxpoint");
 			return (Criteria) this;
 		}
 
-		public Criteria andTaxpointNotBetween(Integer value1, Integer value2) {
+		public Criteria andTaxpointNotBetween(Double value1, Double value2) {
 			addCriterion("TAXPOINT not between", value1, value2, "taxpoint");
 			return (Criteria) this;
 		}

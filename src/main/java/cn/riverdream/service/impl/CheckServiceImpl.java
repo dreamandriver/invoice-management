@@ -34,7 +34,7 @@ public class CheckServiceImpl implements CheckService {
 		check.setCreatedate(new Date());
 		Double payamount = check.getPayamount();
 		Double incomeamount = check.getIncomeamount();
-		Integer taxpoint = check.getTaxpoint();
+		Double taxpoint = check.getTaxpoint();
 		Double other = check.getOther();
 		BigDecimal p = new BigDecimal(Double.toString(payamount));
 		BigDecimal i = new BigDecimal(Double.toString(incomeamount));
@@ -165,7 +165,7 @@ public class CheckServiceImpl implements CheckService {
 		TbCheck check = checkMapper.selectByPrimaryKey(serialno);
 		Double payamount = check.getPayamount();
 		Double incomeamount = check.getIncomeamount();
-		Integer taxpoint = check.getTaxpoint();
+		Double taxpoint = check.getTaxpoint();
 		Double other = check.getOther();
 		BigDecimal p = new BigDecimal(Double.toString(payamount));
 		BigDecimal i = new BigDecimal(Double.toString(incomeamount));

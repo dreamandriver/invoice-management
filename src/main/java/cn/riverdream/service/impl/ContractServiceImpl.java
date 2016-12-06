@@ -50,7 +50,6 @@ public class ContractServiceImpl implements ContractService {
 	@Override
 	public Integer save(TbContract contract) {
 
-		contract.setCreatedate(new Date());
 		contract.setFlag(1);
 
 		contractMapper.insert(contract);

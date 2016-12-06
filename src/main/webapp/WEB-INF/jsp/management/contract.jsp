@@ -122,7 +122,7 @@ var showcontract = function(serialNo){
 	
 	var sendUrl = '${baseurl}/management/contract/detail/' + serialNo;
 	
-	createmodalwindow("合同详情", 1100, 580, sendUrl);
+	createmodalwindow("合同详情", 1155, 540, sendUrl);
 }
 
 /* function contractedit_callback(redata){

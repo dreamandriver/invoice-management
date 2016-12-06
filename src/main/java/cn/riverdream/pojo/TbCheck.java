@@ -15,7 +15,7 @@ public class TbCheck {
 
     private Double incomeamount;
 
-    private Integer taxpoint;
+    private Double taxpoint;
 
     private Double taxamount;
 
@@ -87,11 +87,11 @@ public class TbCheck {
         this.incomeamount = incomeamount;
     }
 
-    public Integer getTaxpoint() {
+    public Double getTaxpoint() {
         return taxpoint;
     }
 
-    public void setTaxpoint(Integer taxpoint) {
+    public void setTaxpoint(Double taxpoint) {
         this.taxpoint = taxpoint;
     }
 

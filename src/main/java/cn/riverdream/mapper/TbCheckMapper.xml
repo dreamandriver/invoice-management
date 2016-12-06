@@ -8,7 +8,7 @@
     <result column="CONTRACTNO" property="contractno" jdbcType="VARCHAR" />
     <result column="INCOMEDATE" property="incomedate" jdbcType="TIMESTAMP" />
     <result column="INCOMEAMOUNT" property="incomeamount" jdbcType="DOUBLE" />
-    <result column="TAXPOINT" property="taxpoint" jdbcType="INTEGER" />
+    <result column="TAXPOINT" property="taxpoint" jdbcType="DOUBLE" />
     <result column="TAXAMOUNT" property="taxamount" jdbcType="DOUBLE" />
     <result column="PAYAMOUNT" property="payamount" jdbcType="DOUBLE" />
     <result column="PAYDATE" property="paydate" jdbcType="TIMESTAMP" />
@@ -124,7 +124,7 @@
       )
     values (#{serialno,jdbcType=INTEGER}, #{checkno,jdbcType=VARCHAR}, #{contractserialno,jdbcType=INTEGER}, 
       #{contractno,jdbcType=VARCHAR}, #{incomedate,jdbcType=TIMESTAMP}, #{incomeamount,jdbcType=DOUBLE}, 
-      #{taxpoint,jdbcType=INTEGER}, #{taxamount,jdbcType=DOUBLE}, #{payamount,jdbcType=DOUBLE}, 
+      #{taxpoint,jdbcType=DOUBLE}, #{taxamount,jdbcType=DOUBLE}, #{payamount,jdbcType=DOUBLE}, 
       #{paydate,jdbcType=TIMESTAMP}, #{other,jdbcType=DOUBLE}, #{account,jdbcType=DOUBLE}, 
       #{company,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{consumer,jdbcType=VARCHAR}, 
       #{comment,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER}
@@ -208,7 +208,7 @@
         #{incomeamount,jdbcType=DOUBLE},
       </if>
       <if test="taxpoint != null" >
-        #{taxpoint,jdbcType=INTEGER},
+        #{taxpoint,jdbcType=DOUBLE},
       </if>
       <if test="taxamount != null" >
         #{taxamount,jdbcType=DOUBLE},
@@ -273,7 +273,7 @@
         INCOMEAMOUNT = #{record.incomeamount,jdbcType=DOUBLE},
       </if>
       <if test="record.taxpoint != null" >
-        TAXPOINT = #{record.taxpoint,jdbcType=INTEGER},
+        TAXPOINT = #{record.taxpoint,jdbcType=DOUBLE},
       </if>
       <if test="record.taxamount != null" >
         TAXAMOUNT = #{record.taxamount,jdbcType=DOUBLE},
@@ -321,7 +321,7 @@
       CONTRACTNO = #{record.contractno,jdbcType=VARCHAR},
       INCOMEDATE = #{record.incomedate,jdbcType=TIMESTAMP},
       INCOMEAMOUNT = #{record.incomeamount,jdbcType=DOUBLE},
-      TAXPOINT = #{record.taxpoint,jdbcType=INTEGER},
+      TAXPOINT = #{record.taxpoint,jdbcType=DOUBLE},
       TAXAMOUNT = #{record.taxamount,jdbcType=DOUBLE},
       PAYAMOUNT = #{record.payamount,jdbcType=DOUBLE},
       PAYDATE = #{record.paydate,jdbcType=TIMESTAMP},
@@ -356,7 +356,7 @@
         INCOMEAMOUNT = #{incomeamount,jdbcType=DOUBLE},
       </if>
       <if test="taxpoint != null" >
-        TAXPOINT = #{taxpoint,jdbcType=INTEGER},
+        TAXPOINT = #{taxpoint,jdbcType=DOUBLE},
       </if>
       <if test="taxamount != null" >
         TAXAMOUNT = #{taxamount,jdbcType=DOUBLE},
@@ -401,7 +401,7 @@
       CONTRACTNO = #{contractno,jdbcType=VARCHAR},
       INCOMEDATE = #{incomedate,jdbcType=TIMESTAMP},
       INCOMEAMOUNT = #{incomeamount,jdbcType=DOUBLE},
-      TAXPOINT = #{taxpoint,jdbcType=INTEGER},
+      TAXPOINT = #{taxpoint,jdbcType=DOUBLE},
       TAXAMOUNT = #{taxamount,jdbcType=DOUBLE},
       PAYAMOUNT = #{payamount,jdbcType=DOUBLE},
       PAYDATE = #{paydate,jdbcType=TIMESTAMP},
