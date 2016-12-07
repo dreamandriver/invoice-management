@@ -380,7 +380,7 @@ $('#checklist').datagrid({
 								<TD height=30 width="15%" align=right >金额：</TD>
 								<TD class=category width="35%">
 								<div>
-								${contract.amount}
+								<fmt:formatNumber value="${contract.amount}" pattern="#.00" type="number"/>
 								</div>
 								<div id="contract_amountTip"></div>
 								</TD>
