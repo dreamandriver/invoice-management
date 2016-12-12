@@ -267,7 +267,7 @@ function initGrid(){
 		//remoteSort : false,
 		idField : 'id',
 		//frozenColumns : frozenColumns,
-		//fitColumns: true,
+		fitColumns: true,
 		showFooter:true,
 		columns : columns,
 		pagination : true,

@@ -159,9 +159,10 @@ public class ContractServiceImpl implements ContractService {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			String contractno2 = c.getContractno();
 			//普票合计
 			InvoiceVo civ = new InvoiceVo();
-			civ.setContractno(c.getContractno());
+			civ.setContractno(contractno2);
 			DataGridResultInfo civResult = invoiceService.find(0, civ);
 			@SuppressWarnings("unchecked")
 			HashMap<String, String> civMap= (HashMap<String, String>) civResult.getFooter().get(0);
@@ -169,7 +170,7 @@ public class ContractServiceImpl implements ContractService {
 			
 			//专票合计
 			InvoiceVo siv = new InvoiceVo();
-			civ.setContractno(c.getContractno());
+			siv.setContractno(contractno2);
 			DataGridResultInfo sivResult = invoiceService.find(1, siv);
 			@SuppressWarnings("unchecked")
 			HashMap<String, String> sivMap= (HashMap<String, String>) sivResult.getFooter().get(0);
