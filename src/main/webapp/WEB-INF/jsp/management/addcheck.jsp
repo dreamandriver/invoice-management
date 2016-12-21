@@ -232,7 +232,7 @@
 							    <TD height=30 width="15%" align=right >单位名称：</TD>
 								<TD class=category width="75%" colspan="3" >
 								<div>
-								<input type="text" id="check_company" name="check.company" value="${check.company}" style=" width: 640px;"/>
+								<input type="text" id="check_company" name="check.company" value="${contract.company}" style=" width: 640px;"/>
 								</div>
 								<div id="check_companyTip"></div>
 								</TD>

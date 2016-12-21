@@ -186,7 +186,7 @@
 							    <TD height=30 width="15%" align=right >单位名称：</TD>
 								<TD class=category width="75%" colspan="3">
 								<div>
-								<input type="text" id="invoice_company" name="invoice.company" value="${invoice.company}" style=" width: 640px;"/>
+								<input type="text" id="invoice_company" name="invoice.company" value="${contract.company}" style=" width: 640px;"/>
 								</div>
 								<div id="invoice_companyTip"></div>
 								</TD>
