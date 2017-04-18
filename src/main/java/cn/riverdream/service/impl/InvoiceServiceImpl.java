@@ -118,15 +118,18 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		Double amount = invoice.getAmount();
 		Double taxpoint = invoice.getTaxpoint();
-		BigDecimal a = new BigDecimal(Double.toString(amount));
-		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
-		BigDecimal tax = t.multiply(a).divide(new BigDecimal(100));
+		BigDecimal a = new BigDecimal(Double.toString(amount)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal t = new BigDecimal(Double.toString(taxpoint)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal tax = t.multiply(a).divide(new BigDecimal(100)).setScale(2, BigDecimal.ROUND_HALF_UP);
 		if(invoice.getStatus() == 1){//作废
 			tax = new BigDecimal(0);
 		}else if(invoice.getStatus() == 2){//退票
 			tax = new BigDecimal(0).subtract(tax);
 		}
 		invoice.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+		invoice.setAmount(a.doubleValue());
+		invoice.setTaxpoint(t.doubleValue());
+		invoice.setFinish(0);
 		
 		invoice.setWorkdate(new Date());
 		invoiceMapper.insert(invoice);
@@ -164,15 +167,17 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		Double amount = invoicevo.getInvoice().getAmount();
 		Double taxpoint = invoicevo.getInvoice().getTaxpoint();
-		BigDecimal a = new BigDecimal(Double.toString(amount));
-		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
-		BigDecimal tax = t.multiply(a).divide(new BigDecimal(100));
+		BigDecimal a = new BigDecimal(Double.toString(amount)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal t = new BigDecimal(Double.toString(taxpoint)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal tax = t.multiply(a).divide(new BigDecimal(100)).setScale(2, BigDecimal.ROUND_HALF_UP);
 		if(invoicevo.getInvoice().getStatus() == 1){//作废
 			tax = new BigDecimal(0);
 		}else if(invoicevo.getInvoice().getStatus() == 2){//退票
 			tax = new BigDecimal(0).subtract(tax);
 		}
-		invoicevo.getInvoice().setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+		invoicevo.getInvoice().setTaxamount(tax.doubleValue());
+		invoicevo.getInvoice().setAmount(a.doubleValue());
+		invoicevo.getInvoice().setTaxpoint(t.doubleValue());
 		
 		Integer serialNo = invoicevo.getInvoice().getSerialno();
 		TbInvoiceExample example = new TbInvoiceExample();
@@ -212,6 +217,20 @@ public class InvoiceServiceImpl implements InvoiceService {
 		}
 		List<TbInvoice> list = invoiceMapper.selectByExample(example);
 		return list;
+	}
+
+	@Override
+	public void changeFinish(TbInvoice invoice) {
+		Integer serialno = invoice.getSerialno();
+		Integer finish = invoice.getFinish();
+		TbInvoice ninvoice = new TbInvoice();
+		ninvoice.setSerialno(serialno);
+		ninvoice.setFinish(finish);
+		
+		TbInvoiceExample example = new TbInvoiceExample();
+		cn.riverdream.pojo.TbInvoiceExample.Criteria criteria = example.createCriteria();
+		criteria.andSerialnoEqualTo(serialno);
+		invoiceMapper.updateByExampleSelective(ninvoice, example);
 	}
 
 }

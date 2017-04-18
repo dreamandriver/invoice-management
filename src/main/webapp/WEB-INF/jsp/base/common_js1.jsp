@@ -1,6 +1,6 @@
 <script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
-<SCRIPT type="text/javascript" src="/js/easyui/jquery.easyui.min.1.2.2.js"></SCRIPT>
-<script type="text/javascript" src="/js/easyui/locale/easyui-lang-zh_CN.js"></script>
+<SCRIPT type="text/javascript" src="/js/easyuiold/jquery.easyui.min.1.2.2.js"></SCRIPT>
+<script type="text/javascript" src="/js/easyuiold/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="/js/jquery.form.min.js"></script>
 
 <script type="text/javascript" src="/js/custom.jquery.form.js"></script>

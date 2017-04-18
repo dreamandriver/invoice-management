@@ -159,7 +159,21 @@ var frozenColumns;
 var columns = [ [{
 	field : 'id',
 	title : '',
-	checkbox:true
+	checkbox:true,
+	hidden:true
+},{
+	field : 'serialno',
+	title : '已核对',
+	width : 40,
+	formatter:function(value, row, index){
+		if(row.serialno){
+			if(row.finish ==1 ){
+				return '<input type="checkbox" checked="checked" class="iffinish" value="'+ row.serialno +'">'
+			}else{
+		    	return '<input type="checkbox" class="iffinish" value="'+ row.serialno +'">'
+			}
+		}
+	}
 },{
 	field : 'contractno',
 	title : '合同号',
@@ -278,7 +292,26 @@ function initGrid(){
 		pageList:[15,30,50,100],
 		onClickRow : function(index, field, value) {
 					$('#invoicelist').datagrid('unselectRow', index);
-				}
+				},
+		rowStyler:function(index,row,css){
+			if (row.finish == 1){
+				return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+			}else{
+				return 'width:auto;';
+			}
+		},
+		onLoadSuccess:function(data){      
+			
+			$(":checkbox").click(function(){
+				$.post("${baseurl}/management/invoice/finish",
+						{serialno:$(this).val()},
+						function(data){
+							$('#invoicelist').datagrid('reload');  
+						},
+						"json"
+						);
+			});
+		}
 		});
 
 	}

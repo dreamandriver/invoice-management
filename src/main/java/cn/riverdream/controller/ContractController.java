@@ -92,6 +92,27 @@ public class ContractController {
 		}
 		return ResultUtil.createSuccess("更新成功", ResultInfo.TYPE_RESULT_SUCCESS);
 	}
+	
+	@RequestMapping("/finish")
+	@ResponseBody
+	public TbContract checkFinish(Integer serialno) {
+		TbContract contract = contractService.findBySerialNo(serialno);
+		if(contract == null){
+			return new TbContract();
+		}
+		Integer finish = contract.getFinish();
+		if(finish == 0){
+			contract.setFinish(1);
+		}else{
+			contract.setFinish(0);
+		}
+		try {
+			contractService.changeFinish(contract);
+		} catch (Exception e) {
+			return new TbContract();
+		}
+		return contract;
+	}
 
 	@RequestMapping(value = "/excelDownload")
 	public String exportExcel(HttpServletResponse response, ContractVo contractvo) {

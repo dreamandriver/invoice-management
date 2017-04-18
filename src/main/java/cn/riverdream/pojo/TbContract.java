@@ -4,110 +4,120 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TbContract {
-    private Integer serialno;
+	private Integer serialno;
 
-    private String contractno;
+	private String contractno;
 
-    private Integer createruserid;
+	private Integer createruserid;
 
-    private Date createdate;
+	private Date createdate;
 
-    private String consumer;
+	private String consumer;
 
-    private Double amount;
+	private Double amount;
 
-    private String company;
+	private String company;
 
-    private String comment;
+	private String comment;
 
-    private Integer ifformal;
+	private Integer ifformal;
 
-    private Integer flag;
+	private Integer flag;
 
-    public Integer getSerialno() {
-        return serialno;
-    }
+	private Integer finish;
 
-    public void setSerialno(Integer serialno) {
-        this.serialno = serialno;
-    }
+	public Integer getSerialno() {
+		return serialno;
+	}
 
-    public String getContractno() {
-        return contractno;
-    }
+	public void setSerialno(Integer serialno) {
+		this.serialno = serialno;
+	}
 
-    public void setContractno(String contractno) {
-        this.contractno = contractno == null ? null : contractno.trim();
-    }
+	public String getContractno() {
+		return contractno;
+	}
 
-    public Integer getCreateruserid() {
-        return createruserid;
-    }
+	public void setContractno(String contractno) {
+		this.contractno = contractno == null ? null : contractno.trim();
+	}
 
-    public void setCreateruserid(Integer createruserid) {
-        this.createruserid = createruserid;
-    }
+	public Integer getCreateruserid() {
+		return createruserid;
+	}
 
-    public Date getCreatedate() {
-        return createdate;
-    }
+	public void setCreateruserid(Integer createruserid) {
+		this.createruserid = createruserid;
+	}
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
-    
-    public String getCreatedatestr(){
-    	SimpleDateFormat formatter; 
-        formatter = new SimpleDateFormat ("yyyy-MM-dd"); 
-        String ctime = formatter.format(this.createdate); 
-        return ctime;
-    }
+	public Date getCreatedate() {
+		return createdate;
+	}
 
-    public String getConsumer() {
-        return consumer;
-    }
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
 
-    public void setConsumer(String consumer) {
-        this.consumer = consumer == null ? null : consumer.trim();
-    }
+	public String getCreatedatestr() {
+		SimpleDateFormat formatter;
+		formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String ctime = formatter.format(this.createdate);
+		return ctime;
+	}
 
-    public Double getAmount() {
-        return amount;
-    }
+	public String getConsumer() {
+		return consumer;
+	}
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
+	public void setConsumer(String consumer) {
+		this.consumer = consumer == null ? null : consumer.trim();
+	}
 
-    public String getCompany() {
-        return company;
-    }
+	public Double getAmount() {
+		return amount;
+	}
 
-    public void setCompany(String company) {
-        this.company = company == null ? null : company.trim();
-    }
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
 
-    public String getComment() {
-        return comment;
-    }
+	public String getCompany() {
+		return company;
+	}
 
-    public void setComment(String comment) {
-        this.comment = comment == null ? null : comment.trim();
-    }
+	public void setCompany(String company) {
+		this.company = company == null ? null : company.trim();
+	}
 
-    public Integer getIfformal() {
-        return ifformal;
-    }
+	public String getComment() {
+		return comment;
+	}
 
-    public void setIfformal(Integer ifformal) {
-        this.ifformal = ifformal;
-    }
+	public void setComment(String comment) {
+		this.comment = comment == null ? null : comment.trim();
+	}
 
-    public Integer getFlag() {
-        return flag;
-    }
+	public Integer getIfformal() {
+		return ifformal;
+	}
 
-    public void setFlag(Integer flag) {
-        this.flag = flag;
-    }
+	public void setIfformal(Integer ifformal) {
+		this.ifformal = ifformal;
+	}
+
+	public Integer getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+
+	public Integer getFinish() {
+		return finish;
+	}
+
+	public void setFinish(Integer finish) {
+		this.finish = finish;
+	}
 }

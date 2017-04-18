@@ -63,7 +63,9 @@ public class ContractServiceImpl implements ContractService {
 	public Integer save(TbContract contract) {
 
 		contract.setFlag(1);
-
+		BigDecimal bigDecimal = new BigDecimal(Double.toString(contract.getAmount())).setScale(2, BigDecimal.ROUND_HALF_UP);
+		contract.setAmount(bigDecimal.doubleValue());
+		contract.setFinish(0);
 		contractMapper.insert(contract);
 
 		String contractNo = getcontractNo();
@@ -233,6 +235,8 @@ public class ContractServiceImpl implements ContractService {
 		Integer serialno = vo.getContract().getSerialno();
 		String contractno = vo.getContract().getContractno();
 		String consumer = vo.getContract().getConsumer();
+		BigDecimal bigDecimal = new BigDecimal(Double.toString(vo.getContract().getAmount())).setScale(2, BigDecimal.ROUND_HALF_UP);
+		vo.getContract().setAmount(bigDecimal.doubleValue());
 		TbContractExample example = new TbContractExample();
 		cn.riverdream.pojo.TbContractExample.Criteria criteria = example.createCriteria();
 		criteria.andSerialnoEqualTo(serialno);
@@ -310,6 +314,20 @@ public class ContractServiceImpl implements ContractService {
 			return null;
 		}
 		return list.get(0);
+	}
+
+	@Override
+	public void changeFinish(TbContract contract) {
+		Integer serialno = contract.getSerialno();
+		Integer finish = contract.getFinish();
+		TbContract ncontract = new TbContract();
+		ncontract.setSerialno(serialno);
+		ncontract.setFinish(finish);
+		
+		TbContractExample example = new TbContractExample();
+		cn.riverdream.pojo.TbContractExample.Criteria criteria = example.createCriteria();
+		criteria.andSerialnoEqualTo(serialno);
+		contractMapper.updateByExampleSelective(ncontract, example);
 	}
 
 }

@@ -1,10 +1,13 @@
 if ($.fn.pagination){
 	$.fn.pagination.defaults.beforePageText = 'Strana';
 	$.fn.pagination.defaults.afterPageText = 'z {pages}';
-	$.fn.pagination.defaults.displayMsg = 'Zobrazuji {from} do {to} z {celkové} položky';
+	$.fn.pagination.defaults.displayMsg = 'Zobrazuji {from} do {to} z {total} položky';
 }
 if ($.fn.datagrid){
 	$.fn.datagrid.defaults.loadMsg = 'Zpracování, čekejte prosím ...';
+}
+if ($.fn.treegrid && $.fn.datagrid){
+	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
 }
 if ($.messager){
 	$.messager.defaults.ok = 'Ok';
@@ -24,6 +27,9 @@ if ($.fn.combobox){
 }
 if ($.fn.combotree){
 	$.fn.combotree.defaults.missingMessage = 'Toto pole je vyžadováno.';
+}
+if ($.fn.combogrid){
+	$.fn.combogrid.defaults.missingMessage = 'Toto pole je vyžadováno.';
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['S','M','T','W','T','F','S'];

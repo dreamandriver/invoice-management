@@ -16,7 +16,8 @@
 var columns1 = [ [{
 	field : 'id',
 	title : '',
-	checkbox:true
+	checkbox:true,
+	hidden:true
 },{
 	field : 'contractno',
 	title : '合同号',
@@ -93,7 +94,8 @@ var columns1 = [ [{
 var columns2 = [ [{
 	field : 'id',
 	title : '',
-	checkbox:true
+	checkbox:true,
+	hidden:true
 },{
 	field : 'contractno',
 	title : '合同号',
@@ -169,7 +171,8 @@ var columns2 = [ [{
 var columns3 = [ [{
 	field : 'id',
 	title : '',
-	checkbox:true
+	checkbox:true,
+	hidden:true
 },{
 	field : 'contractno',
 	title : '合同号',
@@ -277,7 +280,17 @@ $('#invoicelist1').datagrid({
 	pageSize:30,
 	pageList:[15,30,50,100],
     url:'/management/invoice/searchd/common/${contract.contractno}',   
-    columns:columns1
+    columns:columns1,
+	rowStyler:function(index,row,css){
+		if (row.finish == 1){
+			return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+		}else{
+			return 'width:auto;';
+		}
+	},
+	onClickRow : function(index, field, value) {
+		$('#invoicelist1').datagrid('unselectRow', index);
+	}
 }); 
 
 $('#invoicelist2').datagrid({
@@ -299,7 +312,17 @@ $('#invoicelist2').datagrid({
 	toolbar : toolbar,
 	loadMsg:"",
 	pageSize:30,
-	pageList:[15,30,50,100]
+	pageList:[15,30,50,100],
+	rowStyler:function(index,row,css){
+		if (row.finish == 1){
+			return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+		}else{
+			return 'width:auto;';
+		}
+	},
+	onClickRow : function(index, field, value) {
+		$('#invoicelist2').datagrid('unselectRow', index);
+	}
 	});
 </c:if>
 <c:if test="${activeUser.permission2 == 'admin'}">   
@@ -322,7 +345,17 @@ $('#checklist').datagrid({
 	toolbar : toolbar,
 	loadMsg:"",
 	pageSize:30,
-	pageList:[15,30,50,100]
+	pageList:[15,30,50,100],
+	rowStyler:function(index,row,css){
+		if (row.finish == 1){
+			return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+		}else{
+			return 'width:auto;';
+		}
+	},
+	onClickRow : function(index, field, value) {
+		$('#checklist').datagrid('unselectRow', index);
+	}
 	});
 </c:if>
 });

@@ -4,170 +4,180 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TbInvoice {
-    private Integer serialno;
+	private Integer serialno;
 
-    private String invoiceno;
+	private String invoiceno;
 
-    private Integer invoicetype;
+	private Integer invoicetype;
 
-    private String contractno;
+	private String contractno;
 
-    private Integer contractserialno;
+	private Integer contractserialno;
 
-    private String consumer;
+	private String consumer;
 
-    private Date createdate;
+	private Date createdate;
 
-    private Integer createuser;
+	private Integer createuser;
 
-    private Double amount;
+	private Double amount;
 
-    private String company;
+	private String company;
 
-    private Integer status;
+	private Integer status;
 
-    private String comment;
+	private String comment;
 
-    private Date workdate;
+	private Date workdate;
 
-    private Integer workuser;
+	private Integer workuser;
 
-    private Double taxpoint;
+	private Double taxpoint;
 
-    private Double taxamount;
+	private Double taxamount;
 
-    public Integer getSerialno() {
-        return serialno;
-    }
+	private Integer finish;
 
-    public void setSerialno(Integer serialno) {
-        this.serialno = serialno;
-    }
+	public Integer getFinish() {
+		return finish;
+	}
 
-    public String getInvoiceno() {
-        return invoiceno;
-    }
+	public void setFinish(Integer finish) {
+		this.finish = finish;
+	}
 
-    public void setInvoiceno(String invoiceno) {
-        this.invoiceno = invoiceno == null ? null : invoiceno.trim();
-    }
+	public Integer getSerialno() {
+		return serialno;
+	}
 
-    public Integer getInvoicetype() {
-        return invoicetype;
-    }
+	public void setSerialno(Integer serialno) {
+		this.serialno = serialno;
+	}
 
-    public void setInvoicetype(Integer invoicetype) {
-        this.invoicetype = invoicetype;
-    }
+	public String getInvoiceno() {
+		return invoiceno;
+	}
 
-    public String getContractno() {
-        return contractno;
-    }
+	public void setInvoiceno(String invoiceno) {
+		this.invoiceno = invoiceno == null ? null : invoiceno.trim();
+	}
 
-    public void setContractno(String contractno) {
-        this.contractno = contractno == null ? null : contractno.trim();
-    }
+	public Integer getInvoicetype() {
+		return invoicetype;
+	}
 
-    public Integer getContractserialno() {
-        return contractserialno;
-    }
+	public void setInvoicetype(Integer invoicetype) {
+		this.invoicetype = invoicetype;
+	}
 
-    public void setContractserialno(Integer contractserialno) {
-        this.contractserialno = contractserialno;
-    }
+	public String getContractno() {
+		return contractno;
+	}
 
-    public String getConsumer() {
-        return consumer;
-    }
+	public void setContractno(String contractno) {
+		this.contractno = contractno == null ? null : contractno.trim();
+	}
 
-    public void setConsumer(String consumer) {
-        this.consumer = consumer == null ? null : consumer.trim();
-    }
+	public Integer getContractserialno() {
+		return contractserialno;
+	}
 
-    public Date getCreatedate() {
-        return createdate;
-    }
+	public void setContractserialno(Integer contractserialno) {
+		this.contractserialno = contractserialno;
+	}
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
+	public String getConsumer() {
+		return consumer;
+	}
 
-    public String getCreatedatestr(){
-    	SimpleDateFormat formatter; 
-        formatter = new SimpleDateFormat ("yyyy-MM-dd"); 
-        String ctime = formatter.format(this.createdate); 
-        return ctime;
-    }
-    
-    public Integer getCreateuser() {
-        return createuser;
-    }
+	public void setConsumer(String consumer) {
+		this.consumer = consumer == null ? null : consumer.trim();
+	}
 
-    public void setCreateuser(Integer createuser) {
-        this.createuser = createuser;
-    }
+	public Date getCreatedate() {
+		return createdate;
+	}
 
-    public Double getAmount() {
-        return amount;
-    }
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
+	public String getCreatedatestr() {
+		SimpleDateFormat formatter;
+		formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String ctime = formatter.format(this.createdate);
+		return ctime;
+	}
 
-    public String getCompany() {
-        return company;
-    }
+	public Integer getCreateuser() {
+		return createuser;
+	}
 
-    public void setCompany(String company) {
-        this.company = company == null ? null : company.trim();
-    }
+	public void setCreateuser(Integer createuser) {
+		this.createuser = createuser;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public Double getAmount() {
+		return amount;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
 
-    public String getComment() {
-        return comment;
-    }
+	public String getCompany() {
+		return company;
+	}
 
-    public void setComment(String comment) {
-        this.comment = comment == null ? null : comment.trim();
-    }
+	public void setCompany(String company) {
+		this.company = company == null ? null : company.trim();
+	}
 
-    public Date getWorkdate() {
-        return workdate;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public void setWorkdate(Date workdate) {
-        this.workdate = workdate;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public Integer getWorkuser() {
-        return workuser;
-    }
+	public String getComment() {
+		return comment;
+	}
 
-    public void setWorkuser(Integer workuser) {
-        this.workuser = workuser;
-    }
+	public void setComment(String comment) {
+		this.comment = comment == null ? null : comment.trim();
+	}
 
-    public Double getTaxpoint() {
-        return taxpoint;
-    }
+	public Date getWorkdate() {
+		return workdate;
+	}
 
-    public void setTaxpoint(Double taxpoint) {
-        this.taxpoint = taxpoint;
-    }
+	public void setWorkdate(Date workdate) {
+		this.workdate = workdate;
+	}
 
-    public Double getTaxamount() {
-        return taxamount;
-    }
+	public Integer getWorkuser() {
+		return workuser;
+	}
 
-    public void setTaxamount(Double taxamount) {
-        this.taxamount = taxamount;
-    }
+	public void setWorkuser(Integer workuser) {
+		this.workuser = workuser;
+	}
+
+	public Double getTaxpoint() {
+		return taxpoint;
+	}
+
+	public void setTaxpoint(Double taxpoint) {
+		this.taxpoint = taxpoint;
+	}
+
+	public Double getTaxamount() {
+		return taxamount;
+	}
+
+	public void setTaxamount(Double taxamount) {
+		this.taxamount = taxamount;
+	}
 }

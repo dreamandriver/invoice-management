@@ -36,16 +36,22 @@ public class CheckServiceImpl implements CheckService {
 		Double incomeamount = check.getIncomeamount();
 		Double taxpoint = check.getTaxpoint();
 		Double other = check.getOther();
-		BigDecimal p = new BigDecimal(Double.toString(payamount));
-		BigDecimal i = new BigDecimal(Double.toString(incomeamount));
-		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
-		BigDecimal o = new BigDecimal(Double.toString(other));
+		BigDecimal p = new BigDecimal(Double.toString(payamount)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal i = new BigDecimal(Double.toString(incomeamount)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal t = new BigDecimal(Double.toString(taxpoint)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal o = new BigDecimal(Double.toString(other)).setScale(2, BigDecimal.ROUND_HALF_UP);
 
 		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p)
 				.subtract(o);
 		check.setAccount(result.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		BigDecimal tax = i.multiply(t).divide(new BigDecimal(100));
 		check.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+		
+		check.setPayamount(p.doubleValue());
+		check.setIncomeamount(i.doubleValue());
+		check.setTaxpoint(t.doubleValue());
+		check.setOther(o.doubleValue());
+		check.setFinish(0);
 		checkMapper.insert(check);
 		return check.getSerialno();
 	}
@@ -167,20 +173,25 @@ public class CheckServiceImpl implements CheckService {
 		// checkMapper.updateByExampleSelective(vo.getCheck(), example);
 
 		TbCheck check = checkMapper.selectByPrimaryKey(serialno);
-		Double payamount = check.getPayamount();
-		Double incomeamount = check.getIncomeamount();
-		Double taxpoint = check.getTaxpoint();
-		Double other = check.getOther();
-		BigDecimal p = new BigDecimal(Double.toString(payamount));
-		BigDecimal i = new BigDecimal(Double.toString(incomeamount));
-		BigDecimal t = new BigDecimal(Double.toString(taxpoint));
-		BigDecimal o = new BigDecimal(Double.toString(other));
+		Double payamount = vo.getCheck().getPayamount();
+		Double incomeamount = vo.getCheck().getIncomeamount();
+		Double taxpoint = vo.getCheck().getTaxpoint();
+		Double other = vo.getCheck().getOther();
+		BigDecimal p = new BigDecimal(Double.toString(payamount)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal i = new BigDecimal(Double.toString(incomeamount)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal t = new BigDecimal(Double.toString(taxpoint)).setScale(2, BigDecimal.ROUND_HALF_UP);
+		BigDecimal o = new BigDecimal(Double.toString(other)).setScale(2, BigDecimal.ROUND_HALF_UP);
 
 		BigDecimal result = i.multiply(new BigDecimal(100).subtract(t)).divide(new BigDecimal(100)).subtract(p)
 				.subtract(o);
 		check.setAccount(result.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		BigDecimal tax = i.multiply(t).divide(new BigDecimal(100));
 		check.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+		
+		check.setPayamount(p.doubleValue());
+		check.setIncomeamount(i.doubleValue());
+		check.setTaxpoint(t.doubleValue());
+		check.setOther(o.doubleValue());
 		// checkMapper.updateByExampleSelective(check, example);
 		checkMapper.updateByPrimaryKeySelective(check);
 	}
@@ -236,6 +247,21 @@ public class CheckServiceImpl implements CheckService {
 		}
 		List<TbCheck> list = checkMapper.selectByExample(example);
 		return list;
+	}
+
+	@Override
+	public void changeFinish(TbCheck check) {
+		Integer serialno = check.getSerialno();
+		Integer finish = check.getFinish();
+		TbCheck ncheck = new TbCheck();
+		ncheck.setSerialno(serialno);
+		ncheck.setFinish(finish);
+		
+		TbCheckExample example = new TbCheckExample();
+		cn.riverdream.pojo.TbCheckExample.Criteria criteria = example.createCriteria();
+		criteria.andSerialnoEqualTo(serialno);
+		checkMapper.updateByExampleSelective(ncheck, example);
+		
 	}
 
 }

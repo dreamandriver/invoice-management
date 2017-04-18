@@ -191,7 +191,7 @@
 								<TD height=30 width="15%" align=right >收入金额：</TD>
 								<TD class=category width="35%">
 								<div>
-								<input type="text" id="check_incomeamount" name="check.incomeamount" value="${check.incomeamount}"   />
+								<input type="text" id="check_incomeamount" name="check.incomeamount" value="<fmt:formatNumber value='${check.incomeamount}' pattern='0.00'/>"   />
 								</div>
 								<div id="check_incomeamountTip"></div>
 								</TD>
@@ -208,7 +208,7 @@
 								<TD height=30 width="15%" align=right >支出金额：</TD>
 								<TD class=category width="35%">
 								<div>
-								<input type="text" id="check_payamount" name="check.payamount" value="${check.payamount}"   />
+								<input type="text" id="check_payamount" name="check.payamount" value="<fmt:formatNumber value='${check.payamount}' pattern='0.00'/>"   />
 								</div>
 								<div id="check_payamountTip"></div>
 								</TD>
@@ -225,7 +225,7 @@
 							    <TD height=30 width="15%" align=right >其他费用：</TD>
 								<TD class=category width="75%" colspan="3" >
 								<div>
-								<input type="text" id="check_other" name="check.other" value="${check.other}" style=" width: 640px;"/>
+								<input type="text" id="check_other" name="check.other" value="<fmt:formatNumber value='${check.other}' pattern='0.00'/>" style=" width: 640px;"/>
 								</div>
 								<div id="check_otherTip"></div>
 								</TD>

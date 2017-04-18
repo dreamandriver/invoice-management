@@ -105,6 +105,27 @@ public class CheckController {
 		return ResultUtil.createSuccess("更新成功", ResultInfo.TYPE_RESULT_SUCCESS);
 	}
 	
+	@RequestMapping("/finish")
+	@ResponseBody
+	public TbCheck checkFinish(Integer serialno) {
+		TbCheck check = checkService.findBySerialNo(serialno);
+		if(check == null){
+			return new TbCheck();
+		}
+		Integer finish = check.getFinish();
+		if(finish == 0){
+			check.setFinish(1);
+		}else{
+			check.setFinish(0);
+		}
+		try {
+			checkService.changeFinish(check);
+		} catch (Exception e) {
+			return new TbCheck();
+		}
+		return check;
+	}
+	
 	@RequestMapping(value = "/excelDownload")
     public String exportExcel(HttpServletResponse response, CheckVo checkvo) {
         try {

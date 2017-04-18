@@ -105,6 +105,27 @@ public class InvoiceController {
 		return ResultUtil.createSuccess("更新成功", ResultInfo.TYPE_RESULT_SUCCESS);
 	}
 	
+	@RequestMapping("/finish")
+	@ResponseBody
+	public TbInvoice checkFinish(Integer serialno) {
+		TbInvoice invoice = invoiceService.findBySerialNo(serialno);
+		if(invoice == null){
+			return new TbInvoice();
+		}
+		Integer finish = invoice.getFinish();
+		if(finish == 0){
+			invoice.setFinish(1);
+		}else{
+			invoice.setFinish(0);
+		}
+		try {
+			invoiceService.changeFinish(invoice);
+		} catch (Exception e) {
+			return new TbInvoice();
+		}
+		return invoice;
+	}
+	
 	@RequestMapping(value = "/{type}/excelDownload")
     public String exportExcel(HttpServletResponse response, InvoiceVo invoicekvo, @PathVariable String type) {
         try {

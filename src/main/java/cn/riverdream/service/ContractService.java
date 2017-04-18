@@ -22,4 +22,6 @@ public interface ContractService {
 	public String getcontractNo();
 	
 	public TbContract findByContractNo(String contractNo);
+
+	public void changeFinish(TbContract contract);
 }

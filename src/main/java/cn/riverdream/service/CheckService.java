@@ -18,4 +18,6 @@ public interface CheckService {
 	public void update(CheckVo checkvo);
 	
 	public TbCheck findBySerialNo(int serialNo);
+
+	public void changeFinish(TbCheck check);
 }

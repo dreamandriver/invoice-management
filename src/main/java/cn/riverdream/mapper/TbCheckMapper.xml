@@ -20,6 +20,7 @@
     <result column="COMMENT" property="comment" jdbcType="VARCHAR" />
     <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
     <result column="CREATEUSER" property="createuser" jdbcType="INTEGER" />
+    <result column="FINISH" property="finish" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -82,7 +83,7 @@
   <sql id="Base_Column_List" >
     SERIALNO, CHECKNO, CONTRACTSERIALNO, CONTRACTNO, INCOMEDATE, INCOMEAMOUNT, TAXPOINT, 
     TAXAMOUNT, PAYAMOUNT, PAYDATE, OTHER, ACCOUNT, COMPANY, STATUS, CONSUMER, COMMENT, 
-    CREATEDATE, CREATEUSER
+    CREATEDATE, CREATEUSER, FINISH
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbCheckExample" >
     select
@@ -120,15 +121,15 @@
       TAXPOINT, TAXAMOUNT, PAYAMOUNT, 
       PAYDATE, OTHER, ACCOUNT, 
       COMPANY, STATUS, CONSUMER, 
-      COMMENT, CREATEDATE, CREATEUSER
-      )
+      COMMENT, CREATEDATE, CREATEUSER, 
+      FINISH)
     values (#{serialno,jdbcType=INTEGER}, #{checkno,jdbcType=VARCHAR}, #{contractserialno,jdbcType=INTEGER}, 
       #{contractno,jdbcType=VARCHAR}, #{incomedate,jdbcType=TIMESTAMP}, #{incomeamount,jdbcType=DOUBLE}, 
       #{taxpoint,jdbcType=DOUBLE}, #{taxamount,jdbcType=DOUBLE}, #{payamount,jdbcType=DOUBLE}, 
       #{paydate,jdbcType=TIMESTAMP}, #{other,jdbcType=DOUBLE}, #{account,jdbcType=DOUBLE}, 
       #{company,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{consumer,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER}
-      )
+      #{comment,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createuser,jdbcType=INTEGER}, 
+      #{finish,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.riverdream.pojo.TbCheck" >
     insert into tb_check
@@ -187,6 +188,9 @@
       <if test="createuser != null" >
         CREATEUSER,
       </if>
+      <if test="finish != null" >
+        FINISH,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="serialno != null" >
@@ -242,6 +246,9 @@
       </if>
       <if test="createuser != null" >
         #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="finish != null" >
+        #{finish,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -308,6 +315,9 @@
       <if test="record.createuser != null" >
         CREATEUSER = #{record.createuser,jdbcType=INTEGER},
       </if>
+      <if test="record.finish != null" >
+        FINISH = #{record.finish,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -332,7 +342,8 @@
       CONSUMER = #{record.consumer,jdbcType=VARCHAR},
       COMMENT = #{record.comment,jdbcType=VARCHAR},
       CREATEDATE = #{record.createdate,jdbcType=TIMESTAMP},
-      CREATEUSER = #{record.createuser,jdbcType=INTEGER}
+      CREATEUSER = #{record.createuser,jdbcType=INTEGER},
+      FINISH = #{record.finish,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -391,6 +402,9 @@
       <if test="createuser != null" >
         CREATEUSER = #{createuser,jdbcType=INTEGER},
       </if>
+      <if test="finish != null" >
+        FINISH = #{finish,jdbcType=INTEGER},
+      </if>
     </set>
     where SERIALNO = #{serialno,jdbcType=INTEGER}
   </update>
@@ -412,7 +426,8 @@
       CONSUMER = #{consumer,jdbcType=VARCHAR},
       COMMENT = #{comment,jdbcType=VARCHAR},
       CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
-      CREATEUSER = #{createuser,jdbcType=INTEGER}
+      CREATEUSER = #{createuser,jdbcType=INTEGER},
+      FINISH = #{finish,jdbcType=INTEGER}
     where SERIALNO = #{serialno,jdbcType=INTEGER}
   </update>
 </mapper>

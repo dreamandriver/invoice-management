@@ -159,7 +159,7 @@
 								<TD height=30 width="15%" align=right >金额：</TD>
 								<TD class=category width="35%">
 								<div>
-								<input type="text" id="invoice_amount" name="invoice.amount" value="${invoice.amount}"   />
+								<input type="text" id="invoice_amount" name="invoice.amount" value="<fmt:formatNumber value='${invoice.amount}' pattern='0.00'/>"/>
 								</div>
 								<div id="invoice_amountTip"></div>
 								</TD>

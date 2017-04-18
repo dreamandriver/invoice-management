@@ -1114,6 +1114,66 @@ public class TbInvoiceExample {
             addCriterion("TAXAMOUNT not between", value1, value2, "taxamount");
             return (Criteria) this;
         }
+
+        public Criteria andFinishIsNull() {
+            addCriterion("FINISH is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishIsNotNull() {
+            addCriterion("FINISH is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishEqualTo(Integer value) {
+            addCriterion("FINISH =", value, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishNotEqualTo(Integer value) {
+            addCriterion("FINISH <>", value, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishGreaterThan(Integer value) {
+            addCriterion("FINISH >", value, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishGreaterThanOrEqualTo(Integer value) {
+            addCriterion("FINISH >=", value, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishLessThan(Integer value) {
+            addCriterion("FINISH <", value, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishLessThanOrEqualTo(Integer value) {
+            addCriterion("FINISH <=", value, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishIn(List<Integer> values) {
+            addCriterion("FINISH in", values, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishNotIn(List<Integer> values) {
+            addCriterion("FINISH not in", values, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishBetween(Integer value1, Integer value2) {
+            addCriterion("FINISH between", value1, value2, "finish");
+            return (Criteria) this;
+        }
+
+        public Criteria andFinishNotBetween(Integer value1, Integer value2) {
+            addCriterion("FINISH not between", value1, value2, "finish");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -3,183 +3,193 @@ package cn.riverdream.pojo;
 import java.util.Date;
 
 public class TbCheck {
-    private Integer serialno;
+	private Integer serialno;
 
-    private String checkno;
+	private String checkno;
 
-    private Integer contractserialno;
+	private Integer contractserialno;
 
-    private String contractno;
+	private String contractno;
 
-    private Date incomedate;
+	private Date incomedate;
 
-    private Double incomeamount;
+	private Double incomeamount;
 
-    private Double taxpoint;
+	private Double taxpoint;
 
-    private Double taxamount;
+	private Double taxamount;
 
-    private Double payamount;
+	private Double payamount;
 
-    private Date paydate;
+	private Date paydate;
 
-    private Double other;
+	private Double other;
 
-    private Double account;
+	private Double account;
 
-    private String company;
+	private String company;
 
-    private Integer status;
+	private Integer status;
 
-    private String consumer;
+	private String consumer;
 
-    private String comment;
+	private String comment;
 
-    private Date createdate;
+	private Date createdate;
 
-    private Integer createuser;
+	private Integer createuser;
 
-    public Integer getSerialno() {
-        return serialno;
-    }
+	private Integer finish;
 
-    public void setSerialno(Integer serialno) {
-        this.serialno = serialno;
-    }
+	public Integer getSerialno() {
+		return serialno;
+	}
 
-    public String getCheckno() {
-        return checkno;
-    }
+	public void setSerialno(Integer serialno) {
+		this.serialno = serialno;
+	}
 
-    public void setCheckno(String checkno) {
-        this.checkno = checkno == null ? null : checkno.trim();
-    }
+	public String getCheckno() {
+		return checkno;
+	}
 
-    public Integer getContractserialno() {
-        return contractserialno;
-    }
+	public void setCheckno(String checkno) {
+		this.checkno = checkno == null ? null : checkno.trim();
+	}
 
-    public void setContractserialno(Integer contractserialno) {
-        this.contractserialno = contractserialno;
-    }
+	public Integer getContractserialno() {
+		return contractserialno;
+	}
 
-    public String getContractno() {
-        return contractno;
-    }
+	public void setContractserialno(Integer contractserialno) {
+		this.contractserialno = contractserialno;
+	}
 
-    public void setContractno(String contractno) {
-        this.contractno = contractno == null ? null : contractno.trim();
-    }
+	public String getContractno() {
+		return contractno;
+	}
 
-    public Date getIncomedate() {
-        return incomedate;
-    }
+	public void setContractno(String contractno) {
+		this.contractno = contractno == null ? null : contractno.trim();
+	}
 
-    public void setIncomedate(Date incomedate) {
-        this.incomedate = incomedate;
-    }
+	public Date getIncomedate() {
+		return incomedate;
+	}
 
-    public Double getIncomeamount() {
-        return incomeamount;
-    }
+	public void setIncomedate(Date incomedate) {
+		this.incomedate = incomedate;
+	}
 
-    public void setIncomeamount(Double incomeamount) {
-        this.incomeamount = incomeamount;
-    }
+	public Double getIncomeamount() {
+		return incomeamount;
+	}
 
-    public Double getTaxpoint() {
-        return taxpoint;
-    }
+	public void setIncomeamount(Double incomeamount) {
+		this.incomeamount = incomeamount;
+	}
 
-    public void setTaxpoint(Double taxpoint) {
-        this.taxpoint = taxpoint;
-    }
+	public Double getTaxpoint() {
+		return taxpoint;
+	}
 
-    public Double getTaxamount() {
-        return taxamount;
-    }
+	public void setTaxpoint(Double taxpoint) {
+		this.taxpoint = taxpoint;
+	}
 
-    public void setTaxamount(Double taxamount) {
-        this.taxamount = taxamount;
-    }
+	public Double getTaxamount() {
+		return taxamount;
+	}
 
-    public Double getPayamount() {
-        return payamount;
-    }
+	public void setTaxamount(Double taxamount) {
+		this.taxamount = taxamount;
+	}
 
-    public void setPayamount(Double payamount) {
-        this.payamount = payamount;
-    }
+	public Double getPayamount() {
+		return payamount;
+	}
 
-    public Date getPaydate() {
-        return paydate;
-    }
+	public void setPayamount(Double payamount) {
+		this.payamount = payamount;
+	}
 
-    public void setPaydate(Date paydate) {
-        this.paydate = paydate;
-    }
+	public Date getPaydate() {
+		return paydate;
+	}
 
-    public Double getOther() {
-        return other;
-    }
+	public void setPaydate(Date paydate) {
+		this.paydate = paydate;
+	}
 
-    public void setOther(Double other) {
-        this.other = other;
-    }
+	public Double getOther() {
+		return other;
+	}
 
-    public Double getAccount() {
-        return account;
-    }
+	public void setOther(Double other) {
+		this.other = other;
+	}
 
-    public void setAccount(Double account) {
-        this.account = account;
-    }
+	public Double getAccount() {
+		return account;
+	}
 
-    public String getCompany() {
-        return company;
-    }
+	public void setAccount(Double account) {
+		this.account = account;
+	}
 
-    public void setCompany(String company) {
-        this.company = company == null ? null : company.trim();
-    }
+	public String getCompany() {
+		return company;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public void setCompany(String company) {
+		this.company = company == null ? null : company.trim();
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public String getConsumer() {
-        return consumer;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setConsumer(String consumer) {
-        this.consumer = consumer == null ? null : consumer.trim();
-    }
+	public String getConsumer() {
+		return consumer;
+	}
 
-    public String getComment() {
-        return comment;
-    }
+	public void setConsumer(String consumer) {
+		this.consumer = consumer == null ? null : consumer.trim();
+	}
 
-    public void setComment(String comment) {
-        this.comment = comment == null ? null : comment.trim();
-    }
+	public String getComment() {
+		return comment;
+	}
 
-    public Date getCreatedate() {
-        return createdate;
-    }
+	public void setComment(String comment) {
+		this.comment = comment == null ? null : comment.trim();
+	}
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
+	public Date getCreatedate() {
+		return createdate;
+	}
 
-    public Integer getCreateuser() {
-        return createuser;
-    }
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
 
-    public void setCreateuser(Integer createuser) {
-        this.createuser = createuser;
-    }
+	public Integer getCreateuser() {
+		return createuser;
+	}
+
+	public void setCreateuser(Integer createuser) {
+		this.createuser = createuser;
+	}
+
+	public Integer getFinish() {
+		return finish;
+	}
+
+	public void setFinish(Integer finish) {
+		this.finish = finish;
+	}
 }

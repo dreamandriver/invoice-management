@@ -20,4 +20,6 @@ public interface InvoiceService {
 
 	List<TbInvoice> findAll(Integer type, InvoiceVo invoicekvo);
 
+	void changeFinish(TbInvoice invoice);
+
 }

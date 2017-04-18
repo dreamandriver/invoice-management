@@ -143,7 +143,7 @@
 								<TD height=30 width="15%" align=right >金额：</TD>
 								<TD class=category width="35%">
 								<div>
-								<input type="text" id="contract_amount" name="contract.amount" value="${contract.amount}"   />
+								<input type="text" id="contract_amount" name="contract.amount" value="<fmt:formatNumber value='${contract.amount}' pattern='0.00'/>"   />
 								</div>
 								<div id="contract_amountTip"></div>
 								</TD>
