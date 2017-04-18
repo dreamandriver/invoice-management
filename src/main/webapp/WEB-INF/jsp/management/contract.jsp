@@ -180,16 +180,32 @@ var columns = [ [{
 	hidden:true
 },{
 	field : 'serialno',
-	title : '已核对',
-	width : 40,
+	title : '标记',
+	width : 60,
 	formatter:function(value, row, index){
-		if(row.serialno){
-			if(row.finish ==1 ){
-				return '<input type="checkbox" checked="checked" class="iffinish" value="'+ row.serialno +'">'
-			}else{
-		    	return '<input type="checkbox" class="iffinish" value="'+ row.serialno +'">'
-			}
+		var str = '<select name="'+ row.serialno +'" class="iffinish">';
+		str += '<option value="1" ';
+		if(row.finish ==1 ){
+			str += ' selected ';
 		}
+		str += '>蓝</option>';
+		str += '<option value="2" ';
+		if(row.finish ==2 ){
+			str += ' selected ';
+		}
+		str += '>红</option>';
+		str += '<option value="3" ';
+		if(row.finish ==3 ){
+			str += ' selected ';
+		}
+		str += '>绿</option>';
+		str += '<option value="0" ';
+		if(row.finish ==0 ){
+			str += ' selected ';
+		}		
+		str += '>白</option>';
+		str += '</select>';
+		return str;
 	}
 },{
 	field : 'contractno',
@@ -334,15 +350,19 @@ function initGrid(){
 		rowStyler:function(index,row,css){
 			if (row.finish == 1){
 				return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+			}else if(row.finish == 2){
+				return 'background-color:#E21616;color:#fff;font-weight:bold;width:auto;';
+			}else if(row.finish == 3){
+				return 'background-color:#68c942;color:#fff;font-weight:bold;width:auto;';
 			}else{
 				return 'width:auto;';
 			}
 		},
 		onLoadSuccess:function(data){      
 			
-			$(":checkbox").click(function(){
-				$.post("${baseurl}/management/contract/finish",
-						{serialno:$(this).val()},
+			$(".iffinish").change(function(){
+				$.post("${baseurl}/management/contract/changecl",
+						{serialno:$(this).attr("name"),flag:$(this).val()},
 						function(data){
 							$('#contractlist').datagrid('reload');  
 						},

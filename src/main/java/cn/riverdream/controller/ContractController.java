@@ -113,6 +113,30 @@ public class ContractController {
 		}
 		return contract;
 	}
+	
+	@RequestMapping("/changecl")
+	@ResponseBody
+	public TbContract changeColor(Integer serialno, Integer flag) {
+		TbContract contract = contractService.findBySerialNo(serialno);
+		if(contract == null){
+			return new TbContract();
+		}
+		if(flag == 1){
+			contract.setFinish(1);
+		}else if(flag == 2){
+			contract.setFinish(2);
+		}else if(flag == 3){
+			contract.setFinish(3);
+		}else{
+			contract.setFinish(0);
+		}
+		try {
+			contractService.changeFinish(contract);
+		} catch (Exception e) {
+			return new TbContract();
+		}
+		return contract;
+	}
 
 	@RequestMapping(value = "/excelDownload")
 	public String exportExcel(HttpServletResponse response, ContractVo contractvo) {
