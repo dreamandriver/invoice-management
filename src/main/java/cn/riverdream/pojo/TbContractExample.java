@@ -555,6 +555,76 @@ public class TbContractExample {
             return (Criteria) this;
         }
 
+        public Criteria andProjectnameIsNull() {
+            addCriterion("PROJECTNAME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameIsNotNull() {
+            addCriterion("PROJECTNAME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameEqualTo(String value) {
+            addCriterion("PROJECTNAME =", value, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameNotEqualTo(String value) {
+            addCriterion("PROJECTNAME <>", value, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameGreaterThan(String value) {
+            addCriterion("PROJECTNAME >", value, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameGreaterThanOrEqualTo(String value) {
+            addCriterion("PROJECTNAME >=", value, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameLessThan(String value) {
+            addCriterion("PROJECTNAME <", value, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameLessThanOrEqualTo(String value) {
+            addCriterion("PROJECTNAME <=", value, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameLike(String value) {
+            addCriterion("PROJECTNAME like", value, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameNotLike(String value) {
+            addCriterion("PROJECTNAME not like", value, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameIn(List<String> values) {
+            addCriterion("PROJECTNAME in", values, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameNotIn(List<String> values) {
+            addCriterion("PROJECTNAME not in", values, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameBetween(String value1, String value2) {
+            addCriterion("PROJECTNAME between", value1, value2, "projectname");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectnameNotBetween(String value1, String value2) {
+            addCriterion("PROJECTNAME not between", value1, value2, "projectname");
+            return (Criteria) this;
+        }
+
         public Criteria andCommentIsNull() {
             addCriterion("COMMENT is null");
             return (Criteria) this;

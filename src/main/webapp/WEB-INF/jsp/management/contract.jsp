@@ -240,6 +240,10 @@ var columns = [ [{
 	title : '单位名称',
 	width : 200
 },{
+	field : 'projectname',
+	title : '工程名称',
+	width : 150
+},{
 	field : 'ifformal',
 	title : '是否正式合同',
 	width : 80,
@@ -257,18 +261,18 @@ var columns = [ [{
 ,{
 	field : 'cinvoice',
 	title : '普票',
-	width : 100
+	width : 95
 },{
 	field : 'sinvoice',
 	title : '专票',
-	width : 100
+	width : 95
 }
 </c:if>
 <c:if test="${activeUser.permission2 == 'admin'}"> 
 ,{
 	field : 'check',
 	title : '支票',
-	width : 100
+	width : 95
 }
 </c:if>
 ,{
@@ -279,7 +283,7 @@ var columns = [ [{
 ,{
 	field : 'opt1',
 	title : '修改',
-	width : 60,
+	width : 35,
 	formatter:function(value, row, index){
 		if(row.serialno){
 		return '<a href=javascript:contractedit(\''+row.serialno+'\')>修改</a>';
@@ -291,7 +295,7 @@ var columns = [ [{
 },{
 	field : 'opt2',
 	title : '删除',
-	width : 60,
+	width : 35,
 	formatter:function(value, row, index){
 		if(row.serialno){
 				return '<a href=javascript:contractdel(\''+row.serialno+'\')>删除</a>';
@@ -304,7 +308,7 @@ var columns = [ [{
 ,{
 	field : 'opt3',
 	title : '添加发票',
-	width : 60,
+	width : 65,
 	formatter:function(value, row, index){
 		if(row.serialno){
 				return '<a href=javascript:addinvoice(\''+row.serialno+'\')>添加发票</a>';
@@ -318,7 +322,7 @@ var columns = [ [{
 ,{
 	field : 'opt4',
 	title : '添加支票',
-	width : 60,
+	width : 65,
 	formatter:function(value, row, index){
 		if(row.serialno){
 				return '<a href=javascript:addcheck(\''+row.serialno+'\')>添加支票</a>';
@@ -393,6 +397,8 @@ function initGrid(){
 						<td ><INPUT type="text" name="consumer" /></td>
 						<TD class="left">单位名称：</TD>
 						<td ><INPUT type="text" name="company" /></td>
+						<TD class="left">工程名称：</TD>
+						<td ><INPUT type="text" name="projectname" /></td>
 						 <td class="left">日期：</td>
 				  		<td>
 				      		<input class="laydate-icon" id="start" name="start" style="width:150px; margin-right:10px;">

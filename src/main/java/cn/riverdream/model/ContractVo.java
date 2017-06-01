@@ -17,6 +17,8 @@ public class ContractVo {
 	private String consumer;
 
 	private String company;
+	
+	private String projectname;
 
 	private Date startDate;
 
@@ -32,6 +34,14 @@ public class ContractVo {
 
 	public void setCompany(String company) {
 		this.company = company;
+	}
+
+	public String getProjectname() {
+		return projectname;
+	}
+
+	public void setProjectname(String projectname) {
+		this.projectname = projectname;
 	}
 
 	public int getSerialno() {

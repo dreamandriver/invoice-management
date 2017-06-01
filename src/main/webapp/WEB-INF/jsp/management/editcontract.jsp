@@ -173,6 +173,13 @@
 								</TD>
 							</TR>
 							
+							<TR >
+							    <TD height=30 width="15%" align=right >工程名称：</TD>
+								<TD class=category width="75%" colspan="3" >
+								<input type="text" name="contract.projectname" value="${contract.projectname}" style=" width: 640px;"/>
+								</TD>
+							</TR>
+							
 							<tr>
 							  <td colspan=4 align=center class=category>
 								<a id="submitbtn" href="#" onclick="contractedit()">保存</a>

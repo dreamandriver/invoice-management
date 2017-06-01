@@ -456,6 +456,15 @@ $('#checklist').datagrid({
 								</TD>
 							</TR>
 							
+							<TR >
+							    <TD height=30 width="15%" align=right >工程名称：</TD>
+								<TD class=category width="75%" colspan="3" >
+								<div>
+								${contract.projectname}
+								</div>
+								</TD>
+							</TR>
+							
 						</TBODY>
 					</TABLE>
 				</TD>

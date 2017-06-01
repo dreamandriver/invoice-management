@@ -126,6 +126,7 @@ public class ContractServiceImpl implements ContractService {
 	public DataGridResultInfo find(ContractVo vo) {
 		String consumer = vo.getConsumer();
 		String contractno = vo.getContractno();
+		String projectname = vo.getProjectname();
 		String company = vo.getCompany();
 		Date start = vo.getStart();
 		Date end = vo.getEnd();
@@ -140,6 +141,9 @@ public class ContractServiceImpl implements ContractService {
 		}
 		if (StringUtils.isNotBlank(contractno)) {
 			criteria.andContractnoEqualTo(contractno);
+		}
+		if (StringUtils.isNotBlank(projectname)) {
+			criteria.andProjectnameLike("%" + projectname + "%");
 		}
 		if (start != null) {
 			criteria.andCreatedateGreaterThanOrEqualTo(start);

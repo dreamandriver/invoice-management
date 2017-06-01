@@ -9,6 +9,7 @@
     <result column="CONSUMER" property="consumer" jdbcType="VARCHAR" />
     <result column="AMOUNT" property="amount" jdbcType="DOUBLE" />
     <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="PROJECTNAME" property="projectname" jdbcType="VARCHAR" />
     <result column="COMMENT" property="comment" jdbcType="VARCHAR" />
     <result column="IFFORMAL" property="ifformal" jdbcType="INTEGER" />
     <result column="FLAG" property="flag" jdbcType="INTEGER" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SERIALNO, CONTRACTNO, CREATERUSERID, CREATEDATE, CONSUMER, AMOUNT, COMPANY, COMMENT, 
-    IFFORMAL, FLAG, FINISH
+    SERIALNO, CONTRACTNO, CREATERUSERID, CREATEDATE, CONSUMER, AMOUNT, COMPANY, PROJECTNAME, 
+    COMMENT, IFFORMAL, FLAG, FINISH
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.riverdream.pojo.TbContractExample" >
     select
@@ -109,12 +110,14 @@
   <insert id="insert" parameterType="cn.riverdream.pojo.TbContract" >
     insert into tb_contract (SERIALNO, CONTRACTNO, CREATERUSERID, 
       CREATEDATE, CONSUMER, AMOUNT, 
-      COMPANY, COMMENT, IFFORMAL, 
-      FLAG, FINISH)
+      COMPANY, PROJECTNAME, COMMENT, 
+      IFFORMAL, FLAG, FINISH
+      )
     values (#{serialno,jdbcType=INTEGER}, #{contractno,jdbcType=VARCHAR}, #{createruserid,jdbcType=INTEGER}, 
       #{createdate,jdbcType=TIMESTAMP}, #{consumer,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
-      #{company,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{ifformal,jdbcType=INTEGER}, 
-      #{flag,jdbcType=INTEGER}, #{finish,jdbcType=INTEGER})
+      #{company,jdbcType=VARCHAR}, #{projectname,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{ifformal,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{finish,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.riverdream.pojo.TbContract" >
     insert into tb_contract
@@ -139,6 +142,9 @@
       </if>
       <if test="company != null" >
         COMPANY,
+      </if>
+      <if test="projectname != null" >
+        PROJECTNAME,
       </if>
       <if test="comment != null" >
         COMMENT,
@@ -174,6 +180,9 @@
       </if>
       <if test="company != null" >
         #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
       </if>
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
@@ -219,6 +228,9 @@
       <if test="record.company != null" >
         COMPANY = #{record.company,jdbcType=VARCHAR},
       </if>
+      <if test="record.projectname != null" >
+        PROJECTNAME = #{record.projectname,jdbcType=VARCHAR},
+      </if>
       <if test="record.comment != null" >
         COMMENT = #{record.comment,jdbcType=VARCHAR},
       </if>
@@ -245,6 +257,7 @@
       CONSUMER = #{record.consumer,jdbcType=VARCHAR},
       AMOUNT = #{record.amount,jdbcType=DOUBLE},
       COMPANY = #{record.company,jdbcType=VARCHAR},
+      PROJECTNAME = #{record.projectname,jdbcType=VARCHAR},
       COMMENT = #{record.comment,jdbcType=VARCHAR},
       IFFORMAL = #{record.ifformal,jdbcType=INTEGER},
       FLAG = #{record.flag,jdbcType=INTEGER},
@@ -274,6 +287,9 @@
       <if test="company != null" >
         COMPANY = #{company,jdbcType=VARCHAR},
       </if>
+      <if test="projectname != null" >
+        PROJECTNAME = #{projectname,jdbcType=VARCHAR},
+      </if>
       <if test="comment != null" >
         COMMENT = #{comment,jdbcType=VARCHAR},
       </if>
@@ -297,6 +313,7 @@
       CONSUMER = #{consumer,jdbcType=VARCHAR},
       AMOUNT = #{amount,jdbcType=DOUBLE},
       COMPANY = #{company,jdbcType=VARCHAR},
+      PROJECTNAME = #{projectname,jdbcType=VARCHAR},
       COMMENT = #{comment,jdbcType=VARCHAR},
       IFFORMAL = #{ifformal,jdbcType=INTEGER},
       FLAG = #{flag,jdbcType=INTEGER},

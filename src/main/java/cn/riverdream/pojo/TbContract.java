@@ -17,6 +17,8 @@ public class TbContract {
 	private Double amount;
 
 	private String company;
+	
+    private String projectname;
 
 	private String comment;
 
@@ -85,6 +87,14 @@ public class TbContract {
 		return company;
 	}
 
+    public String getProjectname() {
+        return projectname;
+    }
+
+    public void setProjectname(String projectname) {
+        this.projectname = projectname == null ? null : projectname.trim();
+    }
+    
 	public void setCompany(String company) {
 		this.company = company == null ? null : company.trim();
 	}
