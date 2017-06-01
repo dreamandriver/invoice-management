@@ -126,6 +126,30 @@ public class InvoiceController {
 		return invoice;
 	}
 	
+	@RequestMapping("/changecl")
+	@ResponseBody
+	public TbInvoice changeColor(Integer serialno, Integer flag) {
+		TbInvoice invoice = invoiceService.findBySerialNo(serialno);
+		if(invoice == null){
+			return new TbInvoice();
+		}
+		if(flag == 1){
+			invoice.setFinish(1);
+		}else if(flag == 2){
+			invoice.setFinish(2);
+		}else if(flag == 3){
+			invoice.setFinish(3);
+		}else{
+			invoice.setFinish(0);
+		}
+		try {
+			invoiceService.changeFinish(invoice);
+		} catch (Exception e) {
+			return new TbInvoice();
+		}
+		return invoice;
+	}
+	
 	@RequestMapping(value = "/{type}/excelDownload")
     public String exportExcel(HttpServletResponse response, InvoiceVo invoicekvo, @PathVariable String type) {
         try {

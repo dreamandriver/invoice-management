@@ -183,29 +183,31 @@ var columns = [ [{
 	title : '标记',
 	width : 60,
 	formatter:function(value, row, index){
-		var str = '<select name="'+ row.serialno +'" class="iffinish">';
-		str += '<option value="1" ';
-		if(row.finish ==1 ){
-			str += ' selected ';
+		if(row.serialno){
+			var str = '<select name="'+ row.serialno +'" class="iffinish">';
+			str += '<option value="1" ';
+			if(row.finish ==1 ){
+				str += ' selected ';
+			}
+			str += '>蓝</option>';
+			str += '<option value="2" ';
+			if(row.finish ==2 ){
+				str += ' selected ';
+			}
+			str += '>红</option>';
+			str += '<option value="3" ';
+			if(row.finish ==3 ){
+				str += ' selected ';
+			}
+			str += '>绿</option>';
+			str += '<option value="0" ';
+			if(row.finish ==0 ){
+				str += ' selected ';
+			}		
+			str += '>白</option>';
+			str += '</select>';
+			return str;
 		}
-		str += '>蓝</option>';
-		str += '<option value="2" ';
-		if(row.finish ==2 ){
-			str += ' selected ';
-		}
-		str += '>红</option>';
-		str += '<option value="3" ';
-		if(row.finish ==3 ){
-			str += ' selected ';
-		}
-		str += '>绿</option>';
-		str += '<option value="0" ';
-		if(row.finish ==0 ){
-			str += ' selected ';
-		}		
-		str += '>白</option>';
-		str += '</select>';
-		return str;
 	}
 },{
 	field : 'contractno',

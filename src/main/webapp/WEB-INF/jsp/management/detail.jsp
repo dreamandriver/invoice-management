@@ -284,6 +284,10 @@ $('#invoicelist1').datagrid({
 	rowStyler:function(index,row,css){
 		if (row.finish == 1){
 			return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+		}else if(row.finish == 2){
+			return 'background-color:#E21616;color:#fff;font-weight:bold;width:auto;';
+		}else if(row.finish == 3){
+			return 'background-color:#68c942;color:#fff;font-weight:bold;width:auto;';
 		}else{
 			return 'width:auto;';
 		}
@@ -316,6 +320,10 @@ $('#invoicelist2').datagrid({
 	rowStyler:function(index,row,css){
 		if (row.finish == 1){
 			return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+		}else if(row.finish == 2){
+			return 'background-color:#E21616;color:#fff;font-weight:bold;width:auto;';
+		}else if(row.finish == 3){
+			return 'background-color:#68c942;color:#fff;font-weight:bold;width:auto;';
 		}else{
 			return 'width:auto;';
 		}
@@ -349,6 +357,10 @@ $('#checklist').datagrid({
 	rowStyler:function(index,row,css){
 		if (row.finish == 1){
 			return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+		}else if(row.finish == 2){
+			return 'background-color:#E21616;color:#fff;font-weight:bold;width:auto;';
+		}else if(row.finish == 3){
+			return 'background-color:#68c942;color:#fff;font-weight:bold;width:auto;';
 		}else{
 			return 'width:auto;';
 		}

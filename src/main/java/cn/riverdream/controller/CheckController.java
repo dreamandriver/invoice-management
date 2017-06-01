@@ -126,6 +126,30 @@ public class CheckController {
 		return check;
 	}
 	
+	@RequestMapping("/changecl")
+	@ResponseBody
+	public TbCheck changeColor(Integer serialno, Integer flag) {
+		TbCheck check = checkService.findBySerialNo(serialno);
+		if(check == null){
+			return new TbCheck();
+		}
+		if(flag == 1){
+			check.setFinish(1);
+		}else if(flag == 2){
+			check.setFinish(2);
+		}else if(flag == 3){
+			check.setFinish(3);
+		}else{
+			check.setFinish(0);
+		}
+		try {
+			checkService.changeFinish(check);
+		} catch (Exception e) {
+			return new TbCheck();
+		}
+		return check;
+	}
+	
 	@RequestMapping(value = "/excelDownload")
     public String exportExcel(HttpServletResponse response, CheckVo checkvo) {
         try {
