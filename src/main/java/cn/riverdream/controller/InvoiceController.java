@@ -65,6 +65,9 @@ public class InvoiceController {
 	@ResponseBody
 	public ResultInfo saveContract(InvoiceVo invoicevo) {
 		try {
+			if(checkInvoiceNoExist(invoicevo.getInvoice())){
+				return ResultUtil.createFail("发票号已存在", ResultInfo.TYPE_RESULT_FAIL);
+			}
 			invoiceService.save(invoicevo.getInvoice());
 		} catch (Exception e) {
 			return ResultUtil.createFail("创建失败", ResultInfo.TYPE_RESULT_FAIL);
@@ -98,6 +101,9 @@ public class InvoiceController {
 	@ResponseBody
 	public ResultInfo updateContract(InvoiceVo invoicevo) {
 		try {
+			if(checkInvoiceNoExist(invoicevo.getInvoice())){
+				return ResultUtil.createFail("发票号已存在", ResultInfo.TYPE_RESULT_FAIL);
+			}
 			invoiceService.update(invoicevo);
 		} catch (Exception e) {
 			return ResultUtil.createFail("更新失败", ResultInfo.TYPE_RESULT_FAIL);
@@ -187,4 +193,17 @@ public class InvoiceController {
         }
         return null;
     }
+	
+	private boolean checkInvoiceNoExist(TbInvoice invoice){
+		TbInvoice entity = invoiceService.findByInvoiceNo(invoice.getInvoiceno());
+		if(entity != null ){
+			if(entity.getSerialno() == null){
+				return false;
+			}else if(entity.getSerialno() == invoice.getSerialno()){
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
 }

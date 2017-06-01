@@ -180,7 +180,7 @@ var columns = [ [{
 	hidden:true
 },{
 	field : 'serialno',
-	title : '标记',
+	title : '合同状态',
 	width : 60,
 	formatter:function(value, row, index){
 		if(row.serialno){
@@ -189,22 +189,27 @@ var columns = [ [{
 			if(row.finish ==1 ){
 				str += ' selected ';
 			}
-			str += '>蓝</option>';
+			str += '>合同</option>';
 			str += '<option value="2" ';
 			if(row.finish ==2 ){
 				str += ' selected ';
 			}
-			str += '>红</option>';
+			str += '>结算</option>';
 			str += '<option value="3" ';
 			if(row.finish ==3 ){
 				str += ' selected ';
 			}
-			str += '>绿</option>';
-			str += '<option value="0" ';
-			if(row.finish ==0 ){
+			str += '>发票</option>';
+			str += '<option value="4" ';
+			if(row.finish ==4 ){
 				str += ' selected ';
 			}		
-			str += '>白</option>';
+			str += '>完成</option>';
+			str += '<option value="5" ';
+			if(row.finish ==5 ){
+				str += ' selected ';
+			}		
+			str += '>未清</option>';
 			str += '</select>';
 			return str;
 		}
@@ -349,24 +354,13 @@ function initGrid(){
 		onClickRow : function(index, field, value) {
 					$('#contractlist').datagrid('unselectRow', index);
 				},
-		rowStyler:function(index,row,css){
-			if (row.finish == 1){
-				return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
-			}else if(row.finish == 2){
-				return 'background-color:#E21616;color:#fff;font-weight:bold;width:auto;';
-			}else if(row.finish == 3){
-				return 'background-color:#68c942;color:#fff;font-weight:bold;width:auto;';
-			}else{
-				return 'width:auto;';
-			}
-		},
 		onLoadSuccess:function(data){      
 			
 			$(".iffinish").change(function(){
 				$.post("${baseurl}/management/contract/changecl",
 						{serialno:$(this).attr("name"),flag:$(this).val()},
 						function(data){
-							$('#contractlist').datagrid('reload');  
+							//$('#contractlist').datagrid('reload');  
 						},
 						"json"
 						);

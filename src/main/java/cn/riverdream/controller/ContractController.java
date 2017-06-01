@@ -121,14 +121,17 @@ public class ContractController {
 		if(contract == null){
 			return new TbContract();
 		}
+		//1=合同;2=结算;3=发票;4=完成;5=未清
 		if(flag == 1){
 			contract.setFinish(1);
 		}else if(flag == 2){
 			contract.setFinish(2);
 		}else if(flag == 3){
 			contract.setFinish(3);
-		}else{
-			contract.setFinish(0);
+		}else if(flag == 4){
+			contract.setFinish(4);
+		}else if(flag == 5){
+			contract.setFinish(5);
 		}
 		try {
 			contractService.changeFinish(contract);

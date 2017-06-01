@@ -15,6 +15,8 @@ public interface InvoiceService {
 	void delete(InvoiceVo invoicevo);
 
 	TbInvoice findBySerialNo(Integer serialNo);
+	
+	TbInvoice findByInvoiceNo(String invoiceno);
 
 	void update(InvoiceVo invoicevo);
 

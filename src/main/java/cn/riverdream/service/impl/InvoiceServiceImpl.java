@@ -161,6 +161,20 @@ public class InvoiceServiceImpl implements InvoiceService {
 		}
 		return invoice;
 	}
+	
+	@Override
+	public TbInvoice findByInvoiceNo(String invoiceno) {
+		TbInvoiceExample example = new TbInvoiceExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andInvoicenoEqualTo(invoiceno);
+		criteria.andStatusNotEqualTo(3);
+		List<TbInvoice> list = invoiceMapper.selectByExample(example);
+		TbInvoice invoice = new TbInvoice();
+		if (list != null && list.size() > 0) {
+			invoice = list.get(0);
+		}
+		return invoice;
+	}
 
 	@Override
 	public void update(InvoiceVo invoicevo) {
