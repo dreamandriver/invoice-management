@@ -130,6 +130,8 @@ public class ContractServiceImpl implements ContractService {
 		String company = vo.getCompany();
 		Date start = vo.getStart();
 		Date end = vo.getEnd();
+		String ifformal = vo.getIfformal();//是否正式合同
+		String createruserid = vo.getCreateruserid();//是否完成
 
 		TbContractExample example = new TbContractExample();
 		cn.riverdream.pojo.TbContractExample.Criteria criteria = example.createCriteria();
@@ -141,6 +143,12 @@ public class ContractServiceImpl implements ContractService {
 		}
 		if (StringUtils.isNotBlank(contractno)) {
 			criteria.andContractnoEqualTo(contractno);
+		}
+		if (StringUtils.isNotBlank(ifformal) && ("0".equals(ifformal) || "1".equals(ifformal))) {
+			criteria.andIfformalEqualTo(Integer.valueOf(ifformal));
+		}
+		if (StringUtils.isNotBlank(createruserid) && ("0".equals(createruserid) || "1".equals(createruserid))) {
+			criteria.andCreateruseridEqualTo(Integer.valueOf(createruserid));
 		}
 		if (StringUtils.isNotBlank(projectname)) {
 			criteria.andProjectnameLike("%" + projectname + "%");

@@ -173,6 +173,16 @@
 								<div id="contract_createdateTip"></div>
 								</TD>
 							</TR>
+							<TR>
+								<TD height=30 width="15%" align=right >是否完成：</TD>
+								<TD class=category width="35%" >
+								<div>
+									<input type="radio" name="contract.createruserid" value="1" />是  &nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="contract.createruserid" value="0" checked="checked" />否
+								</div>
+								<div id="contract_companyTip"></div>
+								</TD>
+							</TR>
 							
 							<TR >
 							    <TD height=30 width="15%" align=right >备注：</TD>

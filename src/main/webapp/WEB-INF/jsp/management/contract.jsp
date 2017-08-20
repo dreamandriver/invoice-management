@@ -257,6 +257,20 @@ var columns = [ [{
 		}
 	}
 }
+,{
+	field : 'createruserid',
+	title : '是否完成',
+	width : 80,
+	formatter:function(value, row, index){
+		if(value ==1 ){
+			return "是";
+		}else if(value ==0){
+			return "否";
+		}else{
+			return "--";
+		}
+	}
+}
 <c:if test="${activeUser.permission1 == 'admin'}">  
 ,{
 	field : 'cinvoice',
@@ -399,6 +413,25 @@ function initGrid(){
 						<td ><INPUT type="text" name="company" /></td>
 						<TD class="left">工程名称：</TD>
 						<td ><INPUT type="text" name="projectname" /></td>
+					</TR>
+						<TD class="left">是否正式合同：</TD>
+						<td >
+						<!-- <INPUT type="text" name="ifformal" /> -->
+						<select name="ifformal">
+						<option selected >全部</option>
+						<option value="1">是</option>
+						<option value="0">否</option>
+						</select>
+						</td>
+						<TD class="left">是否完成：</TD>
+						<td >
+						<!-- <INPUT type="text" name="createruserid" /> -->
+						<select name="createruserid">
+						<option selected >全部</option>
+						<option value="1">是</option>
+						<option value="0">否</option>
+						</select>
+						</td>
 						 <td class="left">日期：</td>
 				  		<td>
 				      		<input class="laydate-icon" id="start" name="start" style="width:150px; margin-right:10px;">
@@ -408,7 +441,8 @@ function initGrid(){
 				 		 <td colspan=2  >
 							<a id="btn" href="#" onclick="contractQuery()" class="easyui-linkbutton" iconCls='icon-search'>查询</a>
 						</td>
-					</TR>
+					<tr>
+					</tr>
 				</TBODY>
 			</TABLE>
 	    </form>

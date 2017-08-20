@@ -19,6 +19,28 @@ public class ContractVo {
 	private String company;
 	
 	private String projectname;
+	
+	//是否正式合同 0=否,1=是
+	private String ifformal;
+	
+	//是否完成  1=完成; 0=未完成
+	private String createruserid;
+
+	public String getIfformal() {
+		return ifformal;
+	}
+
+	public void setIfformal(String ifformal) {
+		this.ifformal = ifformal;
+	}
+
+	public String getCreateruserid() {
+		return createruserid;
+	}
+
+	public void setCreateruserid(String createruserid) {
+		this.createruserid = createruserid;
+	}
 
 	private Date startDate;
 

@@ -8,6 +8,7 @@ public class TbContract {
 
 	private String contractno;
 
+	//是否完成  1=完成; 0=未完成
 	private Integer createruserid;
 
 	private Date createdate;
@@ -22,6 +23,7 @@ public class TbContract {
 
 	private String comment;
 
+	//是否正式合同 0=否,1=是
 	private Integer ifformal;
 
 	private Integer flag;

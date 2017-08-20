@@ -446,7 +446,16 @@ $('#checklist').datagrid({
 								</div>
 								</TD>
 							</TR>
-							
+							<TR>
+								<TD height=30 width="15%" align=right >是否完成：</TD>
+								<TD class=category width="35%" >
+								<div>
+									<c:if test="${contract.createruserid=='1'}">是</c:if>
+									<c:if test="${contract.createruserid=='0'}">否</c:if>
+								</div>
+								<div id="contract_companyTip"></div>
+								</TD>
+							</TR>
 							<TR >
 							    <TD height=30 width="15%" align=right >备注：</TD>
 								<TD class=category width="75%" colspan="3" >
