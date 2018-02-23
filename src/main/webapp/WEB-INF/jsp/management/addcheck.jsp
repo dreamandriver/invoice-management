@@ -9,11 +9,95 @@
 	<meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-<%@ include file="/WEB-INF/jsp/base/common_css.jsp"%>
-<%@ include file="/WEB-INF/jsp/base/common_js.jsp"%>
+<%@ include file="/WEB-INF/jsp/base/common_css1.jsp"%>
+<%@ include file="/WEB-INF/jsp/base/common_js1.jsp"%>
 
-		<script type="text/javascript">
+<script type="text/javascript">
+
+	//普票和专票表格初始化
+	var columns = [ [
+	//{
+	//	field : 'id',
+	//	title : '',
+	//	checkbox:true,
+	//	hidden:true
+	//},
+	//{
+	//	field : 'contractno',
+	//	title : '合同号',
+	//	width : 80,
+	//	formatter:function(value, row, index){
+	//		if(row.serialno){
+	//		    return '<a href=javascript:showcontract(\''+row.contractserialno+'\')>'+value+'</a>'
+	//		}
+	//	}
+	//},{
+	//	field : 'consumer',
+	//	title : '客户姓名',
+	//	width : 80
+	//},
+	//{
+	//	field : 'invoiceno',
+	//	title : '发票号',
+	//	width : 150
+	//},
+	{
+		field : 'zuofei',
+		title : '作废',
+		width : 100,
+		formatter:function(value, row, index){
+			if(row.serialno){
+				if(row.status == 1){
+					return row.amount;
+				}else{
+					return "--";
+				}
+			}else{
+				return row.zuofei;
+			}		
+		}
+	},{
+		field : 'amount',
+		title : '金额',
+		width : 100,
+		formatter:function(value, row, index){
+			if(row.serialno){
+				if(row.status == 0){
+					return row.amount;
+				}else if(row.status == 2){
+					return "<font color='red'>-"+row.amount+"</font>";
+				}else{
+					return "--";
+				}
+			}else{
+				return row.amount;
+			}
+		}
+	},{
+		field : 'taxpoint',
+		title : '扣税税点',
+		width : 100
+	},{
+		field : 'taxamount',
+		title : '扣税金额',
+		width : 100
+	},{
+		field : 'company',
+		title : '单位名称',
+		width : 180
+	},{
+		field : 'createdatestr',
+		title : '开票日期',
+		width : 120
+	},{
+		field : 'comment',
+		title : '备注',
+		width : 180
+	}
+	
+	]];
 		
+	//初始化方法
 	$(function (){
 		//***********按钮**************
 		$('#submitbtn').linkbutton({   
@@ -106,9 +190,64 @@
 			onError : "请填写公司名称"
 		});
 		
+		//发票列表初始化
+		$('#invoicelist').datagrid({   
+			title : '发票列表',
+			nowrap : true,
+			striped : true,
+			//collapsible : true,
+			//sortName : 'code',
+			//sortOrder : 'desc',
+			//remoteSort : false,
+			idField : 'serialno',
+			//frozenColumns : frozenColumns,
+			fitColumns: true,
+			showFooter:true,
+			pagination : true,
+			rownumbers : true,
+			toolbar : toolbar,
+			loadMsg:"",
+			pageSize:30,
+			pageList:[15,30,50,100],
+		    url:'/management/invoice/searchd/${contract.contractno}',   
+		  	frozenColumns:[[
+                {
+                	field : 'serialno',
+                	checkbox:true
+               	},
+                {
+            		field : 'invoiceno',
+            		title : '发票号',
+            		width : 100
+            	}
+			]],
+		    columns:columns,
+			rowStyler:function(index,row,css){
+				if (row.finish == 1){
+					return 'background-color:#6293BB;color:#fff;font-weight:bold;width:auto;';
+				}else if(row.finish == 2){
+					return 'background-color:#E21616;color:#fff;font-weight:bold;width:auto;';
+				}else if(row.finish == 3){
+					return 'background-color:#68c942;color:#fff;font-weight:bold;width:auto;';
+				}else{
+					return 'width:auto;';
+				}
+			},
+			onClickRow : function(index, field, value) {
+				$('#invoicelist').datagrid('unselectRow', index);
+			}
+		}); 
+
 	});
 	function checksave(){
 		if($.formValidator.pageIsValid()){
+			var ids = [];
+			var rows = $('#invoicelist').datagrid('getSelections');
+			for(var i=0; i<rows.length; i++){
+				ids.push(rows[i].serialno);
+			}
+			$('#invoiceids').val(ids.join(','));
+			//alert("rows.length=" + rows.length + "; rows=" + rows + "; ids=" + ids.join(',') + "; val=" + $('#invoiceids').val());
 			jquerySubByFId('checkaddform',checksave_callback,null,"json");
 		}
 
@@ -131,6 +270,7 @@
 <input type="hidden" name="check.contractserialno" value="${contract.serialno}"/>
 <input type="hidden" name="check.contractno" value="${contract.contractno}"/>
 <input type="hidden" name="check.consumer" value="${contract.consumer}" />
+<input type="hidden" name="invoiceids" id="invoiceids" value="" />
 <TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" bgColor=#c4d8ed>
 		<TBODY>
 			<TR>
@@ -244,7 +384,20 @@
 								<input type="text" name="check.comment" value="${check.comment}" style=" width: 640px;"/>
 								</TD>
 							</TR>
-							
+							<tr>
+								<div id="commoninvoicequery_div">
+									<TABLE border=0 cellSpacing=0 cellPadding=0 width="99%"
+										align=center>
+										<TBODY>
+											<TR>
+												<TD>
+													<table id="invoicelist"></table>
+												</TD>
+											</TR>
+										</TBODY>
+									</TABLE>
+								</div>
+							</tr>
 							<tr>
 							  <td colspan=4 align=center class=category>
 								<a id="submitbtn" href="#" onclick="checksave()">提交</a>

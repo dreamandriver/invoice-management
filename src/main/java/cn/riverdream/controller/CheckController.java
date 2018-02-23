@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.riverdream.model.CheckVo;
 import cn.riverdream.pojo.TbCheck;
+import cn.riverdream.pojo.TbInvoice;
 import cn.riverdream.service.CheckService;
+import cn.riverdream.service.InvoiceService;
 import cn.riverdream.utils.DataGridResultInfo;
 import cn.riverdream.utils.ResultInfo;
 import cn.riverdream.utils.ResultUtil;
@@ -33,6 +36,9 @@ public class CheckController {
 
 	@Autowired
 	private CheckService checkService;
+	
+	@Autowired
+	private InvoiceService invoiceService;
 	
 	 @InitBinder
 	 public void initBinder(WebDataBinder binder) {
@@ -65,6 +71,17 @@ public class CheckController {
 		try {
 			if(checkvo.getCheck().getOther() == null){
 				checkvo.getCheck().setOther(0.00);
+			}
+			if(StringUtils.isNotBlank(checkvo.getInvoiceids())) {
+				String[] split = checkvo.getInvoiceids().split(",");
+				for (int i = 0; i < split.length; i++) {
+					Integer serialno = Integer.parseInt(split[i]);
+					Integer finish = 0;
+					TbInvoice invoice = new TbInvoice();
+					invoice.setSerialno(serialno);
+					invoice.setFinish(finish);
+					invoiceService.changeFinish(invoice);
+				}
 			}
 			checkService.save(checkvo.getCheck());
 		} catch (Exception e) {

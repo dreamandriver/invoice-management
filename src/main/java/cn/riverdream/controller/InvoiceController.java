@@ -61,6 +61,18 @@ public class InvoiceController {
 		return gridResultInfo;
 	}
 	
+	@RequestMapping("/searchd/{contractno}")
+	@ResponseBody
+	public DataGridResultInfo getContract(@PathVariable String contractno) {
+		
+		InvoiceVo invoicevo = new InvoiceVo();
+		invoicevo.setPage(1);
+		invoicevo.setRows(30);
+		invoicevo.setContractno(contractno);
+		DataGridResultInfo gridResultInfo = invoiceService.find(-1, invoicevo);
+		return gridResultInfo;
+	}
+	
 	@RequestMapping("/add")
 	@ResponseBody
 	public ResultInfo saveContract(InvoiceVo invoicevo) {

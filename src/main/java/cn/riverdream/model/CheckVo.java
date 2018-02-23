@@ -34,6 +34,16 @@ public class CheckVo {
 	private int page;
 
 	private int rows;
+	
+	private String invoiceids;
+
+	public String getInvoiceids() {
+		return invoiceids;
+	}
+
+	public void setInvoiceids(String invoiceids) {
+		this.invoiceids = invoiceids;
+	}
 
 	public String getCompany() {
 		return company;

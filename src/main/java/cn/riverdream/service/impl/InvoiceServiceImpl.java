@@ -42,7 +42,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 		TbInvoiceExample example = new TbInvoiceExample();
 		Criteria criteria = example.createCriteria();
-		criteria.andInvoicetypeEqualTo(type);
+		if(type !=  -1) {
+			criteria.andInvoicetypeEqualTo(type);
+		}
 		criteria.andStatusNotEqualTo(3);
 
 		if (StringUtils.isNotBlank(contractno)) {
@@ -129,7 +131,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		invoice.setTaxamount(tax.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 		invoice.setAmount(a.doubleValue());
 		invoice.setTaxpoint(t.doubleValue());
-		invoice.setFinish(0);
+		invoice.setFinish(2);//默认红色
 		
 		invoice.setWorkdate(new Date());
 		invoiceMapper.insert(invoice);

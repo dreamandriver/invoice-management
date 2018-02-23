@@ -52,7 +52,22 @@ function addTab(subtitle,url,icon){
 			title:subtitle,
 			content:createFrame(url),
 			closable:true,
-			icon:icon
+			icon:icon,
+			tools:[{   
+		        iconCls:'icon-mini-refresh',   
+		        handler:function(){   
+		    		var currTab = $('#tabs').tabs('getTab', subtitle);
+    				var iframe = $(currTab.panel('options').content);
+    				var src = iframe.attr('src');
+    				if (src)
+    					$('#tabs').tabs('update', {
+    						tab : currTab,
+    						options : {
+    							content : createFrame(src)
+    						}
+    				});
+		        }   
+		    }]
 		});
 	}else{
 		$('#tabs').tabs('select',subtitle);
@@ -64,7 +79,3 @@ function createFrame(url)
 	var s = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
 	return s;
 }
-
-
-
-

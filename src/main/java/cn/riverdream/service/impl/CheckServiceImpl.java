@@ -51,7 +51,7 @@ public class CheckServiceImpl implements CheckService {
 		check.setIncomeamount(i.doubleValue());
 		check.setTaxpoint(t.doubleValue());
 		check.setOther(o.doubleValue());
-		check.setFinish(0);
+		check.setFinish(2);//默认红色
 		checkMapper.insert(check);
 		return check.getSerialno();
 	}
